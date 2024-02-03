@@ -3,7 +3,7 @@ package com.engman.domain;
 public class Main {
     public static void main(String[] args) {
         Environment eastdil = new Environment("Eastdil");
-        Project br = new Project("BusinessRequest");
+        Project br = new Project("BusinessRequest",100);
         Skill js = new Skill("js");
         Skill react = new Skill("react");
         Skill dotnet = new Skill("dotnet");
