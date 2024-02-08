@@ -23,6 +23,7 @@ public class Project {
         for (int t = 0; t < tf.Ticks; t++) {
             for (Developer dev : Developers) {
                 Integer newBalance = Balance.Transfer(dev.TickSalary * -1);
+                dev.Balance.Transfer(dev.TickSalary);
             }
         }
         return this;
