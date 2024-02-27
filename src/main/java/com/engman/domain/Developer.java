@@ -9,7 +9,7 @@ public class Developer {
     public String Name;
     public List<Skill> Skills = new ArrayList<>();     //abs:IList==List,    conc: List,ArrayList
 
-    public Liquid Balance;
+    public Liquid Balance = new Liquid(0);
     public int TickSalary;      //Salary per tick
 
     public Developer(String name, Skill[] initialSkills, Integer tickSalary) {
