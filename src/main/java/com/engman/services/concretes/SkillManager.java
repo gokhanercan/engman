@@ -27,6 +27,7 @@ public class SkillManager implements SkillService {
     @Override
     public List<GetAllSkillsResponse> getSkills() {
         List<Skill> skills = skillRepository.findAll();
+        //TODO: If required, call domain, get the result.
         return skills.stream().map(skill -> this.modelMapperService.forResponse().map(skill, GetAllSkillsResponse.class))
                 .collect(Collectors.toList());
     }

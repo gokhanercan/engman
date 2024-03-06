@@ -15,7 +15,7 @@ import org.springframework.web.bind.annotation.*;
 public class SkillController {
 
     @Autowired
-    SkillManager skillManager;
+    SkillManager skillManager;      //Repository ???
 
 
 //    @ResponseStatus(code = HttpStatus.CREATED)
@@ -30,6 +30,7 @@ public class SkillController {
         model.addAttribute("skills", skillManager.getSkills());
         return "get_skills";
     }
+
 
     @GetMapping("/addSkill")
     public String addSkillForm(Model model){
