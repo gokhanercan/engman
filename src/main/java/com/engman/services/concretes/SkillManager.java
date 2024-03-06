@@ -7,6 +7,7 @@ import com.engman.services.abstracts.SkillService;
 import com.engman.services.requests.CreateSkillRequest;
 import com.engman.services.responses.GetAllSkillsResponse;
 import lombok.AllArgsConstructor;
+import org.springframework.data.mongodb.core.MongoTemplate;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -18,6 +19,8 @@ public class SkillManager implements SkillService {
     private SkillRepository skillRepository;
     private ModelMapperService modelMapperService;
 
+    private MongoTemplate mongoTemplate;
+
     @Override
     public void addSkill(CreateSkillRequest createSkillRequest) {
         Skill skill = this.modelMapperService.forRequest().map(createSkillRequest, Skill.class);
@@ -26,6 +29,8 @@ public class SkillManager implements SkillService {
 
     @Override
     public List<GetAllSkillsResponse> getSkills() {
+        String collectionName = mongoTemplate.getCollectionName(Skill.class);
+        if (!mongoTemplate.collectionExists(collectionName)){throw new RuntimeException("Collection '" + collectionName + "' does not exist");}
         List<Skill> skills = skillRepository.findAll();
         //TODO: If required, call domain, get the result.
         return skills.stream().map(skill -> this.modelMapperService.forResponse().map(skill, GetAllSkillsResponse.class))
