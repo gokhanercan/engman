@@ -32,6 +32,7 @@ public class SkillManager implements SkillService {
         String collectionName = mongoTemplate.getCollectionName(Skill.class);
         if (!mongoTemplate.collectionExists(collectionName)){throw new RuntimeException("Collection '" + collectionName + "' does not exist");}
         List<Skill> skills = skillRepository.findAll();
+        //TODO: If required, call domain, get the result.
         return skills.stream().map(skill -> this.modelMapperService.forResponse().map(skill, GetAllSkillsResponse.class))
                 .collect(Collectors.toList());
     }
