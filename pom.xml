@@ -78,4 +78,11 @@
 		</plugins>
 	</build>
 
+	<!--
+	<modules>
+		<module>domain</module>
+
+	</modules>
+	-->
+
 </project>

@@ -1,4 +1,4 @@
-package engman.domain;
+package resources;
 
 public class Skill {
     public String Name;     //React/CQRS etc..

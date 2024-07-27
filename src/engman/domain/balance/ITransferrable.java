@@ -1,4 +1,4 @@
-package engman.domain.balance;
+package balance;
 
 public interface ITransferrable {
 

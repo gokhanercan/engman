@@ -1,7 +1,9 @@
-package engman.domain;
+package environment;
 
-import engman.domain.balance.Liquid;
-import engman.domain.time.TimeFrame;
+import balance.Liquid;
+import resources.Developer;
+import resources.Skill;
+import time.TimeFrame;
 
 import java.util.ArrayList;
 import java.util.List;

@@ -1,4 +1,4 @@
-package engman.domain;
+package environment;
 
 import java.util.ArrayList;
 
@@ -10,7 +10,7 @@ public class Environment {
         Name = name;
     }
 
-    public ArrayList<Project> Projects;
+    public ArrayList<Project> Projects = new ArrayList<>();
     public void RunSimulation(int months){      //Composite pattern.
         //TODO:
     }

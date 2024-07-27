@@ -1,6 +1,6 @@
-package engman.domain;
+package resources;
 
-import engman.domain.balance.Liquid;
+import balance.Liquid;
 
 import java.util.ArrayList;
 import java.util.List;

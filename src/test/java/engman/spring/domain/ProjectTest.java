@@ -6,8 +6,6 @@ import engman.domain.Skill;
 import engman.domain.time.TimeFrame;
 import org.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.*;
-
 class ProjectTest {
 
     @Test   //UUT_CurrentState_ExceptedBehaviour

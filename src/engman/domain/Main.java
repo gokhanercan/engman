@@ -1,4 +1,7 @@
-package engman.domain;
+import environment.Environment;
+import environment.Project;
+import resources.Developer;
+import resources.Skill;
 
 public class Main {
     public static void main(String[] args) {

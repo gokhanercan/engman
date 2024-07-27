@@ -1,4 +1,4 @@
-package engman.domain.time;
+package time;
 
 public class TimeFrame {
 
