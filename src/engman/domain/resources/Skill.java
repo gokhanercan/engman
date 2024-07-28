@@ -1,4 +1,4 @@
-package resources;
+package domain.resources;
 
 public class Skill {
     public String Name;     //React/CQRS etc..

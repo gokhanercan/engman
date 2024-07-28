@@ -1,4 +1,4 @@
-package balance;
+package domain.balance;
 
 public interface ITransferrable {
 

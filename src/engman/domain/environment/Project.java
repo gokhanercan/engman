@@ -1,9 +1,9 @@
-package environment;
+package domain.environment;
 
-import balance.Liquid;
-import resources.Developer;
-import resources.Skill;
-import time.TimeFrame;
+import domain.balance.Liquid;
+import domain.resources.Developer;
+import domain.resources.Skill;
+import domain.time.TimeFrame;
 
 import java.util.ArrayList;
 import java.util.List;

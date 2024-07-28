@@ -1,6 +1,6 @@
-package resources;
+package domain.resources;
 
-import balance.Liquid;
+import domain.balance.Liquid;
 
 import java.util.ArrayList;
 import java.util.List;

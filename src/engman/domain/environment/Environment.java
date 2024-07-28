@@ -1,4 +1,4 @@
-package environment;
+package domain.environment;
 
 import java.util.ArrayList;
 

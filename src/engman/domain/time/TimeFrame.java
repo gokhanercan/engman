@@ -1,4 +1,4 @@
-package time;
+package domain.time;
 
 public class TimeFrame {
 

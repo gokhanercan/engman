@@ -72,10 +72,21 @@
 							<groupId>org.projectlombok</groupId>
 							<artifactId>lombok</artifactId>
 						</exclude>
+						<exclude>engman/main/**</exclude>
+						<exclude>engman/test/**</exclude>
 					</excludes>
 				</configuration>
 			</plugin>
 		</plugins>
+		<resources>
+			<resource>
+				<directory>src</directory>
+				<excludes>
+					<exclude>main/**</exclude>
+					<exclude>test/**</exclude>
+				</excludes>
+			</resource>
+		</resources>
 	</build>
 
 	<!--
