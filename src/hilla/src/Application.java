@@ -1,4 +1,4 @@
-package engman.hilla.src;
+package src;
 
 import com.vaadin.flow.component.page.AppShellConfigurator;
 import com.vaadin.flow.theme.Theme;

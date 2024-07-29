@@ -1,4 +1,4 @@
 @NonNullApi
-package engman.hilla.src.data;
+package src.data;
 
 import org.springframework.lang.NonNullApi;

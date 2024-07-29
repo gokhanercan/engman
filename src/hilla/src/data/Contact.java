@@ -1,4 +1,4 @@
-package engman.hilla.src.data;
+package src.data;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.ManyToOne;

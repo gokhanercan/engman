@@ -1,9 +1,9 @@
-package engman.hilla.src.services;
+package src.services;
 
-import com.example.application.data.Company;
-import com.example.application.data.CompanyRepository;
-import com.example.application.data.Contact;
-import com.example.application.data.ContactRepository;
+import src.data.CompanyRepository;
+//import com.example.application.data.CompanyRepository;
+//import com.example.application.data.Contact;
+//import com.example.application.data.ContactRepository;
 import com.vaadin.flow.server.auth.AnonymousAllowed;
 import dev.hilla.BrowserCallable;
 import jakarta.validation.constraints.Email;
