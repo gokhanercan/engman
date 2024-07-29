@@ -1,7 +1,7 @@
 package services.abstracts;
 
-import engman.spring.services.requests.CreateSkillRequest;
-import engman.spring.services.responses.GetAllSkillsResponse;
+import services.requests.CreateSkillRequest;
+import services.responses.GetAllSkillsResponse;
 
 import java.util.List;
 

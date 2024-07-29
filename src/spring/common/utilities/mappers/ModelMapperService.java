@@ -1,4 +1,4 @@
-package spring.common.utilities.mappers;
+package common.utilities.mappers;
 
 import org.modelmapper.ModelMapper;
 
