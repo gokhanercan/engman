@@ -2,9 +2,12 @@
 Spring implementation is a submodule, similar to Hilla. Both uses 'Core' submodule  
 
 
-## Compile 
+## Compile
+``
 mvn compile
-
+``
 ## Dev Run
+``
 mvn spring-boot:run
-
+``
+Check out http://localhost:8080/
