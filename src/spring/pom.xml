@@ -3,12 +3,6 @@
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
-<!--    <parent>-->
-<!--        <groupId>engman</groupId>-->
-<!--        <artifactId>engman</artifactId>-->
-<!--        <version>0.0.1-SNAPSHOT</version>-->
-<!--    </parent>-->
-
     <artifactId>engman.spring</artifactId>
     <version>0.0.1-SNAPSHOT</version>
     <packaging>jar</packaging>
@@ -76,13 +70,14 @@
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
                 <configuration>
+                    <mainClass>app.EngmanApplication</mainClass>
                     <excludes>
                         <exclude>
                             <groupId>org.projectlombok</groupId>
                             <artifactId>lombok</artifactId>
                         </exclude>
-                        <exclude>engman/main/**</exclude>
-                        <exclude>engman/test/**</exclude>
+<!--                        <exclude>engman/main/**</exclude>-->
+<!--                        <exclude>engman/test/**</exclude>-->
                     </excludes>
                 </configuration>
             </plugin>
@@ -99,11 +94,7 @@
         </plugins>
         <resources>
             <resource>
-                <directory>src</directory>
-                <excludes>
-                    <exclude>main/**</exclude>
-                    <exclude>test/**</exclude>
-                </excludes>
+                <directory>resources</directory>
             </resource>
         </resources>
 
