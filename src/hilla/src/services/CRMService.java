@@ -1,10 +1,10 @@
 package src.services;
 
+import src.data.Company;
 import src.data.CompanyRepository;
-//import com.example.application.data.CompanyRepository;
-//import com.example.application.data.Contact;
-//import com.example.application.data.ContactRepository;
 import com.vaadin.flow.server.auth.AnonymousAllowed;
+import src.data.Contact;
+import src.data.ContactRepository;
 import dev.hilla.BrowserCallable;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotNull;

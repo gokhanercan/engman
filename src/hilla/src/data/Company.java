@@ -1,5 +1,4 @@
 package src.data;
-
 import jakarta.annotation.Nullable;
 import jakarta.persistence.Entity;
 import jakarta.persistence.OneToMany;
