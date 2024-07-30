@@ -1,6 +1,6 @@
 # Modules
 ## 1. Core (/core Submodule)
-This is the kernel/domain layer of the project. We keep it abstracted away from technology as much as possible.
+This is the kernel/domain layer of the project. We keep it abstracted away from technology as much as possible. Notice that its pom.xml file has no dependencies. We will be able to distribute its kernel independently.
 
 ## 2. Hilla Tech (/hilla Submodule)
 Hilla is an integrated full-stack Java/JS stack. This will be Engman's primary tech implementation.
