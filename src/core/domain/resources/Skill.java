@@ -1,6 +1,8 @@
 package domain.resources;
 
-public class Skill {
+import domain.common.AssetBase;
+
+public class Skill extends AssetBase {
     public String Name;     //React/CQRS etc..
     public String Desc;
 

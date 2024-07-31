@@ -1,11 +1,12 @@
 package domain.resources;
 
 import domain.balance.Liquid;
+import domain.common.AssetBase;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class Developer {
+public class Developer extends AssetBase {
     public String Name;
     public List<Skill> Skills = new ArrayList<>();     //abs:IList==List,    conc: List,ArrayList
 
