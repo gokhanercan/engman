@@ -18,11 +18,11 @@ block-beta
         n["..."]
    end
   
-  space
+  %%space
 
   block:Core
     columns 1
-    CoreLabel["Core"]
+    CoreLabel["Core Layer"]
     block:Domain
         developers
         skills
@@ -31,10 +31,9 @@ block-beta
     end
   end
     
-  Hilla-->Core
-  SpringMVC-->Core
+  %%Hilla-->Core
+  %%SpringMVC-->Core
   
 class developers,skills,projects,environments sRect
 class Hilla,SpringMVC,Spring,n,Core,React sTech
 class TechLabel,HillaLabel,CoreLabel sNoBox
-
