@@ -10,7 +10,7 @@ const navLinkClasses = ({ isActive }: any) => {
 };
 
 export default function MainLayout() {
-  const currentTitle = useRouteMetadata()?.title ?? 'My App';
+  const currentTitle = useRouteMetadata()?.title ?? 'engman';
   return (
     <AppLayout primarySection="drawer">
       <div slot="drawer" className="flex flex-col justify-between h-full p-m">
@@ -20,7 +20,7 @@ export default function MainLayout() {
             <NavLink className={navLinkClasses} to="/">Contacts</NavLink>
             <NavLink className={navLinkClasses} to="/about">About</NavLink>
             <NavLink className={navLinkClasses} to="/skills">Skills</NavLink>
-            <NavLink className={navLinkClasses} to="/skills">Developers</NavLink>
+            <NavLink className={navLinkClasses} to="/developers">Developers</NavLink>
           </nav>
         </header>
       </div>
