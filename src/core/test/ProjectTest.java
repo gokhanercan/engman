@@ -1,12 +1,11 @@
-//package test;
-
 import domain.resources.Developer;
 import domain.environment.Project;
 import domain.resources.Skill;
 import domain.time.TimeFrame;
 
-import org.junit.Test;
-import static org.junit.jupiter.api.Assertions.assertEquals;
+import org.testng.annotations.Test;
+
+import static org.testng.Assert.assertEquals;
 
 public class ProjectTest {
 
