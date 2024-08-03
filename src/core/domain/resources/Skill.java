@@ -11,5 +11,5 @@ public class Skill {
     //TODO:
     private int Percentage = 50; //0-100     //Assuming 100 is world max knowledge.
 
-    //HOw easy to learn + cross relations (transitivity)
+    //How easy to learn + cross relations (transitivity)
 }

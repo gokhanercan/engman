@@ -1,10 +1,7 @@
 package src.services;
 
-import src.data.Company;
-import src.data.CompanyRepository;
+import src.data.*;
 import com.vaadin.flow.server.auth.AnonymousAllowed;
-import src.data.Contact;
-import src.data.ContactRepository;
 import dev.hilla.BrowserCallable;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotNull;
@@ -23,6 +20,10 @@ public class CRMService {
     public CRMService(CompanyRepository companyRepository, ContactRepository contactRepository) {
         this.companyRepository = companyRepository;
         this.contactRepository = contactRepository;
+    }
+
+    public Skill getSkill(){
+        return null;
     }
 
     public record ContactRecord(
