@@ -14,15 +14,6 @@ const [skills, setSkills] = useState(
 );
     return (
         <>
-            {/* <div className="pa-5" style={{padding:"20px"}}>
-                <h2>Skills</h2>
-                {skills.map((skill,index) => (
-                    <div key={index} className="flex gap-m">
-                        {skill.skill.toUpperCase()}
-                    </div>
-                ))}
-            </div> */}
-
             <Grid
                 items={skills}
                 // onActiveItemChanged={e => setSelected(e.detail.value)}

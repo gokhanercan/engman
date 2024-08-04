@@ -4,6 +4,12 @@ Hilla is a full-stack web framework for Java. It can help you build better busin
 
 This example project shows a full-stack CRM application built using Hilla. You can find the step-by-step instructions for re-creating this app in the [Hilla documentation](https://hilla.dev/docs).
 
+## Installation Notes 
+``
+npm install -D tailwindcss postcss autoprefixer
+npx tailwindcss init
+``
+
 ## Running the application
 
 The project is a standard Maven project. To run it from the command line,

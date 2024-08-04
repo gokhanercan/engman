@@ -1,0 +1,4 @@
+/*installation ref: https://hilla.dev/blog/hilla-tailwind-tutorial/*/
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
