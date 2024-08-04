@@ -22,6 +22,7 @@ public class CRMService {
         this.contactRepository = contactRepository;
     }
 
+    //TODO:
     public Skill getSkill(){
         return null;
     }
