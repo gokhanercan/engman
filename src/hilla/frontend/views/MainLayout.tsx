@@ -6,17 +6,17 @@ import { Suspense } from 'react';
 import { NavLink, Outlet } from 'react-router-dom';
 
 const navLinkClasses = ({ isActive }: any) => {
-  return `block rounded-m p-s ${isActive ? 'bg-primary-10 text-primary' : 'text-body'}`;
+  return `block p-1 ${isActive ? 'bg-primary-10 text-primary font-bold' : 'text-body'}`;
 };
 
 export default function MainLayout() {
   const currentTitle = useRouteMetadata()?.title ?? 'engman';
   return (
     <AppLayout primarySection="drawer">
-      <div slot="drawer" className="flex flex-col justify-between h-full p-m">
-        <header className="flex flex-col gap-m">
-          <h1 className="text-l m-0">
-              <a href="/">Engineering Manager</a>
+      <div slot="drawer" className="flex flex-col justify-between h-full p-4">
+        <header className="flex flex-col gap-4">
+          <h1 className="text-lg font-bold no-underline">
+              <a href="/" className='no-underline hover:no-underline'>Engineering Manager</a>
           </h1>
           <nav>
             <NavLink className={navLinkClasses} to="/">Contacts</NavLink>
@@ -28,12 +28,14 @@ export default function MainLayout() {
       </div>
 
       <DrawerToggle slot="navbar" aria-label="Menu toggle"></DrawerToggle>
-      <h2 slot="navbar" className="text-l m-0">
+      <h2 slot="navbar" className="text-lg">
         {currentTitle}
       </h2>
 
       <Suspense fallback={<Placeholder />}>
-        <Outlet />
+        <div className='p-4'>
+          <Outlet />
+        </div>
       </Suspense>
     </AppLayout>
   );
