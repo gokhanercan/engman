@@ -1,4 +1,4 @@
-package src.data;
+package data;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.ManyToOne;

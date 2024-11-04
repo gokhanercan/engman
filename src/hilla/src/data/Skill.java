@@ -1,4 +1,4 @@
-package src.data;
+package data;
 
 import dev.hilla.Endpoint;
 import jakarta.persistence.*;

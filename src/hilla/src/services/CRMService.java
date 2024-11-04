@@ -1,7 +1,8 @@
-package src.services;
+package services;
 
-import src.data.*;
+
 import com.vaadin.flow.server.auth.AnonymousAllowed;
+import data.*;
 import dev.hilla.BrowserCallable;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotNull;

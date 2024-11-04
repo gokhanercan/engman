@@ -3,10 +3,10 @@ import {EmailField} from "@hilla/react-components/EmailField";
 import {Select, SelectItem} from "@hilla/react-components/Select";
 import {Button} from "@hilla/react-components/Button";
 import {useForm} from "@hilla/react-form";
-import ContactRecordModel from "Frontend/generated/src/services/CRMService/ContactRecordModel";
+import ContactRecordModel from "Frontend/generated/services/CRMService/ContactRecordModel";
 import {CRMService} from "Frontend/generated/endpoints";
 import {useEffect, useState} from "react";
-import ContactRecord from "Frontend/generated/src/services/CRMService/ContactRecord";
+import ContactRecord from "Frontend/generated/services/CRMService/ContactRecord";
 
 interface ContactFormProps {
     contact?: ContactRecord | null;

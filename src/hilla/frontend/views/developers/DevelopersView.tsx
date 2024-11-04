@@ -2,8 +2,8 @@ import React, { useEffect, useState } from "react";
 import { ResourcesService } from "Frontend/generated/endpoints";
 import { Grid } from "@hilla/react-components/Grid";
 import { GridColumn } from "@hilla/react-components/GridColumn";
-import DeveloperM from "Frontend/generated/src/models/DeveloperM";
-import SkillM from './../../generated/src/models/SkillM';
+import DeveloperM from "Frontend/generated/models/DeveloperM";
+import SkillM from './../../generated/models/SkillM';
 
 interface SkillsProps {
     skills: SkillM[] | null;
@@ -38,7 +38,7 @@ export default function DevelopersView() {
     const [developers, setDevelopers] = useState<DeveloperM[]>([]);
     useEffect(() => {
         ResourcesService.getDevelopers().then(devs=>{
-            //console.log("Devs",devs);
+            console.log("Devs",devs);
             setDevelopers(devs);
         })
         .catch(error => {
@@ -47,6 +47,7 @@ export default function DevelopersView() {
     }, []);
     return (
         <>
+        <h1>Alt Başlık</h1>
             <Grid items={developers}>
                 <GridColumn path="Name" header="Name" />
                 <GridColumn path="Age" header="Age"  />

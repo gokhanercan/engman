@@ -1,4 +1,4 @@
 @NonNullApi
-package src.data;
+package data;
 
 import org.springframework.lang.NonNullApi;

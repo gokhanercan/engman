@@ -1,4 +1,7 @@
-package src.data;
+package data;
+
+import data.AbstractEntity;
+import data.Contact;
 import jakarta.annotation.Nullable;
 import jakarta.persistence.Entity;
 import jakarta.persistence.OneToMany;

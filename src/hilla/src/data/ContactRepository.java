@@ -1,7 +1,8 @@
-package src.data;
-
+package data;
 
 import java.util.List;
+
+import data.Contact;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 

@@ -3,7 +3,7 @@ INSERT INTO "COMPANY" (ID, VERSION, NAME) VALUES
 (7, 1, 'Avaya Inc.'),
 (8, 1, 'Laboratory Corporation of America Holdings'),
 (9, 1, 'AutoZone, Inc.'),
-(10, 1, 'Linens ''n Things Inc.');   
+(10, 1, 'Linens ''n Things Inc.');
 INSERT INTO "CONTACT" (ID, VERSION, EMAIL,FIRST_NAME,LAST_NAME,COMPANY_ID) VALUES
 (11, 1, 'eula.lane@jigrormo.ye', 'Eula', 'Lane', 8),
 (12, 1, 'barry.rodriquez@zun.mm', 'Barry', 'Rodriquez', 7),
