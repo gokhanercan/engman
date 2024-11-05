@@ -4,8 +4,7 @@
 ## Compile, Generate Artifacts, and Run hilla
 ```bash
 cd hilla
-mvn    
-}
+mvn
 ```
 
 or simply 'run' the powershell on the project root. 
