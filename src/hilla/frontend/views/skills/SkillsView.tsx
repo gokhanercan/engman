@@ -9,7 +9,8 @@ export default function SkillsView() {
         {skill:"java1", type:"language"},
         {skill:"dotnet1", type:"framework"},
         {skill:"csharp1", type:"language"},
-        {skill:"python1", type:"language"}
+        {skill:"python1", type:"language"},
+        {skill:"azure", type:"cloud"}
     ];
     const [skills, setSkills] = useState(initialSkills);
 
