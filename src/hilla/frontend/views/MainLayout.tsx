@@ -23,6 +23,7 @@ export default function MainLayout() {
             <NavLink className={navLinkClasses} to="/about">About</NavLink>
             <NavLink className={navLinkClasses} to="/skills">Skills</NavLink>
             <NavLink className={navLinkClasses} to="/developers">Developers</NavLink>
+            <NavLink className={navLinkClasses} to="/gen-list">Generic List</NavLink>
           </nav>
         </header>
       </div>
