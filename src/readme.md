@@ -7,6 +7,7 @@ cd hilla
 mvn
 ```
 
+## Compile, Test, Generate Artifacts, and Run hilla
 or simply 'run' the powershell on the project root. 
 ```
 .\run 
