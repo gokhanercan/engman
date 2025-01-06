@@ -1,8 +1,8 @@
-package com.engman.domain.feeds;
+package com.engman.core.domain.feeds;
 
 
 
-import com.engman.domain.balance.Liquid;
+import com.engman.core.domain.balance.Liquid;
 
 import java.util.ArrayList;
 import java.util.List;

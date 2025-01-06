@@ -1,4 +1,4 @@
-package com.engman.domain.environment;
+package com.engman.core.domain.environment;
 
 import java.util.ArrayList;
 

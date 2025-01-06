@@ -1,4 +1,4 @@
-package com.engman.domain.balance;
+package com.engman.core.domain.balance;
 
 public class Liquid implements ITransferrable {
 

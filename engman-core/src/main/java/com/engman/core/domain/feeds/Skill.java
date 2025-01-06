@@ -1,4 +1,4 @@
-package com.engman.domain.feeds;
+package com.engman.core.domain.feeds;
 
 public class Skill {
     public String Name;     //React/CQRS etc..

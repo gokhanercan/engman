@@ -1,11 +1,11 @@
-package com.engman.domain.environment;
+package com.engman.core.domain.environment;
 
 
 
-import com.engman.domain.balance.Liquid;
-import com.engman.domain.feeds.Developer;
-import com.engman.domain.feeds.Skill;
-import com.engman.domain.time.TimeFrame;
+import com.engman.core.domain.balance.Liquid;
+import com.engman.core.domain.feeds.Developer;
+import com.engman.core.domain.feeds.Skill;
+import com.engman.core.domain.time.TimeFrame;
 
 import java.util.ArrayList;
 import java.util.List;
