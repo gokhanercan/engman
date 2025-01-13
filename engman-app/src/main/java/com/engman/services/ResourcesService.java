@@ -5,6 +5,7 @@ import com.engman.models.DeveloperM;
 import com.engman.models.ProjectM;
 import com.engman.models.SkillLevelM;
 import com.engman.models.SkillM;
+import com.vaadin.flow.router.Route;
 import com.vaadin.flow.server.auth.AnonymousAllowed;
 import com.vaadin.hilla.BrowserCallable;
 import org.springframework.stereotype.Service;
@@ -22,6 +23,7 @@ import java.util.List;
 
 @AnonymousAllowed
 @BrowserCallable
+@Route
 public class ResourcesService {
 
 //    private final DeveloperRepository developerRepository;

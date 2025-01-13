@@ -16,6 +16,7 @@ export default function MainLayout() {
   const currentTitle = useViewConfig()?.title;
   const navigate = useNavigate();
   const location = useLocation();
+  const myvar = "dsad";
 
   useEffect(() => {
     if (currentTitle) {

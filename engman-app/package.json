@@ -25,6 +25,7 @@
     "construct-style-sheets-polyfill": "3.1.0",
     "date-fns": "2.29.3",
     "lit": "3.2.1",
+    "no-name": "file:",
     "proj4": "2.12.1",
     "react": "18.3.1",
     "react-dom": "18.3.1",
