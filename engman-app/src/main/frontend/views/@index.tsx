@@ -5,12 +5,15 @@ import { ResourcesService } from 'Frontend/generated/endpoints';
 import { HorizontalLayout } from '@vaadin/react-components/HorizontalLayout.js';
 import { VerticalLayout } from '@vaadin/react-components/VerticalLayout.js';
 import Projects from 'Frontend/components/Projects';
+import Flow from 'Frontend/components/Flow';
 
 export default function DashboardView() {
     const [overallBudget, setOverallBudget] = useState<number>(100000);
     const [developers, setDevelopers] = useState<any[]>([]);        //TODO: MAke it type specific.
     const [projects, setProjects] = useState<any[]>([]);
     const [maxTime] = useState<number>(12);
+
+    
 
   useEffect(() => {
         ResourcesService.getProjects().then(p=>{
@@ -61,7 +64,10 @@ export default function DashboardView() {
             </HorizontalLayout>
 
             <HorizontalLayout theme="padding spacing">
-                <div className="example-item p-2" style={{ border:'1px solid lightgray', height:300, width:'50%' }}>Item 1</div>
+                <div className="example-item p-2" 
+                     style={{ border:'1px solid lightgray', height:300, width:'50%' }}>
+                        <Flow projects={projects} />
+                </div>
                 <div className="example-item p-2" style={{ border:'1px solid lightgray', width:'50%'  }}>Item 2</div>
             </HorizontalLayout>
 

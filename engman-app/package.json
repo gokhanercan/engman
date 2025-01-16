@@ -22,6 +22,7 @@
     "@vaadin/vaadin-material-styles": "24.6.0",
     "@vaadin/vaadin-themable-mixin": "24.6.0",
     "@vaadin/vaadin-usage-statistics": "2.1.3",
+    "@xyflow/react": "^12.4.0",
     "construct-style-sheets-polyfill": "3.1.0",
     "date-fns": "2.29.3",
     "lit": "3.2.1",
@@ -123,7 +124,7 @@
       "workbox-core": "7.3.0",
       "workbox-precaching": "7.3.0"
     },
-    "hash": "3ec2b4bc1e66db222421b50576a68188d24f5f217cbaa3c699ffd0a8949a6916"
+    "hash": "4ac5fdaa5b62c06768993e8e46fe87cfd02a20a9d7be371ebcf34c47227c1ee2"
   },
   "overrides": {
     "@vaadin/bundles": "$@vaadin/bundles",
@@ -162,6 +163,7 @@
     "@vaadin/react-components-pro": "$@vaadin/react-components-pro",
     "@vaadin/vaadin-themable-mixin": "$@vaadin/vaadin-themable-mixin",
     "@vaadin/vaadin-lumo-styles": "$@vaadin/vaadin-lumo-styles",
-    "@vaadin/vaadin-material-styles": "$@vaadin/vaadin-material-styles"
+    "@vaadin/vaadin-material-styles": "$@vaadin/vaadin-material-styles",
+    "@xyflow/react": "$@xyflow/react"
   }
 }

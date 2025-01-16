@@ -99,14 +99,14 @@ public class ResourcesService {
                 )),
                 new ArrayList<>(Arrays.asList(gokhan, devops, kerem))
         ),
-        new ProjectM(1L,"Project 2","Data science",1000000,
+        new ProjectM(2L,"Project 2","Data science",1000000,
                 new ArrayList<>(Arrays.asList(
                         new SkillLevelM(python, 50, 80)
                 )
         ),
             new ArrayList<>(Arrays.asList(datascientist))
         ),
-            new ProjectM(1L,"Project 3","ECommerceproject",500000,
+            new ProjectM(3L,"Project 3","ECommerceproject",500000,
                 new ArrayList<>(Arrays.asList(
                         new SkillLevelM(azure, 50, 70),
                         new SkillLevelM(dotnet, 70, 90)
