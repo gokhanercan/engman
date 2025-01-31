@@ -13,7 +13,7 @@ interface FlowProps {
 // const initialEdges = [{ id: 'e1-2', source: '1', target: '2' }];
 
 export default function Flow({ projects }: FlowProps) {
-  console.log('Projects', projects);
+  //console.log('Projects', projects);
   // const onConnect = useCallback(
   //     (params) => setEdges((eds) => addEdge(params, eds)),
   //     [setEdges],

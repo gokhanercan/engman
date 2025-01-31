@@ -6,7 +6,7 @@ interface BadgeProps {
 
 export default function Badge({label,description, colorName = 'deepskyblue'}: BadgeProps) {
     if (!label) return null;
-    console.log("ColorName",colorName);
+    //console.log("ColorName",colorName);
     
     return (
         <span
