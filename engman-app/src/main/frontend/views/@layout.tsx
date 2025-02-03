@@ -26,9 +26,11 @@ export default function MainLayout() {
 
   return (
     <AppLayout primarySection="drawer">
-      <div slot="drawer" className="flex flex-col justify-between h-full p-m">
+      <div slot="drawer" className="flex flex-col justify-between h-full p-m text-center1">
         <header className="flex flex-col gap-m">
-          <span className="font-semibold text-l">engman</span>
+          <a href="/" className="flex items-center gap-m" style={{ color: 'black' }}>
+            <span className="font-semibold text-xl">engman</span>
+          </a>
           <SideNav onNavigate={({ path }) => navigate(path!)} location={location}>
             {createMenuItems().map(({ to, title, icon }) => (
               <SideNavItem path={to} key={to}>
