@@ -3,10 +3,10 @@ package com.engman.entity;
 import org.springframework.data.mongodb.core.mapping.Document;
 import org.springframework.data.annotation.Id;
 
-@Document(collection = "developers")
+//@Document(collection = "developers")
 public class Developer {
 
-    @Id
+//    @Id
     private String id;
     private String name;
     private int age;
@@ -45,7 +45,7 @@ public class Developer {
         this.age = age;
     }
 
-    @Override
+//    @Override
     public String toString() {
         return "Developer{" +
                 "id='" + id + '\'' +

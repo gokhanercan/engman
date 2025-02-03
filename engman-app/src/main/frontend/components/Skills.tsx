@@ -13,13 +13,13 @@ export default function Skills({ skills,title}: SkillsProps) {
             {title && <b className="subTitle">{title}</b>}
             <Grid items={skills}>
                 {/* <GridColumn path="Name" header="Name" /> */}
-                <GridColumn  header="Name"
+                <GridColumn header="name"
                     renderer={({ item }) => (
-                        <Badge label={item.Name} colorName={item.CustomColorName}></Badge>
+                        <Badge label={item.name} colorName={item.customColorName}></Badge>
                     )}
                 />
-                <GridColumn path="Description" header="Description" />
-                <GridColumn path="Hardness" header="Hardness" />
+                <GridColumn path="description" header="Description" />
+                <GridColumn path="hardness" header="Hardness" />
             </Grid>
         </>
     );
