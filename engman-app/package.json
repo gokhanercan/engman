@@ -3,7 +3,7 @@
   "license": "UNLICENSED",
   "type": "module",
   "scripts": {
-    "dev": "npx tailwindcss -i src/main/frontend/themes/eng-man/main-input.css -o /src/main/frontend/themes/eng-man/main-output.css --watch"
+    "dev": "npx tailwindcss -i src/main/frontend/themes/eng-man/main-in.css -o src/main/frontend/themes/eng-man/main-out.css --watch"
   },
   "dependencies": {
     "@polymer/polymer": "3.5.2",
@@ -61,10 +61,10 @@
     "rollup-plugin-brotli": "3.1.0",
     "rollup-plugin-visualizer": "5.12.0",
     "strip-css-comments": "5.0.0",
-    "tailwindcss": "^4.0.3",
+    "tailwindcss": "^3.4.17",
     "transform-ast": "2.4.4",
     "typescript": "5.7.2",
-    "vite": "6.0.3",
+    "vite": "^6.1.0",
     "vite-plugin-checker": "0.8.0",
     "workbox-build": "7.3.0",
     "workbox-core": "7.3.0",
@@ -130,7 +130,7 @@
       "workbox-core": "7.3.0",
       "workbox-precaching": "7.3.0"
     },
-    "hash": "017a0faad35cb6bb6c281792b6a17240d86674c162de6d57b09163829ca9b315"
+    "hash": "be4e7d98e25b17883e2805247f5619a0462e17d3dd5a4144fd428090b03794c9"
   },
   "overrides": {
     "@vaadin/bundles": "$@vaadin/bundles",

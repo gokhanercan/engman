@@ -12,6 +12,10 @@ http://localhost:8080 in your browser.
 You can also import the project to your IDE of choice as you would with any
 Maven project.
 
+### Enable Tailwind Watch
+- Type `npm run dev`
+- Apply your style changes to the `main-in.css` file and see the results in `main-out.css`.
+
 ## Deploying to Production
 
 To create a production build, call `mvnw clean package -Pproduction` (Windows),
