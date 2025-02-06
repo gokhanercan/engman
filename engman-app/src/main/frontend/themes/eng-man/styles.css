@@ -1,3 +1,4 @@
+
 *.subTitle{
     font-size: 1.1em;
     margin: 12px 0 10px 12px;
@@ -7,10 +8,16 @@ div.block{
     border: 1px solid #f6f6f6;
     border-radius: 3px;
 }
+/* body{
+    color:red !important;
+} */
 div.link{
     float:right;
     padding: 3px 3px 3px 3px;
 }
 div.block div.link a{
     color: rgb(82, 107, 128) !important;
+}
+div.gokhan{
+    /* color: red; */
 }

@@ -4,6 +4,8 @@ import { AppLayout, DrawerToggle, Icon, SideNav, SideNavItem } from '@vaadin/rea
 import { Suspense, useEffect } from 'react';
 import { Outlet, useLocation, useNavigate } from 'react-router-dom';
 
+import "../themes/eng-man/main-input.css";
+
 const documentTitleSignal = signal('');
 effect(() => {
   document.title = documentTitleSignal.value;
