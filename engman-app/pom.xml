@@ -5,7 +5,7 @@
     <modelVersion>4.0.0</modelVersion>
     <!-- Project from https://start.vaadin.com/project/7f70e945-1aec-4f0c-8177-eb48d6e1ed4c -->
     <groupId>com.engman</groupId>
-    <artifactId>engman-app</artifactId>
+    <artifactId>app</artifactId>
     <name>engman-app</name>
     <version>1.0-SNAPSHOT</version>
     <packaging>jar</packaging>
@@ -18,9 +18,10 @@
     </properties>
 
     <parent>
-        <groupId>com.engman</groupId>
-        <artifactId>engman</artifactId>
-        <version>1.0-SNAPSHOT</version>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-starter-parent</artifactId>
+        <version>3.4.1</version>
+        <relativePath/> <!-- usually not needed unless you have a custom setup -->
     </parent>
 
     <dependencyManagement>
@@ -37,6 +38,12 @@
     </dependencyManagement>
 
     <dependencies>
+
+        <dependency>
+            <groupId>com.engman</groupId>
+            <artifactId>core</artifactId>
+            <version>1.0-SNAPSHOT</version>
+        </dependency>
 
         <dependency>
             <groupId>com.vaadin</groupId>
@@ -90,11 +97,6 @@
             <scope>provided</scope>
         </dependency>
 
-        <dependency>
-            <groupId>com.engman.core</groupId>
-            <artifactId>engman-core</artifactId>
-            <version>1.0-SNAPSHOT</version>
-        </dependency>
     </dependencies>
 
     <build>
@@ -106,8 +108,8 @@
                     <version>1.0-SNAPSHOT</version>
                 </plugin>
                 <plugin>
-                    <groupId>com.engman.core</groupId>
-                    <artifactId>engman-core</artifactId>
+                    <groupId>engman.core</groupId>
+                    <artifactId>core</artifactId>
                     <version>1.0-SNAPSHOT</version>
                 </plugin>
             </plugins>
