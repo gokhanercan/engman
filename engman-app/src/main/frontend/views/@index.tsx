@@ -6,24 +6,31 @@ import { HorizontalLayout } from '@vaadin/react-components/HorizontalLayout.js';
 import { VerticalLayout } from '@vaadin/react-components/VerticalLayout.js';
 import Projects from 'Frontend/components/Projects';
 import Flow from 'Frontend/components/Flow';
+import Skills from 'Frontend/components/Skills';
+import SkillLevelM from 'Frontend/generated/com/engman/models/SkillLevelM';
+import SkillM from 'Frontend/generated/com/engman/models/SkillM';
+import { Icon } from '@vaadin/react-components';
 
 export default function DashboardView() {
     const [overallBudget, setOverallBudget] = useState<number>(100000);
     const [developers, setDevelopers] = useState<any[]>([]);        //TODO: MAke it type specific.
+    const [skills, setSkills] = useState<SkillM[]>([]);
     const [projects, setProjects] = useState<any[]>([]);
     const [maxTime] = useState<number>(12);
 
-    
-
   useEffect(() => {
-        ResourcesService.getProjects().then(p=>{
-            console.log("Projects",p);
-            setProjects(p);
+        ResourcesService.getProjects().then(ps=>{
+            console.log("Projects",ps);
+            setProjects(ps);
         })
         ResourcesService.getDevelopers().then(devs=>{
             console.log("Devs",devs);
             //initialDevelopers = devs;
             setDevelopers(devs);
+        })
+        ResourcesService.getSkills().then(skills=>{
+            console.log("Skills",skills);
+            setSkills(skills);
         })
         .catch(error => {
             console.error("Failed to fetch developers", error);
@@ -49,26 +56,34 @@ export default function DashboardView() {
 
     return (
         <>
-            <h1>Dashboard</h1>
-            
+            {/* <h1>Dashboard</h1> */}
             <HorizontalLayout theme="padding spacing">
-                <div className="example-item p-2" style={{ border:'1px solid lightgray', height:300, width:'50%', overflowY:'auto' }}>
-                    <Developers developers={developers} title="Developers" showProgressBars={false} />
+                <div className="block" style={{ border:'1px solid lightgray', height:300, width:'50%', overflowY:'auto' }}>
+                    <div className="link"><a href="/developers"><Icon icon="vaadin:external-link" style={{ padding: '0.25em' }} /></a></div>
+                    <Developers developers={developers} title="Developers" showProgressBars={false} pageLink="/developers" />
                 </div>
-                <div className="example-item p-2" style={{ border:'1px solid lightgray', width:'50%'  }}>
+                <div className="block" style={{ border:'1px solid lightgray', width:'50%'  }}>
                     <div>
-                        <h3><b>Projects</b></h3>
-                        <Projects projects={projects} title="" showProgressBars={false} compactMode={true} />
+                    <div className="link"><a href="/projects"><Icon icon="vaadin:external-link" style={{ padding: '0.25em' }} /></a></div>
+                        <Projects projects={projects} title="Projects" showProgressBars={false} compactMode={true} />
                     </div>
                 </div>
             </HorizontalLayout>
 
             <HorizontalLayout theme="padding spacing">
-                <div className="example-item p-2" 
-                     style={{ border:'1px solid lightgray', height:300, width:'50%' }}>
-                        <Flow projects={projects} />
+                {/* Flow */}
+                <div className="block" style={{ border:'1px solid lightgray', height:300, width:'50%' }}>
+                    <div className="link"><a href="/flow"><Icon icon="vaadin:expand" style={{ padding: '0.25em' }} /></a></div>
+                    <Flow projects={projects} />
                 </div>
-                <div className="example-item p-2" style={{ border:'1px solid lightgray', width:'50%'  }}>Item 2</div>
+
+                {/* Skills */}
+                <div className="block" style={{ border:'1px solid lightgray', width:'50%'  }}>
+                    <div>
+                        <div className="link"><a href="/skills"><Icon icon="vaadin:external-link" style={{ padding: '0.25em' }} /></a></div>
+                        <Skills skills={skills} title={"Skills"}></Skills>
+                    </div>
+                </div>
             </HorizontalLayout>
 
             {/* <p>Overall Budget: {overallBudget}</p>

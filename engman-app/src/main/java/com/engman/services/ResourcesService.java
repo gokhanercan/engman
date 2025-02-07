@@ -1,18 +1,24 @@
 
 package com.engman.services;
 
+import com.engman.core.module.ModuleHost;
 import com.engman.models.DeveloperM;
 import com.engman.models.ProjectM;
 import com.engman.models.SkillLevelM;
 import com.engman.models.SkillM;
+import com.engman.repo.SkillsRepo;
+import com.helger.commons.annotation.ReturnsMutableCopy;
 import com.vaadin.flow.router.Route;
 import com.vaadin.flow.server.auth.AnonymousAllowed;
 import com.vaadin.hilla.BrowserCallable;
+import lombok.AllArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.UUID;
 
 //'Open Session In View' pattern
 
@@ -24,30 +30,17 @@ import java.util.List;
 @AnonymousAllowed
 @BrowserCallable
 @Route
+//@AllArgsConstructor
 public class ResourcesService {
 
-//    private final DeveloperRepository developerRepository;
-//    private final SkillRepository skillRepository;
-    //private final ProjectRepository projectRepo;
+    @Autowired
+    private SkillsRepo skillsRepo;
 
-//    SkillRepository skillRepository, ProjectRepository projectRepository
-
-//    @Autowired
-//    public ResourcesService(ProjectRepository projectRepo) {
-//        //this.projectRepo = projectRepo;
-//    }
-
-    public ResourcesService() {
-    }
-
-    //Project  ->SkillLevel->Skill
-    //Developer->SkillLevel->Skill
-
-    private SkillM aws = new SkillM("AWS","Cloud platform",10,"gold");
-    private SkillM java = new SkillM("Java","Java lang",10,"skyblue");
-    private SkillM dotnet = new SkillM("dotnet",".NET is a Microsoft framework for building and running applications on web, mobile, desktop, and cloud platforms.",10,"tomato");
-    private SkillM azure = new SkillM("Azure","Azure is Microsoft's cloud platform for building, deploying, and managing applications globally.",10,"blue");
-    private SkillM python = new SkillM("Python","Python lang.",10,"green");
+    private SkillM aws = new SkillM(UUID.randomUUID(),"AWS","Cloud platform",10,"gold");
+    private SkillM java = new SkillM(UUID.randomUUID(),"Java","Java lang",10,"skyblue");
+    private SkillM dotnet = new SkillM(UUID.randomUUID(),"dotnet",".NET is a Microsoft framework for building and running applications on web, mobile, desktop, and cloud platforms.",10,"tomato");
+    private SkillM azure = new SkillM(UUID.randomUUID(),"Azure","Azure is Microsoft's cloud platform for building, deploying, and managing applications globally.",10,"blue");
+    private SkillM python = new SkillM(UUID.randomUUID(),"Python","Python lang.",10,"green");
 
     private DeveloperM gokhan = new DeveloperM("Gökhan Ercan",41,
                 new ArrayList<>(
@@ -117,18 +110,12 @@ public class ResourcesService {
 
     private List<DeveloperM> _Devs = new ArrayList<>(Arrays.asList(gokhan, devops, datascientist, oldman, kerem));
 
-//    @Autowired
-//    MyRepo myRepo;
-//    public ResourcesService(MyRepo myRepo) {
-//        this.myRepo = myRepo;
-//    }
-
     public List<DeveloperM> getDevelopers(){
         return _Devs;
     }
 
     public List<SkillM> getSkills(){
-        return _Skills;
+        return skillsRepo.findAll();
     }
 
     public List<ProjectM> getProjects(){

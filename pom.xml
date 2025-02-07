@@ -5,6 +5,7 @@
     <artifactId>engman</artifactId>
     <version>1.0-SNAPSHOT</version>
     <packaging>pom</packaging>
+
     <modules>
         <module>engman-core</module>
         <module>engman-app</module>

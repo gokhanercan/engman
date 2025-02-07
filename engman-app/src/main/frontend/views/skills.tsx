@@ -4,6 +4,7 @@ import {GridColumn} from "@vaadin/react-components/GridColumn";
 import { ResourcesService } from "Frontend/generated/endpoints";
 import SkillM from 'Frontend/generated/com/engman/models/SkillM';
 import Badge from 'Frontend/components/Badge';
+import Skills from 'Frontend/components/Skills';
 
 export default function SkillsView() {
     const [skills, setSkills] = useState<SkillM[]>([]);
@@ -20,17 +21,7 @@ export default function SkillsView() {
 
     return (
         <>
-            <h1>Skills</h1>
-            <Grid items={skills}>
-                {/* <GridColumn path="Name" header="Name" /> */}
-                <GridColumn  header="Name"
-                    renderer={({ item }) => (
-                        <Badge label={item.Name} colorName={item.CustomColorName}></Badge>
-                    )}
-                />
-                <GridColumn path="Description" header="Description" />
-                <GridColumn path="Hardness" header="Hardness" />
-            </Grid>
+            <Skills skills={skills}></Skills>
         </>
     );
 }

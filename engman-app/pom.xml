@@ -5,7 +5,7 @@
     <modelVersion>4.0.0</modelVersion>
     <!-- Project from https://start.vaadin.com/project/7f70e945-1aec-4f0c-8177-eb48d6e1ed4c -->
     <groupId>com.engman</groupId>
-    <artifactId>engman-app</artifactId>
+    <artifactId>app</artifactId>
     <name>engman-app</name>
     <version>1.0-SNAPSHOT</version>
     <packaging>jar</packaging>
@@ -13,9 +13,9 @@
     <properties>
         <java.version>21</java.version>
         <vaadin.version>24.6.0</vaadin.version>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
     </properties>
-
-
 
     <parent>
         <groupId>org.springframework.boot</groupId>
@@ -33,6 +33,7 @@
                 <type>pom</type>
                 <scope>import</scope>
             </dependency>
+
         </dependencies>
     </dependencyManagement>
 
@@ -40,7 +41,7 @@
 
         <dependency>
             <groupId>com.engman</groupId>
-            <artifactId>engman-core</artifactId>
+            <artifactId>core</artifactId>
             <version>1.0-SNAPSHOT</version>
         </dependency>
 
@@ -69,7 +70,6 @@
             <artifactId>spring-boot-starter-data-jpa</artifactId>
         </dependency>
 
-
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-validation</artifactId>
@@ -89,15 +89,32 @@
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-data-mongodb</artifactId>
         </dependency>
+
         <dependency>
-            <groupId>com.engman.core</groupId>
-            <artifactId>engman-core</artifactId>
-            <version>1.0-SNAPSHOT</version>
-            <scope>compile</scope>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+            <version>1.18.30</version>
+            <scope>provided</scope>
         </dependency>
+
     </dependencies>
 
     <build>
+        <pluginManagement>
+            <plugins>
+                <plugin>
+                    <groupId>com.engman</groupId>
+                    <artifactId>engman</artifactId>
+                    <version>1.0-SNAPSHOT</version>
+                </plugin>
+                <plugin>
+                    <groupId>engman.core</groupId>
+                    <artifactId>core</artifactId>
+                    <version>1.0-SNAPSHOT</version>
+                </plugin>
+            </plugins>
+        </pluginManagement>
+
         <defaultGoal>spring-boot:run</defaultGoal>
         <plugins>
             <plugin>

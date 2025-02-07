@@ -1,7 +1,7 @@
 import { Grid } from "@vaadin/react-components/Grid.js";
 import { GridColumn } from "@vaadin/react-components/GridColumn.js";
 import DeveloperM from "Frontend/generated/com/engman/models/DeveloperM";
-import Skills from "./Skills";
+import Skills from "./SkillsBadges";
 import DeveloperAvatar from "./DeveloperAvatar";
 import DeveloperGroupAvatar from "./DeveloperGroupAvatar";
 
@@ -34,7 +34,7 @@ export default function Projects({
 }: ProjectsCompProps) {
     return (
         <>
-            {title && <b>{title}</b>}
+            {title && <b className="subTitle">{title}</b>}
             <Grid items={projects} theme={compactMode ? "compact" : ""} >
                 <GridColumn path="Name" header="Name" />
                 <MyGridColumn path="Description" header="Description"  visible={!compactMode} />

@@ -13,7 +13,7 @@ export default function DevelopersView() {
 
     useEffect(() => {
         ResourcesService.getDevelopers().then(devs=>{
-            console.log("Devs",devs);
+            //console.log("Devs",devs);
             setDevelopers(devs);
         })
         .catch(error => {
@@ -23,7 +23,7 @@ export default function DevelopersView() {
 
     return (
         <>
-            <Developers developers={developers} title='Developers' showProgressBars={false}  />
+            <Developers developers={developers} title='' showProgressBars={false}  />
         </>
     );
 }

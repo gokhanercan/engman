@@ -1,19 +1,24 @@
 import { Grid } from "@vaadin/react-components/Grid.js";
 import { GridColumn } from "@vaadin/react-components/GridColumn.js";
 import DeveloperM from "Frontend/generated/com/engman/models/DeveloperM";
-import Skills from "./Skills";
+import Skills from "./SkillsBadges";
 import DeveloperAvatar from "./DeveloperAvatar";
+import { Icon } from "@vaadin/react-components";
 
 interface DeveloperCompProps {
     developers: DeveloperM[] | null;
     title?: string | null;
     showProgressBars?: boolean;
+    pageLink?: string | null;
 }
 
-export default function Developers({ developers,title,showProgressBars=true }: DeveloperCompProps) {
+export default function Developers({ developers,title,showProgressBars=true,pageLink}: DeveloperCompProps) {
     return (
         <>
-            {title && <b>{title}</b>}
+            {title && <b className="subTitle">{title}</b>}
+            {/* {pageLink && <a href={pageLink}>Page</a>} */}
+            {/* <a href="dsada">Gokhan</a> */}
+            {/* <Icon icon="vaadin:phone" /> */}
             <Grid items={developers}>
                 <GridColumn
                     header={"Avatar"}
