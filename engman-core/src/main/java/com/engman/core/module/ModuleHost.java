@@ -1,8 +1,6 @@
-package com.engman.modules;
+package com.engman.core.module;
 
 import com.engman.core.domain.Developer;
-import com.engman.core.module.ModuleBase;
-import com.engman.core.module.ModuleContext;
 import com.engman.core.modules.TrueColorsModule;
 
 import java.util.ArrayList;
@@ -17,7 +15,7 @@ public class ModuleHost {
 
     public List<ModuleBase> DiscoverModules(){
         return new ArrayList<>(){{
-            add(new TrueColorsModule());
+            add(new TrueColorsModule());        //Currently hardcoded.
         }};
     }
 

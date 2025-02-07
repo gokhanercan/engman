@@ -20,6 +20,7 @@ public class TrueColorsModule extends ModuleBase {
         super.onModuleEnable();
         //
     }
+
      @Override
     public void onModuleInstall(ModuleContext context) {
         super.onModuleInstall(context);

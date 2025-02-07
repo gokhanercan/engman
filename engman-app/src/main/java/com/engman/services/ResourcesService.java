@@ -1,6 +1,7 @@
 
 package com.engman.services;
 
+import com.engman.core.module.ModuleHost;
 import com.engman.models.DeveloperM;
 import com.engman.models.ProjectM;
 import com.engman.models.SkillLevelM;
@@ -34,10 +35,6 @@ public class ResourcesService {
 
     @Autowired
     private SkillsRepo skillsRepo;
-
-//    public ResourcesService(SkillsRepo skillsRepo) {
-//        this.skillsRepo = skillsRepo;
-//    }
 
     private SkillM aws = new SkillM(UUID.randomUUID(),"AWS","Cloud platform",10,"gold");
     private SkillM java = new SkillM(UUID.randomUUID(),"Java","Java lang",10,"skyblue");
@@ -113,19 +110,12 @@ public class ResourcesService {
 
     private List<DeveloperM> _Devs = new ArrayList<>(Arrays.asList(gokhan, devops, datascientist, oldman, kerem));
 
-//    @Autowired
-//    MyRepo myRepo;
-//    public ResourcesService(MyRepo myRepo) {
-//        this.myRepo = myRepo;
-//    }
-
     public List<DeveloperM> getDevelopers(){
         return _Devs;
     }
 
     public List<SkillM> getSkills(){
         return skillsRepo.findAll();
-//        return _Skills;
     }
 
     public List<ProjectM> getProjects(){

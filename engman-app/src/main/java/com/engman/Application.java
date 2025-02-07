@@ -1,5 +1,6 @@
 package com.engman;
 
+import com.engman.core.module.ModuleHost;
 import com.vaadin.flow.component.page.AppShellConfigurator;
 import com.vaadin.flow.theme.Theme;
 import org.springframework.boot.SpringApplication;
@@ -18,5 +19,8 @@ public class Application implements AppShellConfigurator {
 
     public static void main(String[] args) {
         SpringApplication.run(com.engman.Application.class, args);
+
+        //TODO:Inject, CreateContext and pass down to modules
+        new ModuleHost().StartModules();
     }
 }
