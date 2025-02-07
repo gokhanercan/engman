@@ -1,8 +1,8 @@
 package com.engman.core.domain.module;
 
 import com.engman.core.domain.environment.Project;
-import com.engman.core.domain.feeds.Developer;
-import com.engman.core.domain.feeds.Skill;
+import com.engman.core.domain.Developer;
+import com.engman.core.domain.Skill;
 import com.engman.core.domain.time.TimeFrame;
 import org.junit.jupiter.api.Test;
 

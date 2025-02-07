@@ -5,9 +5,17 @@
     <artifactId>engman</artifactId>
     <version>1.0-SNAPSHOT</version>
     <packaging>pom</packaging>
+
     <modules>
         <module>engman-core</module>
         <module>engman-app</module>
     </modules>
+
+      <parent>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-starter-parent</artifactId>
+        <version>3.4.1</version>
+        <relativePath/> <!-- usually not needed unless you have a custom setup -->
+    </parent>
 
 </project>

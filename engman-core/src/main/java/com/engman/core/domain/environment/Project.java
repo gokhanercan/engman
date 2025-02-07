@@ -3,8 +3,8 @@ package com.engman.core.domain.environment;
 
 
 import com.engman.core.domain.balance.Liquid;
-import com.engman.core.domain.feeds.Developer;
-import com.engman.core.domain.feeds.Skill;
+import com.engman.core.domain.Developer;
+import com.engman.core.domain.Skill;
 import com.engman.core.domain.time.TimeFrame;
 
 import java.util.ArrayList;

@@ -13,15 +13,14 @@
     <properties>
         <java.version>21</java.version>
         <vaadin.version>24.6.0</vaadin.version>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
     </properties>
 
-
-
     <parent>
-        <groupId>org.springframework.boot</groupId>
-        <artifactId>spring-boot-starter-parent</artifactId>
-        <version>3.4.1</version>
-        <relativePath/> <!-- usually not needed unless you have a custom setup -->
+        <groupId>com.engman</groupId>
+        <artifactId>engman</artifactId>
+        <version>1.0-SNAPSHOT</version>
     </parent>
 
     <dependencyManagement>
@@ -33,16 +32,11 @@
                 <type>pom</type>
                 <scope>import</scope>
             </dependency>
+
         </dependencies>
     </dependencyManagement>
 
     <dependencies>
-
-        <dependency>
-            <groupId>com.engman</groupId>
-            <artifactId>engman-core</artifactId>
-            <version>1.0-SNAPSHOT</version>
-        </dependency>
 
         <dependency>
             <groupId>com.vaadin</groupId>
@@ -68,7 +62,6 @@
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-data-jpa</artifactId>
         </dependency>
-
 
         <dependency>
             <groupId>org.springframework.boot</groupId>
@@ -96,9 +89,30 @@
             <version>1.18.30</version>
             <scope>provided</scope>
         </dependency>
+
+        <dependency>
+            <groupId>com.engman.core</groupId>
+            <artifactId>engman-core</artifactId>
+            <version>1.0-SNAPSHOT</version>
+        </dependency>
     </dependencies>
 
     <build>
+        <pluginManagement>
+            <plugins>
+                <plugin>
+                    <groupId>com.engman</groupId>
+                    <artifactId>engman</artifactId>
+                    <version>1.0-SNAPSHOT</version>
+                </plugin>
+                <plugin>
+                    <groupId>com.engman.core</groupId>
+                    <artifactId>engman-core</artifactId>
+                    <version>1.0-SNAPSHOT</version>
+                </plugin>
+            </plugins>
+        </pluginManagement>
+
         <defaultGoal>spring-boot:run</defaultGoal>
         <plugins>
             <plugin>
