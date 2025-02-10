@@ -1,3 +1,19 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+*.subTitle{
+    font-size: 1.1em;
+    margin: 12px 0 10px 12px;
+    display: inline-block;
+}
+div.block{
+    @apply border border-gray-300 rounded-md w-full p-2 sm:p-0 md:p-1 lg:p-3;
+}
+div.link{
+    float:right;
+    padding: 3px 3px 3px 3px;
+}
+div.block div.link a{
+    color: rgb(82, 107, 128) !important;
+}

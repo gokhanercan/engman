@@ -53,7 +53,7 @@ export default function Flow({ projects }: FlowProps) {
 //   const onConnect = useCallback((params: any) => setEdges((eds) => addEdge(params, eds)), [setEdges]);
 
   return (
-    <div style={{ height: '100%', border: '1px solid red' }}>
+    <div className='h-full' style={{  }}>
       <ReactFlow
         nodes={allNodes}
         // edges={projectEdges}

@@ -57,12 +57,12 @@ export default function DashboardView() {
     return (
         <>
             {/* <h1>Dashboard</h1> */}
-            <HorizontalLayout theme="padding spacing">
-                <div className="block" style={{ border:'1px solid lightgray', height:300, width:'50%', overflowY:'auto' }}>
+            <HorizontalLayout theme="paddingx spacingx" className='p-3 gap-3'>
+                <div className="block">                    
                     <div className="link"><a href="/developers"><Icon icon="vaadin:external-link" style={{ padding: '0.25em' }} /></a></div>
                     <Developers developers={developers} title="Developers" showProgressBars={false} pageLink="/developers" />
                 </div>
-                <div className="block" style={{ border:'1px solid lightgray', width:'50%'  }}>
+                <div className="block" style={{ borderxxx:'1px solid lightgray', widthxx:'50%'  }}>
                     <div>
                     <div className="link"><a href="/projects"><Icon icon="vaadin:external-link" style={{ padding: '0.25em' }} /></a></div>
                         <Projects projects={projects} title="Projects" showProgressBars={false} compactMode={true} />
@@ -70,15 +70,15 @@ export default function DashboardView() {
                 </div>
             </HorizontalLayout>
 
-            <HorizontalLayout theme="padding spacing">
+            <HorizontalLayout theme="paddingx spacingx" className='p-3 gap-3'>
                 {/* Flow */}
-                <div className="block" style={{ border:'1px solid lightgray', height:300, width:'50%' }}>
+                <div className="block" >
                     <div className="link"><a href="/flow"><Icon icon="vaadin:expand" style={{ padding: '0.25em' }} /></a></div>
                     <Flow projects={projects} />
                 </div>
 
                 {/* Skills */}
-                <div className="block" style={{ border:'1px solid lightgray', width:'50%'  }}>
+                <div className="block">
                     <div>
                         <div className="link"><a href="/skills"><Icon icon="vaadin:external-link" style={{ padding: '0.25em' }} /></a></div>
                         <Skills skills={skills} title={"Skills"}></Skills>
