@@ -1,10 +1,10 @@
 package com.engman.repo;
-import com.engman.entity.Developer;
+//import com.engman.entity.Developer;
+import com.engman.models.DeveloperM;
 import org.springframework.data.mongodb.repository.MongoRepository;
-import org.springframework.data.mongodb.core.mapping.Document;
-import org.springframework.data.annotation.Id;
+import org.springframework.stereotype.Repository;
 
-public interface DeveloperRepo extends MongoRepository<Developer, String> {
-    Developer findByName(String name);
-
+@Repository
+public interface DeveloperRepo extends MongoRepository<DeveloperM, String> {
+    //DeveloperM findByName(String name);
 }

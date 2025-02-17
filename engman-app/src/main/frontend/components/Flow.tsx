@@ -28,9 +28,9 @@ export default function Flow({ projects }: FlowProps) {
   }));
 
   const devNodes:any = projects.flatMap((project) => project.Developers ?? []).map((dev, proDevIndex) => ({ 
-    id: `${proDevIndex}-{dev?.Name ?? ''}`,
+    id: `${proDevIndex}-{dev?.name ?? ''}`,
     position: { x: 0, y: 0 + proDevIndex * 40 },
-    data: { label: `${dev?.Name ?? 'n/a'}` },
+    data: { label: `${dev?.name ?? 'n/a'}` },
     style: { width: 50, height: 30, backgroundColor: 'white',},
     parentId: '1', extent: 'parent' //TODO: get project id of dev
   }));

@@ -2,17 +2,9 @@ package com.engman.models;
 import org.springframework.data.mongodb.core.mapping.Document;
 import org.springframework.data.annotation.Id;
 
-import org.springframework.data.annotation.Id;
-import org.springframework.data.mongodb.core.mapping.Document;
-
-
-
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import org.springframework.data.annotation.Id;
-import org.springframework.data.mongodb.core.mapping.Document;
-
 import java.util.UUID;
 
 @Data
@@ -33,13 +25,3 @@ public class SkillM {
         this(UUID.randomUUID(), Name, Description, Hardness, CustomColorName);
     }
 }
-
-
-//@Document(collection = "skills")
-//public record SkillM(@Id String ID, String Name, String Description, Integer Hardness, String CustomColorName) {   //SkillLevelM SkillLevel
-//
-////    public SkillM(String Name, String Description, Integer Hardness, String CustomColorName) {
-////        this(Name, Description, Hardness, CustomColorName,null);
-////    }
-//
-//}

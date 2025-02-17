@@ -19,8 +19,5 @@ public class Application implements AppShellConfigurator {
 
     public static void main(String[] args) {
         SpringApplication.run(com.engman.Application.class, args);
-
-        //TODO:Inject, CreateContext and pass down to modules
-        new ModuleHost().StartModules();
     }
 }

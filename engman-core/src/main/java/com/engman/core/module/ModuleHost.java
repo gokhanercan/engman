@@ -6,6 +6,7 @@ import com.engman.core.modules.TrueColorsModule;
 import java.util.ArrayList;
 import java.util.List;
 
+
 public class ModuleHost {
     public ModuleHost() {
         Modules = DiscoverModules();
@@ -19,10 +20,9 @@ public class ModuleHost {
         }};
     }
 
-    public void StartModules(){
-        ModuleContext ctx = new ModuleContext();
-        ctx.Developers = new ArrayList<>(); //TODO: get from DB ResourceService.GetDevelopers().MapToDomain;
-        ctx.Developers.add(new Developer("John Doe"));
+    public void StartModules(ModuleContext ctx){
+//        ctx.Developers = new ArrayList<>(); //TODO: get from DB ResourceService.GetDevelopers().MapToDomain;
+//        ctx.Developers.add(new Developer("John Doe"));
         for (ModuleBase module : Modules) {
             module.onModuleInstall(ctx);
         }

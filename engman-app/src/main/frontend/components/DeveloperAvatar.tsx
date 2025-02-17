@@ -24,8 +24,8 @@ export default function DeveloperAvatar({developer}: DeveloperAvatarProps) {
     return (
         <>
             <ContextMenu items={ctxItems} onItemSelected={handleContextMenu}>
-                <div dev-name={developer.Name}>
-                    <Avatar name={`${developer.Name}`} />
+                <div dev-name={developer.name}>
+                    <Avatar name={`${developer.name}`} />
                 </div>
             </ContextMenu>
             

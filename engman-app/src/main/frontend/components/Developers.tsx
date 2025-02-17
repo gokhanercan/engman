@@ -29,7 +29,7 @@ export default function Developers({ developers,title,showProgressBars=true,page
                         </>
                     )}
                 />
-                <GridColumn path="Name" header="Name" />
+                <GridColumn path="name" header="Name" />
                 {/* <GridColumn path="Age" header="Age"  /> */}
                 {/* <GridColumn header="Age2"
                     renderer={({ item }) => (
@@ -44,7 +44,7 @@ export default function Developers({ developers,title,showProgressBars=true,page
                 <GridColumn
                     header={"Skills"}
                     renderer={({ item }) => (
-                        <Skills requiredSkills={item.SkillLevels } showLevels={true} showLevelInProgress={showProgressBars} showVertical={false}></Skills>
+                        <Skills requiredSkills={item.skillLevels } showLevels={true} showLevelInProgress={showProgressBars} showVertical={false}></Skills>
                     )}
                 />
             </Grid>

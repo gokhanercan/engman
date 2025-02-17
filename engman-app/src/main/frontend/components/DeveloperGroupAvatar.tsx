@@ -10,7 +10,7 @@ interface DeveloperGroupAvatarProps {
 export default function DeveloperGroupAvatar({developers}: DeveloperGroupAvatarProps) {
     
     const avatars = developers.map((d, index) => ({
-          name: `${d.Name}`,
+          name: `${d.name}`,
           colorIndex: index,
         })
     );

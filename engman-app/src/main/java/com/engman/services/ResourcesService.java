@@ -6,6 +6,7 @@ import com.engman.models.DeveloperM;
 import com.engman.models.ProjectM;
 import com.engman.models.SkillLevelM;
 import com.engman.models.SkillM;
+import com.engman.repo.DeveloperRepo;
 import com.engman.repo.SkillsRepo;
 import com.helger.commons.annotation.ReturnsMutableCopy;
 import com.vaadin.flow.router.Route;
@@ -35,6 +36,9 @@ public class ResourcesService {
 
     @Autowired
     private SkillsRepo skillsRepo;
+
+    @Autowired
+    private DeveloperRepo developerRepo;
 
     private SkillM aws = new SkillM(UUID.randomUUID(),"AWS","Cloud platform",10,"gold");
     private SkillM java = new SkillM(UUID.randomUUID(),"Java","Java lang",10,"skyblue");
@@ -111,7 +115,7 @@ public class ResourcesService {
     private List<DeveloperM> _Devs = new ArrayList<>(Arrays.asList(gokhan, devops, datascientist, oldman, kerem));
 
     public List<DeveloperM> getDevelopers(){
-        return _Devs;
+        return developerRepo.findAll();
     }
 
     public List<SkillM> getSkills(){
