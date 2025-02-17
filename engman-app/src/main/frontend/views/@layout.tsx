@@ -5,6 +5,7 @@ import { Suspense, useEffect } from 'react';
 import { Outlet, useLocation, useNavigate } from 'react-router-dom';
 
 import "../themes/eng-man/main-out.css";
+import ModulesMenu from 'Frontend/components/navigation/ModulesMenu';
 
 const documentTitleSignal = signal('');
 effect(() => {
@@ -18,7 +19,12 @@ export default function MainLayout() {
   const currentTitle = useViewConfig()?.title;
   const navigate = useNavigate();
   const location = useLocation();
-  const myvar = "dsad";
+
+  const modules = [
+    {name:"TrueColors", enabled:true},
+    {name:"Scrum", enabled:true},
+    {name:"Kanban", enabled:false}
+  ];
 
   useEffect(() => {
     if (currentTitle) {
@@ -41,6 +47,9 @@ export default function MainLayout() {
               </SideNavItem>
             ))}
           </SideNav>
+          
+          <ModulesMenu modules={modules} />
+
         </header>
       </div>
 
