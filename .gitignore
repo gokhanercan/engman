@@ -1,5 +1,5 @@
 node_modules/
-src/main/frontend/generated/
+*/src/main/frontend/generated/
 vite.generated.ts
 .idea
 target/
