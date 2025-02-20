@@ -1,6 +1,5 @@
 package com.engman.core.module;
 
-import com.engman.core.domain.Developer;
 import com.engman.core.modules.TrueColorsModule;
 
 import java.util.ArrayList;
@@ -9,10 +8,10 @@ import java.util.List;
 
 public class ModuleHost {
     public ModuleHost() {
-        Modules = DiscoverModules();
+        _Modules = DiscoverModules();
     }
 
-    private List<ModuleBase> Modules = new ArrayList<>();
+    private List<ModuleBase> _Modules = new ArrayList<>();
 
     public List<ModuleBase> DiscoverModules(){
         return new ArrayList<>(){{
@@ -20,10 +19,14 @@ public class ModuleHost {
         }};
     }
 
+    public List<ModuleBase> getModules() {
+        return _Modules;
+    }
+
     public void StartModules(ModuleContext ctx){
 //        ctx.Developers = new ArrayList<>(); //TODO: get from DB ResourceService.GetDevelopers().MapToDomain;
 //        ctx.Developers.add(new Developer("John Doe"));
-        for (ModuleBase module : Modules) {
+        for (ModuleBase module : _Modules) {
             module.onModuleInstall(ctx);
         }
         //DB.Update();

@@ -1,20 +1,12 @@
-
 package com.engman.services;
 
-import com.engman.core.module.ModuleHost;
-import com.engman.models.DeveloperM;
-import com.engman.models.ProjectM;
-import com.engman.models.SkillLevelM;
-import com.engman.models.SkillM;
+import com.engman.models.*;
 import com.engman.repo.DeveloperRepo;
 import com.engman.repo.SkillsRepo;
-import com.helger.commons.annotation.ReturnsMutableCopy;
 import com.vaadin.flow.router.Route;
 import com.vaadin.flow.server.auth.AnonymousAllowed;
 import com.vaadin.hilla.BrowserCallable;
-import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -31,7 +23,6 @@ import java.util.UUID;
 @AnonymousAllowed
 @BrowserCallable
 @Route
-//@AllArgsConstructor
 public class ResourcesService {
 
     @Autowired
@@ -124,5 +115,17 @@ public class ResourcesService {
 
     public List<ProjectM> getProjects(){
         return _Projects;
+    }
+
+    public List<ModuleInfoM> getModuleInfo(){
+        return new ArrayList<ModuleInfoM>(){
+            {
+                add(new ModuleInfoM("TrueColors",true));
+                add(new ModuleInfoM("Scrum",true));
+                add(new ModuleInfoM("Kanban",false));
+                add(new ModuleInfoM("SkillsEnhancer",false));
+                add(new ModuleInfoM("RoleTypes",true));
+            }
+        };
     }
 }

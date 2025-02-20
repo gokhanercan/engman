@@ -1,11 +1,13 @@
 import { Checkbox, Grid, GridColumn } from '@vaadin/react-components';
-// import { Suspense, useEffect } from 'react';
+import ModuleInfoM from 'Frontend/generated/com/engman/models/ModuleInfoM';
 
 interface ModulesMenuProps {
-    modules: any[];
+    modules: ModuleInfoM[];
+    onModuleEnable: (module: ModuleInfoM, checked: boolean) => void;
+    //TODO:onModuleInstalled, onModuleDisabled... onModuleActivated..
 }
 
-export default function ModulesMenu({modules}: ModulesMenuProps) {
+export default function ModulesMenu({modules, onModuleEnable}: ModulesMenuProps) {
     console.log("Modules",modules);    
     return (
         <div>
@@ -16,7 +18,11 @@ export default function ModulesMenu({modules}: ModulesMenuProps) {
                     width="30px"
                     renderer={({ item }) => (
                         <>
-                             <Checkbox checked={item.enabled} label="" />
+                             <Checkbox
+                                 checked={item.enabled}
+                                 label=""
+                                 onCheckedChanged={(e) => onModuleEnable(item, e.detail.value)}
+                             />
                         </>
                     )}
                 />
@@ -29,7 +35,6 @@ export default function ModulesMenu({modules}: ModulesMenuProps) {
                         </>
                     )}
                 />
-                {/* <GridColumn path="name" header="Name" width="200px" className="text-blue-500! font-bold!" /> */}
             </Grid>
           </div>
     );

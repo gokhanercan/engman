@@ -2,6 +2,10 @@ package com.engman.core.module;
 
 public class ModuleBase {
 
+    public String getName(){
+        return this.getClass().getSimpleName().replace("Module", "");
+    }
+
     //AppEvents
     public void onAppStart(){
         //

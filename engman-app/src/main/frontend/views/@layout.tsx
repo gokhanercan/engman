@@ -1,11 +1,13 @@
 import { createMenuItems, useViewConfig } from '@vaadin/hilla-file-router/runtime.js';
 import { effect, signal } from '@vaadin/hilla-react-signals';
 import { AppLayout, DrawerToggle, Icon, SideNav, SideNavItem } from '@vaadin/react-components';
-import { Suspense, useEffect } from 'react';
+import { Suspense, useEffect, useState } from 'react';
 import { Outlet, useLocation, useNavigate } from 'react-router-dom';
 
 import "../themes/eng-man/main-out.css";
 import ModulesMenu from 'Frontend/components/navigation/ModulesMenu';
+import { ResourcesService } from 'Frontend/generated/endpoints';
+import ModuleInfoM from 'Frontend/generated/com/engman/models/ModuleInfoM';
 
 const documentTitleSignal = signal('');
 effect(() => {
@@ -19,17 +21,26 @@ export default function MainLayout() {
   const currentTitle = useViewConfig()?.title;
   const navigate = useNavigate();
   const location = useLocation();
+  const [modules,setModules] = useState<ModuleInfoM[]>([]);
 
-  const modules = [
-    {name:"TrueColors", enabled:true},
-    {name:"Scrum", enabled:true},
-    {name:"Kanban", enabled:false}
-  ];
+  const onModuleEnable = (module: ModuleInfoM, checked: boolean) => {
+    console.log(`Module ${module.name} is ${checked ? 'enabled' : 'disabled'}`);
+    //TODO: Call BE endpoint here.. and refresh.
+    setModules(modules.map(m => m.name === module.name ? { ...m, enabled: checked } : m));
+  }
 
   useEffect(() => {
     if (currentTitle) {
       documentTitleSignal.value = currentTitle;
     }
+
+    ResourcesService.getModuleInfo().then(modules=>{
+      console.log("Modules",modules);
+        setModules(modules);
+      })
+      .catch(error => {
+          console.error("Failed to fetch modules", error);
+      });
   }, [currentTitle]);
 
   return (
@@ -48,7 +59,7 @@ export default function MainLayout() {
             ))}
           </SideNav>
           
-          <ModulesMenu modules={modules} />
+          <ModulesMenu modules={modules} onModuleEnable={onModuleEnable} />
 
         </header>
       </div>
