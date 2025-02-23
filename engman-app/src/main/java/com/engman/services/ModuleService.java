@@ -18,17 +18,19 @@ import java.util.List;
 
 @ApplicationScope
 @Component
-//@AnonymousAllowed
-//@BrowserCallable
-//@Route
+@AnonymousAllowed
+@BrowserCallable
+@Route
 public class ModuleService {
 
     @Autowired
-    private ResourcesService resourceService;
+    private final ResourcesService resourceService;
 
     private ModuleHost moduleHost;
 
-    public ModuleService() {
+    @Autowired
+    public ModuleService(ResourcesService resourceService) {
+        this.resourceService = resourceService;
         List<DeveloperM> developerMS = resourceService.getDevelopers();
         //TODO: mapping
         List<Developer> devs = new ArrayList<>(){
@@ -43,12 +45,18 @@ public class ModuleService {
         moduleHost.StartModules(ctx);
     }
 
-//    public List<ModuleInfoM> getModuleInfo() {
-//         List<ModuleBase> modules = moduleHost.getModules();
-//         List<ModuleInfoM> modModels = new ArrayList<>();
-//            for (ModuleBase module : modules) {
-//                modModels.add(new ModuleInfoM(module.getName(),true));
-//            }
-//        return modModels;
-//    }
+    public List<ModuleInfoM> getModuleInfo() {
+        List<ModuleBase> modules = moduleHost.getModules();
+        List<ModuleInfoM> modModels = new ArrayList<>();
+        for (ModuleBase module : modules) {
+            modModels.add(new ModuleInfoM(module.getName(),true));
+        }
+        //Temp fake models
+        modModels.add(new ModuleInfoM("Scrum",false));
+        modModels.add(new ModuleInfoM("Kanban",true));
+        modModels.add(new ModuleInfoM("RoleTypes",false));
+        modModels.add(new ModuleInfoM("SkillsEnhancer",true));
+        modModels.add(new ModuleInfoM("LinkedInPofile",false));
+        return modModels;
+    }
 }

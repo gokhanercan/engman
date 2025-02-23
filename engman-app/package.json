@@ -132,7 +132,7 @@
       "workbox-core": "7.3.0",
       "workbox-precaching": "7.3.0"
     },
-    "hash": "be4e7d98e25b17883e2805247f5619a0462e17d3dd5a4144fd428090b03794c9"
+    "hash": "520d7ca6bb8558af14199146e8176fcb92e436fec9a3fc8392e9ce82f1fae52f"
   },
   "overrides": {
     "@vaadin/bundles": "$@vaadin/bundles",
@@ -173,6 +173,7 @@
     "@vaadin/vaadin-lumo-styles": "$@vaadin/vaadin-lumo-styles",
     "@vaadin/vaadin-material-styles": "$@vaadin/vaadin-material-styles",
     "@xyflow/react": "$@xyflow/react",
-    "@tailwindcss/postcss": "$@tailwindcss/postcss"
+    "@tailwindcss/postcss": "$@tailwindcss/postcss",
+    "react-helmet": "$react-helmet"
   }
 }

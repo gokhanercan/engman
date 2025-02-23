@@ -116,16 +116,4 @@ public class ResourcesService {
     public List<ProjectM> getProjects(){
         return _Projects;
     }
-
-    public List<ModuleInfoM> getModuleInfo(){
-        return new ArrayList<ModuleInfoM>(){
-            {
-                add(new ModuleInfoM("TrueColors",true));
-                add(new ModuleInfoM("Scrum",true));
-                add(new ModuleInfoM("Kanban",false));
-                add(new ModuleInfoM("SkillsEnhancer",false));
-                add(new ModuleInfoM("RoleTypes",true));
-            }
-        };
-    }
 }

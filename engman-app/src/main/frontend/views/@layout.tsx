@@ -7,7 +7,7 @@ import { Helmet } from 'react-helmet';
 
 import "../themes/eng-man/main-out.css";
 import ModulesMenu from 'Frontend/components/navigation/ModulesMenu';
-import { ResourcesService } from 'Frontend/generated/endpoints';
+import { ModuleService, ResourcesService } from 'Frontend/generated/endpoints';
 import ModuleInfoM from 'Frontend/generated/com/engman/models/ModuleInfoM';
 
 const documentTitleSignal = signal('');
@@ -34,8 +34,7 @@ export default function MainLayout() {
     if (currentTitle) {
       documentTitleSignal.value = currentTitle;
     }
-
-    ResourcesService.getModuleInfo().then(modules=>{
+    ModuleService.getModuleInfo().then(modules=>{
       console.log("Modules",modules);
         setModules(modules);
       })
