@@ -1,6 +1,6 @@
 # Watch Tests
 
-``npx playwright test --ui``
+``npm run watch``
 
 # Run Tests
 
