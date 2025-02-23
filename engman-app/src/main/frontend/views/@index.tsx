@@ -10,6 +10,7 @@ import Skills from 'Frontend/components/Skills';
 import SkillLevelM from 'Frontend/generated/com/engman/models/SkillLevelM';
 import SkillM from 'Frontend/generated/com/engman/models/SkillM';
 import { Icon } from '@vaadin/react-components';
+import { Helmet } from 'react-helmet';
 
 export default function DashboardView() {
     const [overallBudget, setOverallBudget] = useState<number>(100000);
@@ -56,7 +57,8 @@ export default function DashboardView() {
 
     return (
         <>
-            {/* <h1>Dashboard</h1> */}
+            <Helmet><title>Dashboard</title></Helmet>
+            
             <HorizontalLayout theme="paddingx spacingx" className='p-3 gap-3'>
                 <div className="block">                    
                     <div className="link"><a href="/developers"><Icon icon="vaadin:external-link" style={{ padding: '0.25em' }} /></a></div>

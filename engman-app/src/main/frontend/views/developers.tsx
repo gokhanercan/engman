@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { ResourcesService } from "Frontend/generated/endpoints";
 import Developers from "Frontend/components/Developers";
 import DeveloperM from "Frontend/generated/com/engman/models/DeveloperM";
+import { Helmet } from 'react-helmet';
 
 export default function DevelopersView() {
     const [developers,setDevelopers] = useState<DeveloperM[]>([]);
@@ -18,6 +19,7 @@ export default function DevelopersView() {
 
     return (
         <>
+            <Helmet><title>Developers</title></Helmet>
             <Developers developers={developers} title='' showProgressBars={false}  />
         </>
     );

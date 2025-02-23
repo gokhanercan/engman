@@ -5,6 +5,7 @@ import { ResourcesService } from "Frontend/generated/endpoints";
 import SkillM from 'Frontend/generated/com/engman/models/SkillM';
 import Badge from 'Frontend/components/Badge';
 import Skills from 'Frontend/components/Skills';
+import { Helmet } from 'react-helmet';
 
 export default function SkillsView() {
     const [skills, setSkills] = useState<SkillM[]>([]);
@@ -21,6 +22,7 @@ export default function SkillsView() {
 
     return (
         <>
+            <Helmet><title>Skills</title></Helmet>
             <Skills skills={skills}></Skills>
         </>
     );

@@ -1,6 +1,7 @@
 import {useEffect, useState} from 'react';
 import { ResourcesService } from "Frontend/generated/endpoints";
 import Projects from 'Frontend/components/Projects';
+import { Helmet } from 'react-helmet';
 
 export default function ProjectsView({ EntityName, Header }: { EntityName: string, Header: string }) {
 
@@ -18,6 +19,7 @@ export default function ProjectsView({ EntityName, Header }: { EntityName: strin
 
     return (
         <>
+            <Helmet><title>Projects</title></Helmet>
             <Projects projects={projects} title="" />
         </>
     );

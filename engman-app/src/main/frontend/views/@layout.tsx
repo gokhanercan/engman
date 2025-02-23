@@ -3,6 +3,7 @@ import { effect, signal } from '@vaadin/hilla-react-signals';
 import { AppLayout, DrawerToggle, Icon, SideNav, SideNavItem } from '@vaadin/react-components';
 import { Suspense, useEffect, useState } from 'react';
 import { Outlet, useLocation, useNavigate } from 'react-router-dom';
+import { Helmet } from 'react-helmet';
 
 import "../themes/eng-man/main-out.css";
 import ModulesMenu from 'Frontend/components/navigation/ModulesMenu';
@@ -70,6 +71,7 @@ export default function MainLayout() {
       </h1>
 
       <Suspense>
+        <Helmet defaultTitle="engman" titleTemplate="engman – %s" />
         <Outlet />
       </Suspense>
     </AppLayout>
