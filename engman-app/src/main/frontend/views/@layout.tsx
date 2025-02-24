@@ -26,20 +26,30 @@ export default function MainLayout() {
   const [modules,setModules] = useState<ModuleInfoM[]>([]);
 
   const onModuleEnable = (module: ModuleInfoM, value: boolean) => {
+    const notPending = Notification.show(`Please wait...`, {
+      position: 'top-stretch',
+      duration: 0,
+      theme: 'primary',
+    });
     ModuleService.toggleEnable(module.name ?? "", value).then(modules=> {
       //setModules(modules.map(m => m.name === module.name ? { ...m, enabled: value } : m));
-      //setModules(modules);
-      //loadModules();
-      const notification = Notification.show(`Module ${value ? "enabled" : "disabled"}`, {
+      setModules(modules);
+      notPending.close();
+      const notSuc = Notification.show(`Module '${module.name}' has been ${value ? "enabled" : "disabled"}.`, {
         position: 'bottom-stretch',
-        duration: 1000,
-        theme: 'success',
+        duration: 2000,
+        ...(value && {theme:'success'}),
       });
     }).catch(error => {
       console.error("Failed to ", error);
+      notPending.close();
+      const notErr = Notification.show(`Module '${module.name}' could not be ${value ? "enabled" : "disabled"}.`, {
+        position: 'bottom-stretch',
+        duration: 2000,
+        theme: 'error',
+      });
     });
   }
-
   const loadModules = () => {
     ModuleService.getModuleInfo().then(modules=>{
         setModules(modules);

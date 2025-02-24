@@ -58,11 +58,11 @@ public class ModuleService {
 //        modModels.add(new ModuleInfoM("SkillsEnhancer",true));
 //        modModels.add(new ModuleInfoM("LinkedInPofile",false));
 //        modModels.add(new ModuleInfoM("Drive",false));
-//        modModels.add(new ModuleInfoM("Flow",false));
+        modModels.add(new ModuleInfoM("Flow",false));
         return modModels;
     }
     public List<ModuleInfoM> toggleEnable(String moduleName, boolean value) throws InterruptedException {
-        Thread.sleep(1000);
+        Thread.sleep(500);
         moduleHost.toggleEnable(moduleName, value);
         return getModuleInfo();
     }
