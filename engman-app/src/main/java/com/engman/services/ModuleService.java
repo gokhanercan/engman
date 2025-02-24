@@ -49,14 +49,24 @@ public class ModuleService {
         List<ModuleBase> modules = moduleHost.getModules();
         List<ModuleInfoM> modModels = new ArrayList<>();
         for (ModuleBase module : modules) {
-            modModels.add(new ModuleInfoM(module.getName(),true));
+            modModels.add(mapToModel(module));
         }
         //Temp fake models
-        modModels.add(new ModuleInfoM("Scrum",false));
-        modModels.add(new ModuleInfoM("Kanban",true));
-        modModels.add(new ModuleInfoM("RoleTypes",false));
-        modModels.add(new ModuleInfoM("SkillsEnhancer",true));
-        modModels.add(new ModuleInfoM("LinkedInPofile",false));
+//        modModels.add(new ModuleInfoM("Scrum",false));
+//        modModels.add(new ModuleInfoM("Kanban",true));
+//        modModels.add(new ModuleInfoM("RoleTypes",false));
+//        modModels.add(new ModuleInfoM("SkillsEnhancer",true));
+//        modModels.add(new ModuleInfoM("LinkedInPofile",false));
+//        modModels.add(new ModuleInfoM("Drive",false));
+//        modModels.add(new ModuleInfoM("Flow",false));
         return modModels;
+    }
+    public List<ModuleInfoM> toggleEnable(String moduleName, boolean value) throws InterruptedException {
+        Thread.sleep(1000);
+        moduleHost.toggleEnable(moduleName, value);
+        return getModuleInfo();
+    }
+    public ModuleInfoM mapToModel(ModuleBase module){
+        return new ModuleInfoM(module.getName(),module.getEnabled());
     }
 }

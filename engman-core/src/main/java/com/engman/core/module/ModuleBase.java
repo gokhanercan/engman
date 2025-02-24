@@ -1,25 +1,39 @@
 package com.engman.core.module;
 
+
 public class ModuleBase {
 
     public String getName(){
         return this.getClass().getSimpleName().replace("Module", "");
     }
 
+    private boolean _isEnabled = false;
+    public boolean getEnabled(){
+        return _isEnabled;
+    }
+    public void setEnable(boolean value){
+        _isEnabled = value;
+        if (_isEnabled){
+            onAfterModuleEnable();
+        } else {
+            onAfterModuleDisable();
+        }
+    }
+
     //AppEvents
     public void onAppStart(){
         //
     }
-    public void onModuleInstall(ModuleContext context){
+    protected void onModuleInstall(ModuleContext context){
         //
     }
-    public void onModuleUninstall(){
+    protected void onModuleUninstall(){
         //
     }
-    public void onModuleEnable(){
+    protected void onAfterModuleEnable(){
         //
     }
-    public void onModuleDisable(){
+    protected void onAfterModuleDisable(){
         //
     }
 

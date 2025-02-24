@@ -9,6 +9,9 @@ interface ModulesMenuProps {
 
 export default function ModulesMenu({modules, onModuleEnable}: ModulesMenuProps) {
     console.log("Modules",modules);    
+    // const handleCheckedChanged = (e: CustomEvent) => {
+    //     console.log("Checked",e.detail.value);
+    // }
     return (
         <div>
             <span className='text-lg font-semibold mb-2 mt-2 block'>Modules</span>
@@ -20,7 +23,8 @@ export default function ModulesMenu({modules, onModuleEnable}: ModulesMenuProps)
                         <>
                              <Checkbox
                                  checked={item.enabled}
-                                 label=""
+                                //  label={item.name}
+                                 disabled={false}
                                  onCheckedChanged={(e) => onModuleEnable(item, e.detail.value)}
                              />
                         </>

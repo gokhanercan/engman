@@ -16,8 +16,8 @@ public class TrueColorsModule extends ModuleBase {
     }
 
     @Override
-    public void onModuleEnable() {
-        super.onModuleEnable();
+    protected void onAfterModuleEnable() {
+        super.onAfterModuleEnable();
         //
     }
 

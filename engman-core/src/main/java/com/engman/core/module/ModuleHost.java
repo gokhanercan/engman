@@ -18,9 +18,20 @@ public class ModuleHost {
             add(new TrueColorsModule());        //Currently hardcoded.
         }};
     }
-
     public List<ModuleBase> getModules() {
         return _Modules;
+    }
+    public ModuleBase getModule(String moduleName){
+        for (ModuleBase module : _Modules) {
+            if(module.getName().equals(moduleName)){
+                return module;
+            }
+        }
+        throw new RuntimeException("Module not found: " + moduleName);
+    }
+    public void toggleEnable(String moduleName, boolean value){
+        ModuleBase module = getModule(moduleName);
+        module.setEnable(value);
     }
 
     public void StartModules(ModuleContext ctx){

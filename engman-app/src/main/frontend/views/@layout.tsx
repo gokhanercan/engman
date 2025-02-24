@@ -9,6 +9,7 @@ import "../themes/eng-man/main-out.css";
 import ModulesMenu from 'Frontend/components/navigation/ModulesMenu';
 import { ModuleService, ResourcesService } from 'Frontend/generated/endpoints';
 import ModuleInfoM from 'Frontend/generated/com/engman/models/ModuleInfoM';
+import { Notification } from '@vaadin/react-components/Notification.js';
 
 const documentTitleSignal = signal('');
 effect(() => {
@@ -24,23 +25,37 @@ export default function MainLayout() {
   const location = useLocation();
   const [modules,setModules] = useState<ModuleInfoM[]>([]);
 
-  const onModuleEnable = (module: ModuleInfoM, checked: boolean) => {
-    console.log(`Module ${module.name} is ${checked ? 'enabled' : 'disabled'}`);
-    //TODO: Call BE endpoint here.. and refresh.
-    setModules(modules.map(m => m.name === module.name ? { ...m, enabled: checked } : m));
+  const onModuleEnable = (module: ModuleInfoM, value: boolean) => {
+    console.log(`Module ${module.name} is ${value ? 'enabled' : 'disabled'}`);
+    ModuleService.toggleEnable(module.name ?? "", value).then(modules=> {
+      console.log("Modules",modules);
+      //setModules(modules.map(m => m.name === module.name ? { ...m, enabled: value } : m));
+      setModules(modules);
+      //loadModules();
+      const notification = Notification.show(`Module ${value ? "enabled" : "disabled"}`, {
+        position: 'bottom-stretch',
+        duration: 500,
+        theme: 'success',
+      });
+    }).catch(error => {
+      console.error("Failed to ", error);
+    });
   }
 
-  useEffect(() => {
-    if (currentTitle) {
-      documentTitleSignal.value = currentTitle;
-    }
+  const loadModules = () => {
     ModuleService.getModuleInfo().then(modules=>{
-      console.log("Modules",modules);
         setModules(modules);
       })
       .catch(error => {
           console.error("Failed to fetch modules", error);
       });
+  };
+
+  useEffect(() => {
+    if (currentTitle) {
+      documentTitleSignal.value = currentTitle;
+    }
+    loadModules();
   }, [currentTitle]);
 
   return (
