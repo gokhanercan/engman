@@ -26,15 +26,13 @@ export default function MainLayout() {
   const [modules,setModules] = useState<ModuleInfoM[]>([]);
 
   const onModuleEnable = (module: ModuleInfoM, value: boolean) => {
-    console.log(`Module ${module.name} is ${value ? 'enabled' : 'disabled'}`);
     ModuleService.toggleEnable(module.name ?? "", value).then(modules=> {
-      console.log("Modules",modules);
       //setModules(modules.map(m => m.name === module.name ? { ...m, enabled: value } : m));
-      setModules(modules);
+      //setModules(modules);
       //loadModules();
       const notification = Notification.show(`Module ${value ? "enabled" : "disabled"}`, {
         position: 'bottom-stretch',
-        duration: 500,
+        duration: 1000,
         theme: 'success',
       });
     }).catch(error => {

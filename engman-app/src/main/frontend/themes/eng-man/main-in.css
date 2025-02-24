@@ -18,5 +18,5 @@ div.block div.link a{
     color: rgb(82, 107, 128) !important;
 }
 *.em-disabled{
-    @apply text-gray-400;
+    @apply text-red-400;
 }

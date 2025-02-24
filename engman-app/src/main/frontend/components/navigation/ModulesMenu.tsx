@@ -23,14 +23,15 @@ export default function ModulesMenu({modules, onModuleEnable}: ModulesMenuProps)
                         <>
                              <Checkbox
                                  checked={item.enabled}
-                                //  label={item.name}
+                                 label={item.name}
                                  disabled={false}
+                                 className={item.enabled ? "" : "em-disabled"}
                                  onCheckedChanged={(e) => onModuleEnable(item, e.detail.value)}
                              />
                         </>
                     )}
                 />
-                <GridColumn
+                {/* <GridColumn
                     header={"Name"}
                     width=""
                     renderer={({ item }) => (
@@ -38,7 +39,7 @@ export default function ModulesMenu({modules, onModuleEnable}: ModulesMenuProps)
                              <span className={item.enabled ? "" : "em-disabled"}>{item.name}</span>
                         </>
                     )}
-                />
+                /> */}
             </Grid>
           </div>
     );
