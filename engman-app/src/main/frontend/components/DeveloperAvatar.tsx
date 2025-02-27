@@ -4,9 +4,10 @@ import { ContextMenu } from "@vaadin/react-components";
 
 interface DeveloperAvatarProps {
     developer: DeveloperM;
+    onDeveloperView?: (developer: DeveloperM) => void;
 }
 
-export default function DeveloperAvatar({developer}: DeveloperAvatarProps) {
+export default function DeveloperAvatar({developer,onDeveloperView}: DeveloperAvatarProps) {
     const ctxItems = [{ text: 'View' }, { text: 'Edit' }, { text: 'Delete' }];
 
     const handleContextMenu = (e: any) => {
@@ -14,7 +15,8 @@ export default function DeveloperAvatar({developer}: DeveloperAvatarProps) {
         console.log("target", e.target);
         if(e.detail.value.text === 'View'){
             const devName = e.target.querySelector("div").getAttribute("dev-name");
-            alert("You selected:" + devName);
+            // alert("You selected:" + devName);
+            onDeveloperView && onDeveloperView(developer);
         }
         else{
             console.log("Not implemented Action: ", e.detail.value.text);
