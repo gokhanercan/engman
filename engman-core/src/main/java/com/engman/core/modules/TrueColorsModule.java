@@ -24,6 +24,16 @@ public class TrueColorsModule extends ModuleBase {
      @Override
     public void onModuleInstall(ModuleContext context) {
         super.onModuleInstall(context);
+
+        Integer MIN_TEAM_SIZE = 3;      //harecoded version
+
+        //Integer min_team_size = context.parameters("MIN_TEAM_SIZE","SCRUM THEORY ........ PERFORMCE TEND TO DECLINE WHEN TEAM SIZE EXCEEEDS 3.... (ref:paper.)") = 3;
+            //b = b x 2
+
+        //Logic
+        //if(context.Developers.size() > min_team_size){
+            //x = 5;
+
          for (Developer d: context.Developers) {
              d.DefineField("TrueColor");        //add data type.
          }
