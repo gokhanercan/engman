@@ -17,11 +17,18 @@ interface DeveloperCompProps {
 export default function Developers({ developers,title,showProgressBars=true,pageLink}: DeveloperCompProps) {
 
     const dialogOpened = useSignal(false);
+    const dialogPosition = useSignal({ x: 0, y: 0 });
     const [viewedDeveloper,setViewedDeveloper] = useState<DeveloperM | null>(null);
 
-    const handleDeveloperView = (developer: DeveloperM) => {
+    const handleDeveloperView = (developer: DeveloperM,e?:React.MouseEvent<HTMLDivElement, MouseEvent>) => {
         setViewedDeveloper(developer);
         dialogOpened.value = true;
+        if(e) dialogPosition.value = { x: e.clientX, y: e.clientY };
+    }
+    const handleDeveloperViewClose = () => {
+        setViewedDeveloper(null);
+        dialogOpened.value = false;
+        console.log("DeveloperViewClose");
     }
     const anchorStyle = {
         textDecoration: 'none',
@@ -36,7 +43,12 @@ export default function Developers({ developers,title,showProgressBars=true,page
             header={'Avatar'}
             renderer={({ item }) => (
               <>
-                <DeveloperAvatar developer={item} onDeveloperView={handleDeveloperView} />
+                <DeveloperAvatar developer={item} 
+                  onDeveloperView={(developer)=> handleDeveloperView(developer,undefined)}  //??
+                  onDeveloperMouseOver={(e,developer) => handleDeveloperView(developer,e)}
+                  onDeveloperMouseLeave={(developer) => handleDeveloperViewClose() }
+                  // onDeveloperMouseOver={(developer) => console.log("MouseOver",developer)}
+                  />
               </>
             )}
           />
@@ -59,9 +71,11 @@ export default function Developers({ developers,title,showProgressBars=true,page
           onOpenedChanged={({ detail }) => {
             dialogOpened.value = detail.value;
           }}
+          modeless
+          top={`${dialogPosition.value.y}px`}
+          left={`${dialogPosition.value.x}px`}
           footer={
             <>
-              
             </>
           }>
           <VerticalLayout style={{ alignItems: 'stretch', width: '18rem', maxWidth: '100%' }}>

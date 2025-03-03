@@ -5,9 +5,11 @@ import { ContextMenu } from "@vaadin/react-components";
 interface DeveloperAvatarProps {
     developer: DeveloperM;
     onDeveloperView?: (developer: DeveloperM) => void;
+    onDeveloperMouseOver?: (e: React.MouseEvent<HTMLDivElement, MouseEvent>,developer: DeveloperM) => void;
+    onDeveloperMouseLeave?: (developer: DeveloperM) => void;
 }
 
-export default function DeveloperAvatar({developer,onDeveloperView}: DeveloperAvatarProps) {
+export default function DeveloperAvatar({developer,onDeveloperView,onDeveloperMouseOver,onDeveloperMouseLeave}: DeveloperAvatarProps) {
     const ctxItems = [{ text: 'View' }, { text: 'Edit' }, { text: 'Delete' }];
 
     const handleContextMenu = (e: any) => {
@@ -25,8 +27,14 @@ export default function DeveloperAvatar({developer,onDeveloperView}: DeveloperAv
 
     return (
         <>
-            <ContextMenu items={ctxItems} onItemSelected={handleContextMenu}>
-                <div dev-name={developer.name}>
+            <ContextMenu items={ctxItems} onItemSelected={handleContextMenu} >
+                <div dev-name={developer.name}
+                     onClick={() => onDeveloperView && onDeveloperView(developer)}
+                     onMouseOver={(e) => onDeveloperMouseOver && onDeveloperMouseOver(e,developer)}
+                    //  onMouseMove={() => console.log("move") }
+                    onMouseLeave={(e) => console.log("LEAVE") }
+                    //  onMouseLeave={(e) => onDeveloperMouseLeave && onDeveloperMouseLeave(developer)}
+                     >
                     <Avatar name={`${developer.name}`} />
                 </div>
             </ContextMenu>
