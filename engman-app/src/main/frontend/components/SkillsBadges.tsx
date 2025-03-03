@@ -11,7 +11,6 @@ interface SkillLevelsProps {
 }
 
 export default function Skills({requiredSkills,showLevels=false,showVertical=false,showLevelInProgress=false}: SkillLevelsProps) {
-    console.log("showLevels",showLevels);
     if(!requiredSkills) {
         return null;
     }
