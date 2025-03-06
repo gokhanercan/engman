@@ -15,20 +15,20 @@ interface DeveloperCompProps {
 }
 
 export default function Developers({ developers,title,showProgressBars=true,pageLink}: DeveloperCompProps) {
-
     const dialogOpened = useSignal(false);
-    const dialogPosition = useSignal({ x: 0, y: 0 });
+    const [dialogPosition,setDialogPosition] = useState<any>([]);
     const [viewedDeveloper,setViewedDeveloper] = useState<DeveloperM | null>(null);
 
-    const handleDeveloperView = (developer: DeveloperM,e?:React.MouseEvent<HTMLDivElement, MouseEvent>) => {
-        setViewedDeveloper(developer);
-        dialogOpened.value = true;
-        if(e) dialogPosition.value = { x: e.clientX, y: e.clientY };
+    const handleDeveloperView = async (developer: DeveloperM,e?:React.MouseEvent<HTMLDivElement, MouseEvent>) => {
+        setViewedDeveloper(developer);  
+      // dialogOpened.value = true;
+          // if(e)
+          //   setDialogPosition({ x: e.clientX, y: e.clientY });
     }
-    const handleDeveloperViewClose = () => {
-        setViewedDeveloper(null);
-        dialogOpened.value = false;
+    const handleDeveloperViewClose = async () => {
         console.log("DeveloperViewClose");
+        setViewedDeveloper(null);
+        //dialogOpened.value = false;
     }
     const anchorStyle = {
         textDecoration: 'none',
@@ -38,16 +38,16 @@ export default function Developers({ developers,title,showProgressBars=true,page
     return (
       <>
         {title && <b className="subTitle">{title}</b>}
+        <span>Selected: {viewedDeveloper?.name}</span>
         <Grid items={developers}>
           <GridColumn
             header={'Avatar'}
             renderer={({ item }) => (
               <>
                 <DeveloperAvatar developer={item} 
-                  onDeveloperView={(developer)=> handleDeveloperView(developer,undefined)}  //??
+                  onDeveloperView={(developer)=> handleDeveloperView(developer,undefined)}
                   onDeveloperMouseOver={(e,developer) => handleDeveloperView(developer,e)}
                   onDeveloperMouseLeave={(developer) => handleDeveloperViewClose() }
-                  // onDeveloperMouseOver={(developer) => console.log("MouseOver",developer)}
                   />
               </>
             )}
@@ -72,8 +72,8 @@ export default function Developers({ developers,title,showProgressBars=true,page
             dialogOpened.value = detail.value;
           }}
           modeless
-          top={`${dialogPosition.value.y}px`}
-          left={`${dialogPosition.value.x}px`}
+          top={`${dialogPosition.y}px`}
+          left={`${dialogPosition.x}px`}
           footer={
             <>
             </>
