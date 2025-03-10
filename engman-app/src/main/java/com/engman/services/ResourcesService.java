@@ -116,4 +116,11 @@ public class ResourcesService {
     public List<ProjectM> getProjects(){
         return _Projects;
     }
+
+    public void saveDeveloper(DeveloperM dev){
+        developerRepo.save(dev);
+    }
+    public void saveDevelopers(List<DeveloperM> devs){
+        developerRepo.saveAll(devs);
+    }
 }

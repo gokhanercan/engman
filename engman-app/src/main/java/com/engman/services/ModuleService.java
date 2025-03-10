@@ -6,6 +6,7 @@ import com.engman.core.module.ModuleContext;
 import com.engman.core.module.ModuleHost;
 import com.engman.models.DeveloperM;
 import com.engman.models.ModuleInfoM;
+import com.engman.models.SkillM;
 import com.vaadin.flow.router.Route;
 import com.vaadin.flow.server.auth.AnonymousAllowed;
 import com.vaadin.hilla.BrowserCallable;
@@ -31,18 +32,24 @@ public class ModuleService {
     @Autowired
     public ModuleService(ResourcesService resourceService) {
         this.resourceService = resourceService;
-        List<DeveloperM> developerMS = resourceService.getDevelopers();
-        //TODO: mapping
-        List<Developer> devs = new ArrayList<>(){
-            {
-                add(new Developer("John Doe"));
-            }
-        };
+
+        //Models
+        List<DeveloperM> developerModels = resourceService.getDevelopers();
+        List<SkillM> skillModels = resourceService.getSkills();
+
+        //Context (core)
         ModuleContext ctx = new ModuleContext();
-        ctx.Developers = devs;
+        ctx.Developers = DeveloperM.toDevelopers(developerModels);
+        ctx.Skills = SkillM.toSkills(skillModels);
 
         moduleHost = new ModuleHost();
         moduleHost.StartModules(ctx);
+
+        //Map to Model
+        developerModels = DeveloperM.fromDevelopers(ctx.Developers);
+
+        //Update
+//        resourceService.saveDevelopers(developerModels);
     }
 
     public List<ModuleInfoM> getModuleInfo() {

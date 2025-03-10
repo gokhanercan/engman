@@ -28,7 +28,6 @@ export default function DeveloperAvatar({developer,onDeveloperView,onDeveloperMo
     }
     //rename.
     const handleMouseLeave = async (e: any, developer:DeveloperM) => {
-        // console.log("ClosingTime...");
         if(onDeveloperMouseLeave){
             await onDeveloperMouseLeave(developer);
             setHoverActive(false);
@@ -37,23 +36,17 @@ export default function DeveloperAvatar({developer,onDeveloperView,onDeveloperMo
     const handleMouseOver = async (e: any, developer:DeveloperM) => {
         console.log("MouseOver");        
         if(onDeveloperMouseOver){
-            // console.log("..setting as active");
             await onDeveloperMouseOver(e,developer);
             setHoverActive(true);
-            if(hoverActive) {
-                // setTimeout(() => {
-                //     console.log("Mouse left (with delay)");
-                //     //handleMouseLeave(null,developer);
-                // }, 2000);
-            }
         }
     }
 
     return (
         <>
             <ContextMenu items={ctxItems} onItemSelected={handleContextMenu} >
-                <div className="border border-primary rounded-circle p-1 m-1"
+                <div className="border1 border-primary1 rounded-circle1 p-1 m-1"
                      dev-name={developer.name}
+                     style={{ width: '36px', height: '38px', overflow: 'hidden1' }}
                      onClick={() => onDeveloperView && onDeveloperView(developer)}
                      onMouseOver={(e) => handleMouseOver(e,developer) }
                      onMouseLeave={(e) => handleMouseLeave(e,developer)}
@@ -62,7 +55,7 @@ export default function DeveloperAvatar({developer,onDeveloperView,onDeveloperMo
                      >
                     <Avatar name={`${developer.name}`} />
                 </div>
-                <span>{hoverActive==true ? "active" : "passive"}</span>
+                {/* <span>{hoverActive==true ? "active" : "passive"}</span> */}
             </ContextMenu>
             
         </>

@@ -1,5 +1,6 @@
 package com.engman.core.module;
 
+import com.engman.core.modules.KanbanModule;
 import com.engman.core.modules.TrueColorsModule;
 
 import java.util.ArrayList;
@@ -14,9 +15,7 @@ public class ModuleHost {
     private List<ModuleBase> _Modules = new ArrayList<>();
 
     public List<ModuleBase> DiscoverModules(){
-        return new ArrayList<>(){{
-            add(new TrueColorsModule());        //Currently hardcoded.
-        }};
+        return List.of(new KanbanModule(), new TrueColorsModule());
     }
     public List<ModuleBase> getModules() {
         return _Modules;
