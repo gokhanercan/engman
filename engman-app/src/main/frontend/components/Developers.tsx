@@ -44,8 +44,8 @@ export default function Developers({ developers,title,showProgressBars=true,page
       <>
         {title && <b className="subTitle">{title}</b>}
         {/* <span>Selected: {dialogPosition.x}</span> */}
-        <span>D Open: {`${dialogOpened}`}</span>
-        <Grid items={developers}>
+        {/* <span>D Open: {`${dialogOpened}`}</span> */}
+        <Grid items={developers} theme="row-stripes"  > 
           <GridColumn
             header={'Avatar'}
             renderer={({ item }) => (
