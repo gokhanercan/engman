@@ -25,10 +25,15 @@ export default function Developers({ developers,title,showProgressBars=true,page
         //if(e) setDialogPosition({ x: e.clientX , y: e.clientY });
     }
     const handleDeveloperViewClose = async () => {
-        console.log("DeveloperViewClose");
         setViewedDeveloper(null);
         setDialogOpened(false);
-        setDialogPosition({});
+        //setDialogPosition({});
+    }
+    const handleDialogOpenedChanged = (value:boolean) => {
+        setDialogOpened(value);
+        if(!value){
+          setViewedDeveloper(null);
+        }
     }
     const anchorStyle = {
         textDecoration: 'none',
@@ -39,6 +44,7 @@ export default function Developers({ developers,title,showProgressBars=true,page
       <>
         {title && <b className="subTitle">{title}</b>}
         {/* <span>Selected: {dialogPosition.x}</span> */}
+        <span>D Open: {`${dialogOpened}`}</span>
         <Grid items={developers}>
           <GridColumn
             header={'Avatar'}
@@ -46,10 +52,8 @@ export default function Developers({ developers,title,showProgressBars=true,page
               <>
                 <DeveloperAvatar developer={item} 
                   onDeveloperView={(developer)=> handleDeveloperView(developer,undefined)}
-                  onDeveloperMouseOver={async(e,developer) => {
-                    handleDeveloperView(developer,e);
-                  }}
-                  onDeveloperMouseLeave={(developer) => handleDeveloperViewClose() }
+                  //onDeveloperMouseOver={async(e,developer) => {handleDeveloperView(developer,e);}}
+                  //onDeveloperMouseLeave={(developer) => handleDeveloperViewClose() }
                   />
               </>
             )}
@@ -71,9 +75,9 @@ export default function Developers({ developers,title,showProgressBars=true,page
           headerTitle={viewedDeveloper?.name}
           opened={dialogOpened}
           onOpenedChanged={({ detail }) => {
-            //setDialogOpened(detail.value);
+            handleDialogOpenedChanged(detail.value);
           }}
-          modeless
+          // modeless
           // top={`${dialogPosition.y}px`}
           // left={`${dialogPosition.x}px`}
           footer={

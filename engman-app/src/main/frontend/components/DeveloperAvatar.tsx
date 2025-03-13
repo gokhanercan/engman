@@ -12,12 +12,11 @@ interface DeveloperAvatarProps {
 
 export default function DeveloperAvatar({developer,onDeveloperView,onDeveloperMouseOver,onDeveloperMouseLeave}: DeveloperAvatarProps) {
     const ctxItems = [{ text: 'View' }, { text: 'Edit' }, { text: 'Delete' }];
-    const [hoverActive, setHoverActive] = useState<boolean>(false);
+    //const [hoverActive, setHoverActive] = useState<boolean>(false);
 
     const handleContextMenu = (e: any) => {
         if(e.detail.value.text === 'View'){
             const devName = e.target.querySelector("div").getAttribute("dev-name");
-            // alert("You selected:" + devName);
             if(onDeveloperView){
                 onDeveloperView(developer);
             }
@@ -26,32 +25,34 @@ export default function DeveloperAvatar({developer,onDeveloperView,onDeveloperMo
             console.log("Not implemented Action: ", e.detail.value.text);
         }
     }
-    //rename.
+    //todo:rename.
     const handleMouseLeave = async (e: any, developer:DeveloperM) => {
+        console.log("MouseLeave");
         if(onDeveloperMouseLeave){
             await onDeveloperMouseLeave(developer);
-            setHoverActive(false);
+            //setHoverActive(false);
         }
     }
     const handleMouseOver = async (e: any, developer:DeveloperM) => {
         console.log("MouseOver");        
         if(onDeveloperMouseOver){
             await onDeveloperMouseOver(e,developer);
-            setHoverActive(true);
+            // setHoverActive(true);
         }
     }
 
     return (
         <>
-            <ContextMenu items={ctxItems} onItemSelected={handleContextMenu} >
-                <div className="border1 border-primary1 rounded-circle1 p-1 m-1"
+            <ContextMenu 
+                        //  openOn="click"  //switches left-click to right-click
+                         items={ctxItems} 
+                         onItemSelected={handleContextMenu} >
+                <div className=""
                      dev-name={developer.name}
-                     style={{ width: '36px', height: '38px', overflow: 'hidden1' }}
+                     style={{ width: '36px', height: '38px' }}
                      onClick={() => onDeveloperView && onDeveloperView(developer)}
                      onMouseOver={(e) => handleMouseOver(e,developer) }
                      onMouseLeave={(e) => handleMouseLeave(e,developer)}
-                    //  onMouseOut={(e) => handleMouseLeave(e,developer)} 
-                    //  onPointerLeave={(e) => handleMouseLeave(e,developer) }
                      >
                     <Avatar name={`${developer.name}`} />
                 </div>
