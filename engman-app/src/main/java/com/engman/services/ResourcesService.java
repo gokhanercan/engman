@@ -118,7 +118,11 @@ public class ResourcesService {
     }
 
     public void saveDeveloper(DeveloperM dev){
+
         developerRepo.save(dev);
+    }
+    public void saveDeveloperAge(UUID id, Integer newAge){
+        developerRepo.age(id, newAge);
     }
     public void saveDevelopers(List<DeveloperM> devs){
         developerRepo.saveAll(devs);

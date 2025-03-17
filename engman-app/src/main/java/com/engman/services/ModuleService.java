@@ -49,6 +49,7 @@ public class ModuleService {
         developerModels = DeveloperM.fromDevelopers(ctx.Developers);
 
         //Update
+        resourceService.saveDeveloperAge(developerModels.get(0).getId(),30);
 //        resourceService.saveDevelopers(developerModels);
     }
 
