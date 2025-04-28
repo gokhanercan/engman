@@ -1,40 +1,38 @@
 vars: {
   d2-config: {
-    layout-engine: elk
-    theme-id: 3
+    theme-id: 3 # terrastruct
+    sketch: true
   }
   colors: {
-    c2: "#C7F1FF" #açık turkuaz
-    c3: "#B5AFF6" #koyu mor
-    c4: "#DEE1EB" #gri
-    c5: "#88DCF7" #turkuaz
-    c6: "#E4DBFE" #mor
+    c2: "#C7F1FF" # açık turkuaz
+    c3: "#B5AFF6" # koyu mor
+    c4: "#DEE1EB" # gri
+    c5: "#88DCF7" # turkuaz
+    c6: "#E4DBFE" # mor
   }
 }
 
-
-
-UI:User Interface{
+UI: User Interface {
   tooltip: React with Hilla components, Tailwind, Reactflow.
   Pages
   Components
-  Models{
-    style:{
+  Models: {
+    style: {
       fill: ${colors.c3}
       stroke-dash: 10
       stroke-width: 1
-      stroke:black
+      stroke: black
     }
   }
 }
-UI <- App: Hilla pushes contracts{
+UI <- App: Hilla pushes contracts {
   style.animated: true
-  style.stroke:${colors.c3}
+  style.stroke: ${colors.c3}
   style.font-size: 20
 }
 
-#APP
-App:"Application" {
+# APP
+App: "Application" {
   Repositories
 
   Services
@@ -42,17 +40,17 @@ App:"Application" {
     Developer
     Skill
     Project
-    style.fill:${colors.c3}
+    style.fill: ${colors.c3}
   }
-  ModuleService{
-    ModuleHost{
+  ModuleService: {
+    ModuleHost: {
       style.stroke-dash: 10
       style.stroke: black
-      style.fill:${colors.c2}
+      style.fill: ${colors.c2}
     }
   }
 }
-App -> Core{
+App -> Core: {
   style.animated: true
 }
 
@@ -69,42 +67,42 @@ MongoDB <- App.Repositories: {
 }
 """
 
-
-
-#CORE
+# CORE
 Core: {
   Domain
-  Module System {
+  Module System: {
     Context
-    ModuleHost{
-      style.fill:${colors.c2}
+    ModuleHost: {
+      style.fill: ${colors.c2}
     }
   }
   Modules: {
-    Scrum {
-      style.fill:${colors.c5}
+    shape: queue
+    Scrum: {
+      style.fill: ${colors.c5}
     }
-    Kanban {
-      style.fill:${colors.c5}
+    Kanban: {
+      style.fill: ${colors.c5}
     }
-    DORA{
-      style.fill:${colors.c5}
+    DORA: {
+      style.fill: ${colors.c5}
     }
-    Drive{
-      style.fill:${colors.c5}
+    Drive: {
+      style.fill: ${colors.c5}
     }
-    "..."{
-      style.fill:${colors.c5}
+    "...": {
+      style.fill: ${colors.c5}
       style.animated: true
       tooltip: Main Extensibility Point — Expecting the community to add modules for management theories.
       style.stroke: red
+      style.multiple: true
     }
-    style.fill:${colors.c2}
+    style.fill: ${colors.c2}
   }
-  AI Module Connector{
-    style.fill:${colors.c5}
+  AI Module Connector: {
+    style.fill: ${colors.c5}
     style.stroke: red
   }
-  AI Module Connector->Modules
-  Module System.ModuleHost->Modules
+  AI Module Connector -> Modules
+  Module System.ModuleHost -> Modules
 }
