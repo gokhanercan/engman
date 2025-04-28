@@ -1,0 +1,68 @@
+vars: {
+  d2-config: {
+    layout-engine: elk
+    theme-id: 3
+  }
+  colors: {
+    c2: "#C7F1FF" #açık turkuaz
+    c3: "#B5AFF6" #koyu mor
+    c4: "#DEE1EB" #gri
+    c5: "#88DCF7" #turkuaz
+    c6: "#E4DBFE" #mor
+  }
+}
+
+UI:User Interface{
+  tooltip: React
+  Pages
+  Components
+  Models{
+    style.fill: ${colors.c3}
+  }
+}
+UI <-> App: Hilla {
+  style.animated: true
+}
+App:"Application" {
+  Services
+  Repositories
+  Models: {
+    Developer
+    Skill
+    Project
+    style.fill:${colors.c3}
+  }
+  ModuleHost{
+    style.fill:${colors.c2}
+  }
+}
+App -> Core{
+  style.animated: true
+}
+Core: {
+  Domain
+  Module System {
+    Context
+    ModuleHost{
+      style.fill:${colors.c2}
+    }
+  }
+  Modules: {
+    Scrum {
+      style.fill:${colors.c5}
+    }
+    Kanban {
+      style.fill:${colors.c5}
+    }
+    DORA{
+      style.fill:${colors.c5}
+    }
+    Drive{
+      style.fill:${colors.c5}
+    }
+    "..."{
+      style.fill:${colors.c5}
+    }
+    style.fill:${colors.c2}
+  }
+}
