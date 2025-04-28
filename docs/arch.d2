@@ -12,33 +12,66 @@ vars: {
   }
 }
 
+
+
 UI:User Interface{
-  tooltip: React
+  tooltip: React with Hilla components, Tailwind, Reactflow.
   Pages
   Components
   Models{
-    style.fill: ${colors.c3}
+    style:{
+      fill: ${colors.c3}
+      stroke-dash: 10
+      stroke-width: 1
+      stroke:black
+    }
   }
 }
-UI <-> App: Hilla {
+UI <- App: Hilla pushes contracts{
   style.animated: true
+  style.stroke:${colors.c3}
+  style.font-size: 20
 }
+
+#APP
 App:"Application" {
-  Services
   Repositories
+
+  Services
   Models: {
     Developer
     Skill
     Project
     style.fill:${colors.c3}
   }
-  ModuleHost{
-    style.fill:${colors.c2}
+  ModuleService{
+    ModuleHost{
+      style.stroke-dash: 10
+      style.stroke: black
+      style.fill:${colors.c2}
+    }
   }
 }
 App -> Core{
   style.animated: true
 }
+
+"""
+MongoDB: "🍃 MongoDB" {
+  shape: cylinder
+  style.fill: "#13aa52"
+  style.stroke: black
+  style.font-color: white
+  near:Core.Domain
+}
+MongoDB <- App.Repositories: {
+  direction:left
+}
+"""
+
+
+
+#CORE
 Core: {
   Domain
   Module System {
@@ -62,7 +95,16 @@ Core: {
     }
     "..."{
       style.fill:${colors.c5}
+      style.animated: true
+      tooltip: Main Extensibility Point — Expecting the community to add modules for management theories.
+      style.stroke: red
     }
     style.fill:${colors.c2}
   }
+  AI Module Connector{
+    style.fill:${colors.c5}
+    style.stroke: red
+  }
+  AI Module Connector->Modules
+  Module System.ModuleHost->Modules
 }
