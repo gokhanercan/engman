@@ -22,6 +22,7 @@ export default function Developers({ developers,title,showProgressBars=true,page
     const handleDeveloperView = async (developer: DeveloperM,e?:React.MouseEvent<HTMLDivElement, MouseEvent>) => {
         setViewedDeveloper(developer);  
         setDialogOpened(true);
+        console.log("VDev",developer);
         //if(e) setDialogPosition({ x: e.clientX , y: e.clientY });
     }
     const handleDeveloperViewClose = async () => {
@@ -101,16 +102,32 @@ export default function Developers({ developers,title,showProgressBars=true,page
                 </VerticalLayout>
             </Details>
 
-            {/* <Details summary="Customers" opened>
+            <Details summary="Other Fields" opened>
                 <VerticalLayout>
-                    <a href="#" style={anchorStyle}>
-                    Accounts
-                    </a>
-                    <a href="#" style={anchorStyle}>
-                    Contacts
-                    </a>
+                  
+              {/* <span>{viewedDeveloper?.MInfo?.[0].ModuleName}</span> */}
+
+                  {viewedDeveloper?.MInfo && viewedDeveloper.MInfo.map((m, index) => (
+                    <div key={index} style={{ display: 'flex1', justifyContent: 'space-between' }}>
+                      <b>
+                        <span style={{width:'100px'}}>{m.ModuleName}</span>
+                      </b>
+                      <hr/>
+                      <div>
+                        {m.Fields?.map((f, index) => (
+                          <div key={index} >
+                            {Object.entries(f).map(([key, value]) => (
+                              <div key={key} style={{ display: 'flex', justifyContent: 'space-between' }}>
+                                <span style={{width:'100px' }}>{key}</span>
+                                <span>{value}</span>
+                              </div>
+                            ))}
+                          </div>
+                      ))}</div>
+                    </div>
+                  ))}
                 </VerticalLayout>
-            </Details> */}
+            </Details>
           </VerticalLayout>
 
         </Dialog>
