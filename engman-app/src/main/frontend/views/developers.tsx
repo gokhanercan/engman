@@ -33,7 +33,7 @@ export default function DevelopersView() {
     return (
         <>
             <Helmet><title>Developers</title></Helmet>
-            <Developers developers={developers} title='' showProgressBars={false}  />
+            <Developers developers={developers} title='' showProgressBars={false} detailPageLinkFormat={"developer/{id}"}  />
         </>
     );
 }

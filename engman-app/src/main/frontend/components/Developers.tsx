@@ -7,14 +7,15 @@ import { Button, Details, Dialog, Icon, VerticalLayout } from "@vaadin/react-com
 import { useSignal } from "@vaadin/hilla-react-signals";
 import { useState } from "react";
 
-interface DeveloperCompProps {
+interface DevelopersCompProps {
     developers: DeveloperM[] | null;
     title?: string | null;
     showProgressBars?: boolean;
     pageLink?: string | null;
+    detailPageLinkFormat?: string | null;
 }
 
-export default function Developers({ developers,title,showProgressBars=true,pageLink}: DeveloperCompProps) {
+export default function Developers({ developers,title,showProgressBars=true,pageLink,detailPageLinkFormat}: DevelopersCompProps) {
     const [dialogOpened,setDialogOpened] = useState<boolean>(false);
     const [dialogPosition,setDialogPosition] = useState<any>({});
     const [viewedDeveloper,setViewedDeveloper] = useState<DeveloperM | null>(null);
@@ -59,7 +60,20 @@ export default function Developers({ developers,title,showProgressBars=true,page
               </>
             )}
           />
-          <GridColumn path="name" header="Name" />
+          {/* <GridColumn path="name" header="Name" /> */}
+
+          <GridColumn
+            header="Name"
+            renderer={({ item }) => 
+              (detailPageLinkFormat 
+                ? <a href={detailPageLinkFormat.replace("{id}",item.id)}>
+                    <span>{item.name}</span>
+                  </a>
+                : <span>{item.name}</span>
+              )
+            }
+          />
+
           <GridColumn
             header={'Skills'}
             renderer={({ item }) => (
