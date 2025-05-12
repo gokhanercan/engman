@@ -1,5 +1,6 @@
 package com.engman.core.module;
 
+import com.engman.core.modules.DORAModule;
 import com.engman.core.modules.KanbanModule;
 import com.engman.core.modules.TrueColorsModule;
 
@@ -15,11 +16,12 @@ public class ModuleHost {
     private List<ModuleBase> _Modules = new ArrayList<>();
 
     public List<ModuleBase> DiscoverModules(){
-        return List.of(new KanbanModule(), new TrueColorsModule());
+        return List.of(new KanbanModule(), new TrueColorsModule(), new DORAModule());     //todo: Discover automatically!
     }
     public List<ModuleBase> getModules() {
         return _Modules;
     }
+
     public ModuleBase getModule(String moduleName){
         for (ModuleBase module : _Modules) {
             if(module.getName().equals(moduleName)){
@@ -33,12 +35,14 @@ public class ModuleHost {
         module.setEnable(value);
     }
 
+    private boolean isStarted = false;
     public void StartModules(ModuleContext ctx){
 //        ctx.Developers = new ArrayList<>(); //TODO: get from DB ResourceService.GetDevelopers().MapToDomain;
 //        ctx.Developers.add(new Developer("John Doe"));
         for (ModuleBase module : _Modules) {
             module.onModuleInstall(ctx);
         }
+        isStarted = true;
         //DB.Update();
     }
 }
