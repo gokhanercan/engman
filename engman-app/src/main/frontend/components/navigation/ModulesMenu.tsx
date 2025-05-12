@@ -14,6 +14,9 @@ export default function ModulesMenu({modules, onModuleEnable}: ModulesMenuProps)
     //     console.log("enable",isEnable);
     //     //onModuleEnable(item, isEnable);
     // }
+
+    console.log("Modules",modules);
+
     const handleEnableClick = (e: any, item: ModuleInfoM) => {
         e.preventDefault();
         onModuleEnable(item, !item.enabled);
