@@ -17,11 +17,9 @@ import org.springframework.web.context.annotation.ApplicationScope;
 import java.util.*;
 
 @ApplicationScope
-//@Service
 @AnonymousAllowed
 @BrowserCallable
 @Route
-//@AllArgsConstructor
 public class ModuleService {
 
     @Autowired
@@ -37,38 +35,9 @@ public class ModuleService {
         this.resourceService = resourceService;
         this.moduleRepo = moduleRepo;
 
+        //Module System
         this.moduleHost = new ModuleHost();
-
-        //region Module Persistency sync
-        List<ModuleBase> runtimeModules = moduleHost.getModules();
-        Optional<ModuleInfoContainerM> moduleContainer = moduleRepo.findById("1");
-        if(!moduleContainer.isPresent()){
-            moduleContainer = Optional.of(new ModuleInfoContainerM());
-            Map<String,ModuleInfoM> modulesMap = new HashMap<>();
-            for (ModuleBase module : runtimeModules) {
-                String name = module.getName();
-                modulesMap.put(name,toDefaultModuleInfoM(module));
-            }
-            moduleContainer.get().setModules(modulesMap);
-            moduleRepo.save(moduleContainer.get());
-        }
-        else{
-            boolean isAnyNewModule = false;
-            Map<String,ModuleInfoM> modulesMap = moduleContainer.get().getModules();
-            for (ModuleBase module : runtimeModules) {
-                String name = module.getName();
-                ModuleInfoM infoM =moduleContainer.get().getModules().getOrDefault(name,null);
-                if(infoM == null){
-                    isAnyNewModule = true;
-                    modulesMap.put(name, toDefaultModuleInfoM(module));
-                }
-            }
-            if(isAnyNewModule){
-                moduleContainer.get().setModules(modulesMap);
-                moduleRepo.save(moduleContainer.get()); //TODO:Partially update the document.
-            }
-        }
-        //endregion
+        SyncModuleSystem(moduleHost);
 
         //ModuleHost activate
         //region Context
@@ -78,13 +47,9 @@ public class ModuleService {
         ctx.Developers = DeveloperM.toDevelopers(developerModels);
         ctx.Skills = SkillM.toSkills(skillModels);
         //endregion
-
-        for (ModuleInfoM moduleInfo: moduleContainer.get().getModules().values()) {
-            if(moduleInfo.isEnabled()) moduleHost.toggleEnable(moduleInfo.getName(),true);
-        }
         moduleHost.StartModules(ctx);
 
-        //region test (TODO:del)
+        //region Test DB Updates (TODO:del)
         //Update
         developerModels = DeveloperM.fromDevelopers(ctx.Developers);
         //resourceService.saveDeveloperAge(developerModels.get(0).getId(),30);
@@ -92,36 +57,60 @@ public class ModuleService {
         //endregion
     }
 
-//    private void UpdateModuleSystem(ModuleHost moduleHost){
-//        for (Module o :moduleHost.getModules()) {
-//
-//        }
-//    }
+    /*
+    Syncs the in memory module system with the database in both ways.
+     */
+    private void SyncModuleSystem(ModuleHost moduleHost){
 
+        //Sync (Memory->DB)
+        List<ModuleBase> runtimeModules = moduleHost.getModules();
+        Optional<ModuleInfoContainerM> moduleContainer = moduleRepo.getModules();
+        if(!moduleContainer.isPresent()){
+            moduleRepo.OverwriteModules(toModuleInfoMs(moduleHost.getModules()));
+        }
+        else{
+            boolean isAnyNewModuleDiscovered = false;
+            Map<String,ModuleInfoM> modulesMap = moduleContainer.get().getModules();
+            for (ModuleBase module : runtimeModules) {
+                String name = module.getName();
+                ModuleInfoM infoM =moduleContainer.get().getModules().getOrDefault(name,null);
+                if(infoM == null){
+                    isAnyNewModuleDiscovered = true;
+                    modulesMap.put(name, toDefaultModuleInfoM(module));
+                }
+            }
+            if(isAnyNewModuleDiscovered)  moduleRepo.OverwriteModules(toModuleInfoMs(moduleHost.getModules()));
+        }
+
+        //Sync (DB->Memory)
+        for (ModuleInfoM moduleInfo: moduleContainer.get().getModules().values()) {
+            if(moduleInfo.isEnabled()) moduleHost.toggleEnable(moduleInfo.getName(),true);
+        }
+    }
+
+    public List<ModuleInfoM> getModuleInfo() {
+        //serve from the memory
+        return toModuleInfoMs(moduleHost.getModules());
+
+        //get from db
+        //return new ArrayList<>(moduleRepo.findById("1").get().getModules().values());
+    }
+    public List<ModuleInfoM> toggleEnable(String moduleName, boolean value) throws InterruptedException {
+        Thread.sleep(500);
+        moduleHost.toggleEnable(moduleName, value);
+        return getModuleInfo();
+    }
+
+    //region Mapping
     public ModuleInfoM toModuleInfoM(ModuleBase module){
         return new ModuleInfoM(module.getName(),module.getEnabled());
     }
     public ModuleInfoM toDefaultModuleInfoM(ModuleBase module){
         return new ModuleInfoM(module.getName(),false);
     }
-
-    public List<ModuleInfoM> getModuleInfo() {
-        //serve from mem.
-        return moduleHost.getModules().stream().map(this::toModuleInfoM).toList();
-
-        //get from db all the time.
-        //return new ArrayList<>(moduleRepo.findById("1").get().getModules().values());
+    public List<ModuleInfoM> toModuleInfoMs(List<ModuleBase> modules){
+        return modules.stream().map(this::toModuleInfoM).toList();
     }
-    public List<ModuleInfoM> toggleEnable(String moduleName, boolean value) throws InterruptedException {
-        Thread.sleep(500);
+    //endregion
 
-        moduleHost.toggleEnable(moduleName, value);
-
-        //TODO: Call db.
-
-        return getModuleInfo();
-    }
-    public ModuleInfoM mapToModel(ModuleBase module){
-        return new ModuleInfoM(module.getName(),module.getEnabled());
-    }
 }

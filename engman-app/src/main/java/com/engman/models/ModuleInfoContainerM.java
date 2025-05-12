@@ -12,5 +12,5 @@ public class ModuleInfoContainerM {
     @Id
     private String id = "1";
 
-    private Map<String, ModuleInfoM> modules;
+    private Map<String, ModuleInfoM> modules = Map.of();
 }
