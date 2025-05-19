@@ -12,6 +12,9 @@ public class ModuleHost {
     public ModuleHost() {
         _Modules = DiscoverModules();
     }
+    public ModuleHost(List<ModuleBase> modules) {
+        _Modules = modules;
+    }
 
     private List<ModuleBase> _Modules = new ArrayList<>();
 

@@ -14,6 +14,7 @@ import com.vaadin.hilla.BrowserCallable;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.context.annotation.ApplicationScope;
 
+import javax.annotation.Nullable;
 import java.util.*;
 
 @ApplicationScope
@@ -28,15 +29,15 @@ public class ModuleService {
     @Autowired
     private ModuleRepo moduleRepo;
 
-    private ModuleHost moduleHost;
+    private ModuleHost moduleHost;      //Singleton behaviour
 
     @Autowired
-    public ModuleService(ResourcesService resourceService, ModuleRepo moduleRepo) {
+    public ModuleService(ResourcesService resourceService, ModuleRepo moduleRepo, @Nullable ModuleHost moduleHost) {
         this.resourceService = resourceService;
         this.moduleRepo = moduleRepo;
 
         //Module System
-        this.moduleHost = new ModuleHost();
+        this.moduleHost = moduleHost != null ? moduleHost : new ModuleHost();
         SyncModuleSystem(moduleHost);
 
         //ModuleHost activate
@@ -79,12 +80,14 @@ public class ModuleService {
                     modulesMap.put(name, toDefaultModuleInfoM(module));
                 }
             }
-            if(isAnyNewModuleDiscovered)  moduleRepo.OverwriteModules(toModuleInfoMs(moduleHost.getModules()));
-        }
 
-        //Sync (DB->Memory)
-        for (ModuleInfoM moduleInfo: moduleContainer.get().getModules().values()) {
-            if(moduleInfo.isEnabled()) moduleHost.toggleEnable(moduleInfo.getName(),true);
+            //Sync (DB->Memory)
+            for (ModuleInfoM moduleInfo: moduleContainer.get().getModules().values()) {
+                if(moduleInfo.isEnabled()) moduleHost.toggleEnable(moduleInfo.getName(),true);
+            }
+
+            if(isAnyNewModuleDiscovered)
+                moduleRepo.OverwriteModules(toModuleInfoMs(moduleHost.getModules()));
         }
     }
 
