@@ -37,8 +37,10 @@ public class ModuleService {
         this.moduleRepo = moduleRepo;
 
         //Module System
-        this.moduleHost = moduleHost != null ? moduleHost : new ModuleHost();
-        SyncModuleSystem(moduleHost);
+        this.moduleHost = moduleHost;
+        if(this.moduleHost == null) this.moduleHost = new ModuleHost();
+
+        SyncModuleSystem(this.moduleHost);
 
         //ModuleHost activate
         //region Context
@@ -48,7 +50,7 @@ public class ModuleService {
         ctx.Developers = DeveloperM.toDevelopers(developerModels);
         ctx.Skills = SkillM.toSkills(skillModels);
         //endregion
-        moduleHost.StartModules(ctx);
+        this.moduleHost.StartModules(ctx);
 
         //region Test DB Updates (TODO:del)
         //Update
