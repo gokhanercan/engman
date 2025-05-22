@@ -22,7 +22,7 @@ export default function DevelopersView() {
                     { ModuleName: "Kanban", Fields: [{ "NrOfItems": "2" }] }
             ] };
             });
-            console.log("Devs2",devs2);
+            // console.log("Devs2",devs2);
             setDevelopers(devs2);
         })
         .catch(error => {

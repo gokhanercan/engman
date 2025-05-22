@@ -27,14 +27,14 @@ export default function DeveloperAvatar({developer,onDeveloperView,onDeveloperMo
     }
     //todo:rename.
     const handleMouseLeave = async (e: any, developer:DeveloperM) => {
-        console.log("MouseLeave");
+        // console.log("MouseLeave");
         if(onDeveloperMouseLeave){
             await onDeveloperMouseLeave(developer);
             //setHoverActive(false);
         }
     }
     const handleMouseOver = async (e: any, developer:DeveloperM) => {
-        console.log("MouseOver");        
+        //console.log("MouseOver");        
         if(onDeveloperMouseOver){
             await onDeveloperMouseOver(e,developer);
             // setHoverActive(true);
