@@ -24,7 +24,7 @@ import java.util.*;
 public class ModuleService {
 
     @Autowired
-    private final ResourcesService resourceService;
+    private ResourcesService resourceService;
 
     @Autowired
     private ModuleRepo moduleRepo;
@@ -103,6 +103,7 @@ public class ModuleService {
     public List<ModuleInfoM> toggleEnable(String moduleName, boolean value) throws InterruptedException {
         Thread.sleep(500);
         moduleHost.toggleEnable(moduleName, value);
+        moduleRepo.OverwriteModules(toModuleInfoMs(moduleHost.getModules()));   //TODO: For now, we save eagerly.
         return getModuleInfo();
     }
 

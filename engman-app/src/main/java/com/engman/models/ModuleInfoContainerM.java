@@ -4,6 +4,7 @@ import jakarta.persistence.Id;
 import lombok.Data;
 import org.springframework.data.mongodb.core.mapping.Document;
 
+import java.util.HashMap;
 import java.util.Map;
 
 @Document("modules")
@@ -12,5 +13,5 @@ public class ModuleInfoContainerM {
     @Id
     private String id = "1";
 
-    private Map<String, ModuleInfoM> modules = Map.of();
+    private Map<String, ModuleInfoM> modules = new HashMap(Map.of());
 }
