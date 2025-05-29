@@ -1,13 +1,8 @@
 package com.engman.data;
 
-import com.engman.models.DeveloperM;
-import com.engman.models.ProjectM;
-import com.engman.models.SkillLevelM;
-import com.engman.models.SkillM;
+import com.engman.models.*;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
+import java.util.*;
 
 public class InitialData {
 
@@ -26,6 +21,11 @@ public class InitialData {
                                 new SkillLevelM(azure, 50, 80),
                                 new SkillLevelM(python, 70, 80)
                         )
+                ),
+                new HashMap<>(
+                    Map.of(
+                        "TrueColor", new FieldM("TrueColor","Blue", "TrueColors")
+                    )
                 )
             );
     private static DeveloperM devops  = new DeveloperM("DevOps Guy1",25,
@@ -52,7 +52,12 @@ public class InitialData {
                         new SkillLevelM(dotnet, 30, 60),
                         new SkillLevelM(java, 20, 50)
                 )
-        )
+        ),
+        new HashMap<>(
+                Map.of(
+                    "TrueColor", new FieldM("TrueColor","Green", "TrueColors")
+                )
+            )
     );
 
     public static List<SkillM> Skills = new ArrayList<>(Arrays.asList(
