@@ -33,7 +33,9 @@ public class Developer {
 
     //Temp dynamic field mngmnt. TODO: Generalize
 //    public ArrayList<SimpleEntry<String,String>> Fields = new ArrayList<>();
+
     public HashMap<String,String> Fields = new HashMap<>();
+
     public void SetField(String fieldName, String value) {      //add,set,upsert.   //todo:Add more types.
         Fields.put(fieldName, value.toString());
     }

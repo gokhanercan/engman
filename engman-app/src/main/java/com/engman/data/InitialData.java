@@ -24,8 +24,11 @@ public class InitialData {
                 ),
                 new HashMap<>(
                     Map.of(
-                        "TrueColor", new FieldM("TrueColor","Blue", "TrueColors")
+                        "TrueColors_TrueColor", new FieldM("TrueColor","Blue", "TrueColors"),
+                            "DORA_Happiness", new FieldM("Happiness","6", "DORA"),
+                            "DORA_CognitiveLoad", new FieldM("CognitiveLoad","8", "DORA")
                     )
+
                 )
             );
     private static DeveloperM devops  = new DeveloperM("DevOps Guy1",25,
@@ -55,7 +58,9 @@ public class InitialData {
         ),
         new HashMap<>(
                 Map.of(
-                    "TrueColor", new FieldM("TrueColor","Green", "TrueColors")
+                    "TrueColors_TrueColor", new FieldM("TrueColor","Green", "TrueColors"),
+                        "DORA_Happiness", new FieldM("Happiness","9", "DORA"),
+                        "DORA_CognitiveLoad", new FieldM("CognitiveLoad","4", "DORA")
                 )
             )
     );

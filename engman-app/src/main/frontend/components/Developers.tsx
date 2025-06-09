@@ -48,6 +48,18 @@ export default function Developers({
     color: 'var(--lumo-primary-text-color)',
   };
 
+  const getDistinctFieldModules = (developer: DeveloperM): string[] => {
+    const modules = new Set<string>();
+    if (developer.fields) {
+      Object.values(developer.fields).forEach((field) => {
+        if (field && field.ownerModuleName) {
+          modules.add(field.ownerModuleName);
+        }
+      });
+    }
+    return Array.from(modules);
+  };
+
   return (
     <>
       {title && <b className="subTitle">{title}</b>}
@@ -106,7 +118,7 @@ export default function Developers({
         footer={<></>}>
         <VerticalLayout style={{ alignItems: 'stretch', width: '18rem', maxWidth: '100%' }}>
           {/* info */}
-          <Details summary="Analytics" opened>
+          <Details summary="Core" opened>
             <VerticalLayout>
               {viewedDeveloper &&
                 Object.entries(viewedDeveloper).map(
@@ -121,30 +133,27 @@ export default function Developers({
             </VerticalLayout>
           </Details>
 
-          <Details summary="Other Fields" opened>
-             <VerticalLayout>
-                  {viewedDeveloper?.fields2 && Object.entries(viewedDeveloper?.fields2).map((r, index) => (
-                    <div key={index} style={{ display: 'flex1', justifyContent: 'space-between' }}>
-                      <span>{r[0]}: {r[1]?.value}</span>
-                      <span style={{width:'100px'}}> ({r[1]?.ownerModuleName })</span>
-                      
-                      <hr/>
-                      {/* <div>
-                        {m.Fields?.map((f, index) => (
-                          <div key={index} >
-                            {Object.entries(f).map(([key, value]) => (
-                              <div key={key} style={{ display: 'flex', justifyContent: 'space-between' }}>
-                                <span style={{width:'100px' }}>{key}</span>
-                                <span>{value}</span>
-                              </div>
-                            ))}
-                            </div>
-                          ))}
-                      </div> */}
-                    </div>
-                  ))}
-            </VerticalLayout>
-          </Details>
+          {/* Fields by Module */}
+          {viewedDeveloper && (
+            <>
+              {getDistinctFieldModules(viewedDeveloper).map((moduleName) => (
+                <Details key={moduleName} summary={moduleName} opened>
+                  <VerticalLayout>
+                    {Object.entries(viewedDeveloper.fields || {})
+                      .filter(([_, field]) => field?.ownerModuleName === moduleName)
+                      .map(([fieldName, field]) => (
+                        <div key={fieldName} style={{ display: 'flex', justifyContent: 'space-between' }}>
+                          <span style={{ width: '200px' }}>{field?.name}</span>
+                          <span>{field?.value}</span>
+                        </div>
+                      ))}
+                  </VerticalLayout>
+                </Details>
+              ))}
+            </>
+          )}
+
+          {/* Skills */}
         </VerticalLayout>
       </Dialog>
     </>

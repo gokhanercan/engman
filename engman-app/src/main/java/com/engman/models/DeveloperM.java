@@ -20,17 +20,17 @@ public class DeveloperM {
     private Integer age;
     private List<SkillLevelM> skillLevels;
 
-    @Deprecated
-    public HashMap<String,String> Fields = new HashMap<>();
+//    @Deprecated
+//    public HashMap<String,String> Fields = new HashMap<>();
 
-    private HashMap<String,FieldM> fields2 = new HashMap<>();
+    private HashMap<String,FieldM> fields = new HashMap<>();
 
     // Constructor without ID (for creation scenarios)
     public DeveloperM(String name, Integer age, List<SkillLevelM> skillLevels) {
-        this(UUID.randomUUID(), name, age, skillLevels, new HashMap<>(),new HashMap<>());
+        this(UUID.randomUUID(), name, age, skillLevels,new HashMap<>());
     }
     public DeveloperM(String name, Integer age, List<SkillLevelM> skillLevels, HashMap<String,FieldM> fields) {
-        this(UUID.randomUUID(), name, age, skillLevels, new HashMap<>(),fields);
+        this(UUID.randomUUID(), name, age, skillLevels, fields);
     }
 
     public Developer toDeveloper(){
@@ -49,7 +49,7 @@ public class DeveloperM {
     public void fromDeveloper(Developer dev){
         this.name = dev.Name;
         this.id = dev.id;
-        this.Fields = dev.Fields;
+//        this.fields = dev.Fields
         //TODO:map fields
     }
     public static ArrayList<DeveloperM> fromDevelopers(List<Developer> devs){
