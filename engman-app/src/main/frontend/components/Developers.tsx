@@ -116,7 +116,7 @@ export default function Developers({
         // top={`${dialogPosition.y}px`}
         // left={`${dialogPosition.x}px`}
         footer={<></>}>
-        <VerticalLayout style={{ alignItems: 'stretch', width: '18rem', maxWidth: '100%' }}>
+        <VerticalLayout style={{ alignItems: 'stretch', width: '40rem', maxWidth: '100%' }}>
           {/* info */}
           <Details summary="Core" opened>
             <VerticalLayout>
@@ -125,7 +125,7 @@ export default function Developers({
                   ([key, value]) =>
                     (typeof value === 'string' || typeof value === 'number') && (
                       <div style={{ display: 'flex', justifyContent: 'space-between' }}>
-                        <span style={{ width: '100px' }}>{key}</span>
+                        <span style={{ width: '200px' }}>{key}</span>
                         <span>{value}</span>
                       </div>
                     ),
