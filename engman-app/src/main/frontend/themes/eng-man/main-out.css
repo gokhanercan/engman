@@ -648,6 +648,14 @@ video {
   position: sticky;
 }
 
+.float-right {
+  float: right;
+}
+
+.float-left {
+  float: left;
+}
+
 .m-0 {
   margin: 0px;
 }
@@ -708,6 +716,26 @@ video {
   height: 100%;
 }
 
+.h-\[200px\] {
+  height: 200px;
+}
+
+.h-\[500px\] {
+  height: 500px;
+}
+
+.h-\[400px\] {
+  height: 400px;
+}
+
+.h-\[430px\] {
+  height: 430px;
+}
+
+.h-\[350px\] {
+  height: 350px;
+}
+
 .flex-shrink {
   flex-shrink: 1;
 }
@@ -754,6 +782,11 @@ video {
   border-width: 1px;
 }
 
+.border-red-300 {
+  --tw-border-opacity: 1;
+  border-color: rgb(252 165 165 / var(--tw-border-opacity, 1));
+}
+
 .bg-gray-100 {
   --tw-bg-opacity: 1;
   background-color: rgb(243 244 246 / var(--tw-bg-opacity, 1));
@@ -765,6 +798,14 @@ video {
 
 .p-3 {
   padding: 0.75rem;
+}
+
+.p-2 {
+  padding: 0.5rem;
+}
+
+.p-4 {
+  padding: 1rem;
 }
 
 .text-left {
@@ -790,13 +831,31 @@ video {
   line-height: 1.75rem;
 }
 
+.text-4xl {
+  font-size: 2.25rem;
+  line-height: 2.5rem;
+}
+
+.text-2xl {
+  font-size: 1.5rem;
+  line-height: 2rem;
+}
+
 .font-semibold {
   font-weight: 600;
+}
+
+.font-bold {
+  font-weight: 700;
 }
 
 .ordinal {
   --tw-ordinal: ordinal;
   font-variant-numeric: var(--tw-ordinal) var(--tw-slashed-zero) var(--tw-numeric-figure) var(--tw-numeric-spacing) var(--tw-numeric-fraction);
+}
+
+.leading-tight {
+  line-height: 1.25;
 }
 
 .text-black {
@@ -807,6 +866,16 @@ video {
 .text-gray-500 {
   --tw-text-opacity: 1;
   color: rgb(107 114 128 / var(--tw-text-opacity, 1));
+}
+
+.text-gray-900 {
+  --tw-text-opacity: 1;
+  color: rgb(17 24 39 / var(--tw-text-opacity, 1));
+}
+
+.text-gray-300 {
+  --tw-text-opacity: 1;
+  color: rgb(209 213 219 / var(--tw-text-opacity, 1));
 }
 
 .underline {
@@ -859,7 +928,7 @@ video {
   a-z-a--z0-9: \\-\\. $;
 }
 
-*.subTitle{
+*.subTitle {
   font-size: 1.1em;
   margin: 12px 0 10px 12px;
   display: inline-block;
@@ -892,12 +961,12 @@ div.block {
   }
 }
 
-div.link{
-  float:right;
+div.link {
+  float: right;
   padding: 3px 3px 3px 3px;
 }
 
-div.block div.link a{
+div.block div.link a {
   color: rgb(82, 107, 128) !important;
 }
 
@@ -909,4 +978,14 @@ div.block div.link a{
 vaadin-grid::part(row):hover {
   /* background-color: red !important;
     border: 1px solid red !important; */
+}
+
+*.card {
+  margin: 0.25rem;
+  width: 100%;
+  border-radius: 0.375rem;
+  border-width: 1px;
+  --tw-border-opacity: 1;
+  border-color: rgb(209 213 219 / var(--tw-border-opacity, 1));
+  padding: 1rem;
 }

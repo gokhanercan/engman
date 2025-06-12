@@ -16,8 +16,6 @@ public class MongoConfig {
         MongoMappingContext context = new MongoMappingContext();
         context.setAutoIndexCreation(true);
         context.setSimpleTypeHolder(conversions.getSimpleTypeHolder());
-//        context.setFieldNamingStrategy(new FieldNamingStrategy() {
-//        });
 //        context.setMapKeyDotReplacement("_"); // Replace '.' with '_'
         return context;
     }
