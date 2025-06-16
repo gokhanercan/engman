@@ -26,7 +26,7 @@ public class KanbanModule extends ModuleBase {
         super.onModuleInstall(context);
 
          for (Developer d: context.Developers) {
-             d.DefineField("MaxItemSize");
+             defineField("MaxItemSize",d);
          }
     }
 }

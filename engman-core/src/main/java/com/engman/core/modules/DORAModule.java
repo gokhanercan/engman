@@ -21,8 +21,8 @@ public class DORAModule extends ModuleBase {
     public void onModuleInstall(ModuleContext context) {
         super.onModuleInstall(context);
 
-         for (Developer d: context.Developers) {
-             d.DefineField("Happiness");        //add data type.
-         }
+        for (Developer d: context.Developers) {
+             defineField("Happiness",d);        //add data type.
+        }
     }
 }
