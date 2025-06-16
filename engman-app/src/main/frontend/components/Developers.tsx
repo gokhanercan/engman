@@ -103,6 +103,18 @@ export default function Developers({
           }
         />
 
+        <GridColumn
+          header={'Skills'}
+          renderer={({ item }) => (
+            <Skills
+              requiredSkills={item.skillLevels}
+              showLevels={true}
+              showLevelInProgress={showProgressBars}
+              showVertical={false}
+            ></Skills>
+          )}
+        />
+
         {showModuleFields && modules && (
           <GridColumnGroup header="Modules">
             {dynamicFieldKeys.map(
@@ -118,18 +130,6 @@ export default function Developers({
             )}
           </GridColumnGroup>
         )}
-
-        <GridColumn
-          header={'Skills'}
-          renderer={({ item }) => (
-            <Skills
-              requiredSkills={item.skillLevels}
-              showLevels={true}
-              showLevelInProgress={showProgressBars}
-              showVertical={false}
-            ></Skills>
-          )}
-        />
       </Grid>
 
       <Dialog
