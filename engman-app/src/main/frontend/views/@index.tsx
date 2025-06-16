@@ -79,6 +79,7 @@ export default function DashboardView() {
             showProgressBars={false}
             developersLink={Routes.developers}
             developerDetailLink={Routes.developerDetailLink}
+            showModuleFields={false}
           />
         </div>
         <div className="block" style={{ borderxxx: '1px solid lightgray', widthxx: '50%' }}>

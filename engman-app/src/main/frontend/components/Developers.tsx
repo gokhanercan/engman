@@ -3,11 +3,14 @@ import { GridColumn } from '@vaadin/react-components/GridColumn.js'
 import DeveloperM from 'Frontend/generated/com/engman/models/DeveloperM'
 import Skills from './SkillsBadges'
 import DeveloperAvatar from './DeveloperAvatar'
-import { Button, Details, Dialog, Icon, VerticalLayout } from '@vaadin/react-components'
+import { Button, Details, Dialog, GridColumnGroup, Icon, VerticalLayout } from '@vaadin/react-components'
 import { useSignal } from '@vaadin/hilla-react-signals'
 import { useState } from 'react'
 import DeveloperCard from './cards/DeveloperCard'
 import { Link } from 'react-router-dom'
+import { Module } from '@vaadin/hilla-file-router/types.js'
+import ModuleInfoM from 'Frontend/generated/com/engman/models/ModuleInfoM'
+import { extractModuleName } from 'Frontend/models/moduleInfoExtensions'
 
 interface DevelopersCompProps {
   developers: DeveloperM[] | null
@@ -15,6 +18,8 @@ interface DevelopersCompProps {
   showProgressBars?: boolean
   developersLink?: () => string
   developerDetailLink?: (id: string) => string
+  showModuleFields?: boolean
+  modules?: ModuleInfoM[]
 }
 
 export default function Developers({
@@ -23,10 +28,15 @@ export default function Developers({
   showProgressBars = true,
   developersLink,
   developerDetailLink,
+  showModuleFields = false,
+  modules = [],
 }: DevelopersCompProps) {
   const [dialogOpened, setDialogOpened] = useState<boolean>(false)
   const [dialogPosition, setDialogPosition] = useState<any>({})
   const [viewedDeveloper, setViewedDeveloper] = useState<DeveloperM | null>(null)
+
+  // console.log('Developers', developers)
+  console.log('Modules', modules)
 
   const handleDeveloperView = async (developer: DeveloperM, e?: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
     setViewedDeveloper(developer)
@@ -48,6 +58,17 @@ export default function Developers({
   const anchorStyle = {
     textDecoration: 'none',
     color: 'var(--lumo-primary-text-color)',
+  }
+
+  const dynamicFieldKeys = ['DORA_CognitiveLoad', 'DORA_Happiness', 'TrueColors_TrueColor'] //TODO:
+
+  const shouldRenderField = (fieldKey: string): boolean => {
+    let moduleName = extractModuleName(fieldKey)
+    if (modules.length > 0) {
+      return modules.find((module) => module.name === moduleName)?.enabled === true
+    } else {
+      return false
+    }
   }
 
   return (
@@ -81,6 +102,22 @@ export default function Developers({
             developerDetailLink ? <Link to={developerDetailLink(item.id)}>{item.name}</Link> : <span>{item.name}</span>
           }
         />
+
+        {showModuleFields && modules && (
+          <GridColumnGroup header="Modules">
+            {dynamicFieldKeys.map(
+              (fieldKey) =>
+                shouldRenderField(fieldKey) && (
+                  <GridColumn
+                    key={fieldKey}
+                    header={fieldKey.replace('_', ' ')}
+                    path={`fields.${fieldKey}.value`}
+                    renderer={({ item }) => <span>{item.fields[fieldKey]?.value}</span>}
+                  />
+                )
+            )}
+          </GridColumnGroup>
+        )}
 
         <GridColumn
           header={'Skills'}

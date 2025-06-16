@@ -1,30 +1,27 @@
 import React, { useEffect, useState } from 'react'
-import { ResourcesService } from 'Frontend/generated/endpoints'
+import { ModuleService, ResourcesService } from 'Frontend/generated/endpoints'
 import Developers from 'Frontend/components/Developers'
 import DeveloperM from 'Frontend/generated/com/engman/models/DeveloperM'
 import { Helmet } from 'react-helmet'
 import { Routes } from 'Frontend/utils/routes'
+import ModuleInfoM from 'Frontend/generated/com/engman/models/ModuleInfoM'
 
 export default function DevelopersView() {
-  // const [developers,setDevelopers] = useState<DeveloperM[]>([]);
   const [developers, setDevelopers] = useState<any>([])
+  const [modules, setModules] = useState<ModuleInfoM[]>([])
 
   useEffect(() => {
+    //TODO: Make it more generic, we load it everywhere. Make it a global state or context.
+    ModuleService.getModuleInfo()
+      .then((modules) => {
+        console.log('Modules refreshed', modules)
+        setModules(modules)
+      })
+      .catch((error) => {
+        console.error('Failed to fetch modules', error)
+      })
     ResourcesService.getDevelopers()
       .then((devs) => {
-        // console.log("Devs",devs);
-
-        //TODO: Data Hack
-        const colors = ['red', 'green', 'blue', 'yellow']
-        // const devs2 = devs.map((dev: DeveloperM) => {
-        //     const randomColor = colors[Math.floor(Math.random() * colors.length)];
-        //     return { ...dev, MInfo: [
-        //         { ModuleName: "TrueColors", Fields: [{ "TrueColor": randomColor }] },
-        //         { ModuleName: "Scrum", Fields: [{ "Role": "ScrumMaster" }] },
-        //         { ModuleName: "Kanban", Fields: [{ "NrOfItems": "2" }] }
-        // ] };
-        // });
-        // console.log("Devs2",devs2);
         setDevelopers(devs)
       })
       .catch((error) => {
@@ -42,6 +39,8 @@ export default function DevelopersView() {
         title=""
         showProgressBars={false}
         developerDetailLink={Routes.developerDetailLink}
+        showModuleFields={true}
+        modules={modules}
       />
     </>
   )
