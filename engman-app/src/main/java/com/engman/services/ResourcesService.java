@@ -18,7 +18,7 @@ import java.util.UUID;
 //Auto Mappers
     //ModelMappers (class based)
     //MapStruct (deep copy/clone, interface-based)
-    //CopyBean (spring buit-in, no deep copy supp.)
+    //CopyBean (spring built-in, no deep copy supp.)
 
 @AnonymousAllowed
 @BrowserCallable
@@ -104,25 +104,28 @@ public class ResourcesService {
     ));
 
 
-    public List<SkillM> getSkills(){
+    public List<SkillM> getSkills() {
         return skillsRepo.findAll();
     }
 
-    public List<ProjectM> getProjects(){
+    public List<ProjectM> getProjects() {
         return _Projects;
     }
 
-    public List<DeveloperM> getDevelopers(){
+    public List<DeveloperM> getDevelopers() {
         return developerRepo.findAll();
     }
-    public void saveDeveloper(DeveloperM dev){
+
+    public void saveDeveloper(DeveloperM dev) {
 
         developerRepo.save(dev);
     }
-    public void saveDeveloperAge(UUID id, Integer newAge){
+
+    public void saveDeveloperAge(UUID id, Integer newAge) {
         developerRepo.age(id, newAge);
     }
-    public void saveDevelopers(List<DeveloperM> devs){
+
+    public void saveDevelopers(List<DeveloperM> devs) {
         developerRepo.saveAll(devs);
     }
 }
