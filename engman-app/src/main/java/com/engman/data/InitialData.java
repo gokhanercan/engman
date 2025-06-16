@@ -1,6 +1,5 @@
 package com.engman.data;
 
-import com.engman.core.domain.Field;
 import com.engman.models.*;
 
 import java.util.*;

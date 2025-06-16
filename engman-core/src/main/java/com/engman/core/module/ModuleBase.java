@@ -1,8 +1,6 @@
 package com.engman.core.module;
 
 
-import com.engman.core.domain.Developer;
-
 public class ModuleBase {
 
     public String getName(){
@@ -20,11 +18,6 @@ public class ModuleBase {
         } else {
             onAfterModuleDisable();
         }
-    }
-
-    //Field Helpers
-    public void defineField(String name, Developer dev){
-        dev.defineField(name, this.getName());
     }
 
     //AppEvents

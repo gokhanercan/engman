@@ -34,12 +34,12 @@ public class Developer {
     //Temp dynamic field mngmnt. TODO: Generalize
 //    public ArrayList<SimpleEntry<String,String>> Fields = new ArrayList<>();
 
-    public HashMap<String,Field> fields = new HashMap<>();
+    public HashMap<String,String> Fields = new HashMap<>();
 
-    public void setField(String fieldName, String value, String ownerModuleName) {      //add,set,upsert.   //todo:Add more types.
-        fields.put(fieldName,new Field(fieldName, value, ownerModuleName));
+    public void SetField(String fieldName, String value) {      //add,set,upsert.   //todo:Add more types.
+        Fields.put(fieldName, value.toString());
     }
-    public void defineField(String fieldName, String ownerModuleName) {     //todo:define field type
-        fields.put(fieldName, new Field(fieldName, "", ownerModuleName));
+    public void DefineField(String fieldName) {     //todo:define field type
+        Fields.put(fieldName, null);
     }
 }

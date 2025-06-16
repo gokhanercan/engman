@@ -1,7 +1,6 @@
 package com.engman.models;
 
 import com.engman.core.domain.Developer;
-import com.engman.core.domain.Field;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -24,7 +23,7 @@ public class DeveloperM {
 //    @Deprecated
 //    public HashMap<String,String> Fields = new HashMap<>();
 
-    private HashMap<String, FieldM> fields = new HashMap<>();
+    private HashMap<String,FieldM> fields = new HashMap<>();
 
     // Constructor without ID (for creation scenarios)
     public DeveloperM(String name, Integer age, List<SkillLevelM> skillLevels) {
@@ -37,8 +36,7 @@ public class DeveloperM {
     public Developer toDeveloper(){
         Developer d = new Developer(name);
         d.id = id;
-        d.fields = FieldM.toFields(fields);
-        //TODO: skills and other properties
+        //TODO:map fields
         return d;
     }
     /*
@@ -51,11 +49,11 @@ public class DeveloperM {
         }
         return developers;
     }
-    public void fromDeveloper(Developer core){
-        this.name = core.name;
-        this.id = core.id;
-        this.fields = FieldM.fromFields(core.fields);
-        //TODO:map other fields
+    public void fromDeveloper(Developer dev){
+        this.name = dev.name;
+        this.id = dev.id;
+//        this.fields = dev.Fields
+        //TODO:map fields
     }
     public static ArrayList<DeveloperM> fromDevelopers(List<Developer> devs){
         ArrayList<DeveloperM> developers = new ArrayList<>();
