@@ -13,7 +13,7 @@ interface DevelopersCompProps {
   developers: DeveloperM[] | null
   title?: string | null
   showProgressBars?: boolean
-  pageLink?: string | null
+  developersLink?: () => string
   developerDetailLink?: (id: string) => string
 }
 
@@ -21,7 +21,7 @@ export default function Developers({
   developers,
   title,
   showProgressBars = true,
-  pageLink,
+  developersLink,
   developerDetailLink,
 }: DevelopersCompProps) {
   const [dialogOpened, setDialogOpened] = useState<boolean>(false)
@@ -52,7 +52,11 @@ export default function Developers({
 
   return (
     <>
-      {title && <b className="subTitle">{title}</b>}
+      {title && (
+        <Link to={developersLink ? developersLink() : ''}>
+          <b className="subTitle">{title}</b>
+        </Link>
+      )}
       {/* <span>Selected: {dialogPosition.x}</span> */}
       {/* <span>D Open: {`${dialogOpened}`}</span> */}
       <Grid items={developers} theme="row-stripes">
