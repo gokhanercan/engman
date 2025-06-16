@@ -10,18 +10,18 @@ import java.util.UUID;
 
 public class Developer {
     public UUID id;
-    public String Name;
-    public List<Skill> Skills = new ArrayList<>();
+    public String name;
+    public List<Skill> skills = new ArrayList<>();
 
     public Liquid Balance = new Liquid(0);
     public int TickSalary;      //Salary per tick
 
     public Developer(String name, List<Skill> initialSkills, Integer tickSalary) {
         TickSalary = tickSalary;
-        Name = name;
+        name = name;
         if(initialSkills == null) return;
         for (Skill s : initialSkills) {
-            Skills.add(s);
+            skills.add(s);
         }
     }
     public Developer(String name, List<Skill> initialSkills) {
@@ -34,12 +34,12 @@ public class Developer {
     //Temp dynamic field mngmnt. TODO: Generalize
 //    public ArrayList<SimpleEntry<String,String>> Fields = new ArrayList<>();
 
-    public HashMap<String,String> Fields = new HashMap<>();
+    public HashMap<String,Field> fields = new HashMap<>();
 
-    public void SetField(String fieldName, String value) {      //add,set,upsert.   //todo:Add more types.
-        Fields.put(fieldName, value.toString());
+    public void setField(String fieldName, String value, String ownerModuleName) {      //add,set,upsert.   //todo:Add more types.
+        fields.put(fieldName,new Field(fieldName, value, ownerModuleName));
     }
-    public void DefineField(String fieldName) {     //todo:define field type
-        Fields.put(fieldName, null);
+    public void defineField(String fieldName, String ownerModuleName) {     //todo:define field type
+        fields.put(fieldName, new Field(fieldName, "", ownerModuleName));
     }
 }

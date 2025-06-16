@@ -35,7 +35,7 @@ public class TrueColorsModule extends ModuleBase {
             //x = 5;
 
          for (Developer d: context.Developers) {
-             d.DefineField("TrueColor");        //add data type.
+             defineField("TrueColor",d);        //add data type.
          }
     }
 }
