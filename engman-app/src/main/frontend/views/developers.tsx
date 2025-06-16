@@ -1,25 +1,15 @@
 import React, { useEffect, useState } from 'react'
-import { ModuleService, ResourcesService } from 'Frontend/generated/endpoints'
+import { ResourcesService } from 'Frontend/generated/endpoints'
 import Developers from 'Frontend/components/Developers'
-import DeveloperM from 'Frontend/generated/com/engman/models/DeveloperM'
 import { Helmet } from 'react-helmet'
 import { Routes } from 'Frontend/utils/routes'
-import ModuleInfoM from 'Frontend/generated/com/engman/models/ModuleInfoM'
+import { useModules } from 'Frontend/context/modules-context'
 
 export default function DevelopersView() {
   const [developers, setDevelopers] = useState<any>([])
-  const [modules, setModules] = useState<ModuleInfoM[]>([])
+  const { modules } = useModules()
 
   useEffect(() => {
-    //TODO: Make it more generic, we load it everywhere. Make it a global state or context.
-    ModuleService.getModuleInfo()
-      .then((modules) => {
-        console.log('Modules refreshed', modules)
-        setModules(modules)
-      })
-      .catch((error) => {
-        console.error('Failed to fetch modules', error)
-      })
     ResourcesService.getDevelopers()
       .then((devs) => {
         setDevelopers(devs)

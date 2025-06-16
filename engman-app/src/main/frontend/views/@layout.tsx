@@ -1,70 +1,62 @@
-import { createMenuItems, useViewConfig } from '@vaadin/hilla-file-router/runtime.js';
-import { effect, signal } from '@vaadin/hilla-react-signals';
-import { AppLayout, DrawerToggle, Icon, SideNav, SideNavItem } from '@vaadin/react-components';
-import { Suspense, useEffect, useState } from 'react';
-import { Outlet, useLocation, useNavigate } from 'react-router-dom';
-import { Helmet } from 'react-helmet';
+import { createMenuItems, useViewConfig } from '@vaadin/hilla-file-router/runtime.js'
+import { effect, signal } from '@vaadin/hilla-react-signals'
+import { AppLayout, DrawerToggle, Icon, SideNav, SideNavItem } from '@vaadin/react-components'
+import { Suspense, useEffect, useState } from 'react'
+import { Outlet, useLocation, useNavigate } from 'react-router-dom'
+import { Helmet } from 'react-helmet'
 
-import "../themes/eng-man/main-out.css";
-import ModulesMenu from 'Frontend/components/navigation/ModulesMenu';
-import { ModuleService, ResourcesService } from 'Frontend/generated/endpoints';
-import ModuleInfoM from 'Frontend/generated/com/engman/models/ModuleInfoM';
-import { Notification } from '@vaadin/react-components/Notification.js';
+import '../themes/eng-man/main-out.css'
+import ModulesMenu from 'Frontend/components/navigation/ModulesMenu'
+import { ModuleService, ResourcesService } from 'Frontend/generated/endpoints'
+import ModuleInfoM from 'Frontend/generated/com/engman/models/ModuleInfoM'
+import { Notification } from '@vaadin/react-components/Notification.js'
+import { useModules } from 'Frontend/context/modules-context'
 
-const documentTitleSignal = signal('');
+const documentTitleSignal = signal('')
 effect(() => {
-  document.title = documentTitleSignal.value;
-});
-
+  document.title = documentTitleSignal.value
+})
 // Publish for Vaadin to use
-(window as any).Vaadin.documentTitleSignal = documentTitleSignal;
+;(window as any).Vaadin.documentTitleSignal = documentTitleSignal
 
 export default function MainLayout() {
-  const currentTitle = useViewConfig()?.title;
-  const navigate = useNavigate();
-  const location = useLocation();
-  const [modules,setModules] = useState<ModuleInfoM[]>([]);
+  const currentTitle = useViewConfig()?.title
+  const navigate = useNavigate()
+  const location = useLocation()
+  const { modules, toggleEnable, setModules, refreshModules } = useModules()
 
   const onModuleEnable = (module: ModuleInfoM, value: boolean) => {
     const notPending = Notification.show(`Please wait...`, {
       position: 'top-stretch',
       duration: 0,
       theme: 'primary',
-    });
-    ModuleService.toggleEnable(module.name ?? "", value).then(modules=> {
-      //setModules(modules.map(m => m.name === module.name ? { ...m, enabled: value } : m));
-      setModules(modules);
-      notPending.close();
-      const notSuc = Notification.show(`Module '${module.name}' has been ${value ? "enabled" : "disabled"}.`, {
-        position: 'bottom-stretch',
-        duration: 2000,
-        ...(value && {theme:'success'}),
-      });
-    }).catch(error => {
-      console.error("Failed to ", error);
-      notPending.close();
-      const notErr = Notification.show(`Module '${module.name}' could not be ${value ? "enabled" : "disabled"}.`, {
-        position: 'bottom-stretch',
-        duration: 2000,
-        theme: 'error',
-      });
-    });
-  }
-  const loadModules = () => {
-    ModuleService.getModuleInfo().then(modules=>{
-        setModules(modules);
+    })
+    toggleEnable(module.name ?? '', value)
+      .then((modules) => {
+        notPending.close()
+        const notSuc = Notification.show(`Module '${module.name}' has been ${value ? 'enabled' : 'disabled'}.`, {
+          position: 'bottom-stretch',
+          duration: 2000,
+          ...(value && { theme: 'success' }),
+        })
       })
-      .catch(error => {
-          console.error("Failed to fetch modules", error);
-      });
-  };
+      .catch((error) => {
+        console.error('Failed to ', error)
+        notPending.close()
+        const notErr = Notification.show(`Module '${module.name}' could not be ${value ? 'enabled' : 'disabled'}.`, {
+          position: 'bottom-stretch',
+          duration: 2000,
+          theme: 'error',
+        })
+      })
+  }
 
   useEffect(() => {
     if (currentTitle) {
-      documentTitleSignal.value = currentTitle;
+      documentTitleSignal.value = currentTitle
     }
-    loadModules();
-  }, [currentTitle]);
+    refreshModules()
+  }, [currentTitle])
 
   return (
     <AppLayout primarySection="drawer">
@@ -81,9 +73,8 @@ export default function MainLayout() {
               </SideNavItem>
             ))}
           </SideNav>
-          
-          <ModulesMenu modules={modules} onModuleEnable={onModuleEnable} />
 
+          <ModulesMenu modules={modules} onModuleEnable={onModuleEnable} />
         </header>
       </div>
 
@@ -97,5 +88,5 @@ export default function MainLayout() {
         <Outlet />
       </Suspense>
     </AppLayout>
-  );
+  )
 }
