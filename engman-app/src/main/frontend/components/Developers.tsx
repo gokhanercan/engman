@@ -7,13 +7,14 @@ import { Button, Details, Dialog, Icon, VerticalLayout } from '@vaadin/react-com
 import { useSignal } from '@vaadin/hilla-react-signals'
 import { useState } from 'react'
 import DeveloperCard from './cards/DeveloperCard'
+import { Link } from 'react-router-dom'
 
 interface DevelopersCompProps {
   developers: DeveloperM[] | null
   title?: string | null
   showProgressBars?: boolean
   pageLink?: string | null
-  detailPageLinkFormat?: string | null
+  developerDetailLink?: (id: string) => string
 }
 
 export default function Developers({
@@ -21,7 +22,7 @@ export default function Developers({
   title,
   showProgressBars = true,
   pageLink,
-  detailPageLinkFormat,
+  developerDetailLink,
 }: DevelopersCompProps) {
   const [dialogOpened, setDialogOpened] = useState<boolean>(false)
   const [dialogPosition, setDialogPosition] = useState<any>({})
@@ -73,13 +74,7 @@ export default function Developers({
         <GridColumn
           header="Name"
           renderer={({ item }) =>
-            detailPageLinkFormat ? (
-              <a href={detailPageLinkFormat.replace('{id}', item.id)}>
-                <span>{item.name}</span>
-              </a>
-            ) : (
-              <span>{item.name}</span>
-            )
+            developerDetailLink ? <Link to={developerDetailLink(item.id)}>{item.name}</Link> : <span>{item.name}</span>
           }
         />
 

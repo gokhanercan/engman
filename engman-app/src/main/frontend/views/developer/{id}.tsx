@@ -1,58 +1,34 @@
-// tag::snippet[]
+import DeveloperCard from 'Frontend/components/cards/DeveloperCard'
 import { useParams } from 'react-router'
-// end::snippet[]
+import { Helmet } from 'react-helmet'
+import React, { useEffect, useState } from 'react'
+import { ResourcesService } from 'Frontend/generated/endpoints'
+import DeveloperM from 'Frontend/generated/com/engman/models/DeveloperM'
 
-export default function ProductView() {
-  // tag::snippet[]
-  const { productId } = useParams()
-  1
-  // end::snippet[]
-
+export default function ProductDetail() {
+  const [developer, setDeveloper] = useState<DeveloperM>({})
+  const { id } = useParams()
+  useEffect(() => {
+    ResourcesService.getDevelopers()
+      .then((devs) => {
+        const dev = devs.find((dev: DeveloperM) => dev.id === id) // TODO: Find on server side
+        if (dev) {
+          setDeveloper(dev)
+        } else {
+          console.error(`Developer with id ${id} not found`)
+        }
+      })
+      .catch((error) => {
+        console.error('Failed to fetch developers', error)
+      })
+  }, [])
   return (
     <>
-      <h1>Product Details</h1>
-      <p>Product ID: {productId}</p>
+      <Helmet>
+        <title>{`Developer: ${developer.name}`}</title>
+      </Helmet>
+      <h1 className="text-1xl font-bold leading-tight p-3 m-2">{developer.name}</h1>
+      <DeveloperCard developer={developer}></DeveloperCard>
     </>
   )
 }
-
-// src/views/developer/[id].tsx
-// import { useRouteParameters } from '@vaadin/hilla-react-router';
-
-// export default function DeveloperPage() {
-//   // const { id } = useRouteParameters();
-//   return <div>Developer ID: </div>
-// }
-
-// import React, { useEffect, useState } from 'react'
-// import { ResourcesService } from 'Frontend/generated/endpoints'
-// import Developers from 'Frontend/components/Developers'
-// import DeveloperM from 'Frontend/generated/com/engman/models/DeveloperM'
-// import { Helmet } from 'react-helmet'
-// import DeveloperCard from 'Frontend/components/cards/DeveloperCard'
-// // import { useRouteParameters } from '@vaadin/react-router'
-// export default function Developer() {
-//   const [developer, setDeveloper] = useState<DeveloperM>({})
-
-//   // const { id } = useRouteParameters();
-
-//   // useEffect(() => {
-//   //   ResourcesService.getDevelopers()
-//   //     .then((devs) => {
-//   //       setDeveloper(devs[0]) // TODO: Query by ID
-//   //     })
-//   //     .catch((error) => {
-//   //       console.error('Failed to fetch developers', error)
-//   //     })
-//   // }, [])
-
-//   return (
-//     <>
-//       {/* <Helmet>
-//         <title>Developer: {developer.name}</title>
-//       </Helmet> */}
-//       <h1 className="text-1xl font-bold leading-tight p-3 m-2">{developer.name}</h1>
-//       <DeveloperCard developer={developer}></DeveloperCard>
-//     </>
-//   )
-// }
