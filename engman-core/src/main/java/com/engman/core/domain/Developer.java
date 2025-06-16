@@ -10,18 +10,18 @@ import java.util.UUID;
 
 public class Developer {
     public UUID id;
-    public String Name;
-    public List<Skill> Skills = new ArrayList<>();
+    public String name;
+    public List<Skill> skills = new ArrayList<>();
 
     public Liquid Balance = new Liquid(0);
     public int TickSalary;      //Salary per tick
 
     public Developer(String name, List<Skill> initialSkills, Integer tickSalary) {
         TickSalary = tickSalary;
-        Name = name;
+        name = name;
         if(initialSkills == null) return;
         for (Skill s : initialSkills) {
-            Skills.add(s);
+            skills.add(s);
         }
     }
     public Developer(String name, List<Skill> initialSkills) {

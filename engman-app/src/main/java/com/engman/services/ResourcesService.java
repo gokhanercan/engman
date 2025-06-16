@@ -103,11 +103,6 @@ public class ResourcesService {
         )
     ));
 
-    private List<DeveloperM> _Devs = new ArrayList<>(Arrays.asList(gokhan, devops, datascientist, oldman, kerem));
-
-    public List<DeveloperM> getDevelopers(){
-        return developerRepo.findAll();
-    }
 
     public List<SkillM> getSkills(){
         return skillsRepo.findAll();
@@ -117,6 +112,9 @@ public class ResourcesService {
         return _Projects;
     }
 
+    public List<DeveloperM> getDevelopers(){
+        return developerRepo.findAll();
+    }
     public void saveDeveloper(DeveloperM dev){
 
         developerRepo.save(dev);

@@ -39,6 +39,9 @@ public class DeveloperM {
         //TODO:map fields
         return d;
     }
+    /*
+    Converts a list of DeveloperM to a list of Developer. App->Core
+     */
     public static ArrayList<Developer> toDevelopers(List<DeveloperM> devs){
         ArrayList<Developer> developers = new ArrayList<>();
         for (DeveloperM dev : devs) {
@@ -47,7 +50,7 @@ public class DeveloperM {
         return developers;
     }
     public void fromDeveloper(Developer dev){
-        this.name = dev.Name;
+        this.name = dev.name;
         this.id = dev.id;
 //        this.fields = dev.Fields
         //TODO:map fields
