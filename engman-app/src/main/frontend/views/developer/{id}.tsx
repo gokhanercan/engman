@@ -7,11 +7,14 @@ import DeveloperM from 'Frontend/generated/com/engman/models/DeveloperM'
 
 export default function ProductDetail() {
   const [developer, setDeveloper] = useState<DeveloperM>({})
-  const { id } = useParams()
+  const { id } = useParams<{ id: string }>()
+  if (!id) {
+    console.error('Developer ID is not provided in the URL parameters.')
+    return <div>Error: Developer ID is missing.</div>
+  }
   useEffect(() => {
-    ResourcesService.getDevelopers()
-      .then((devs) => {
-        const dev = devs.find((dev: DeveloperM) => dev.id === id) // TODO: Find on server side
+    ResourcesService.getDeveloper(id)
+      .then((dev) => {
         if (dev) {
           setDeveloper(dev)
         } else {
