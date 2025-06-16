@@ -20,9 +20,9 @@ export default function Developer() {
 
   return (
     <>
-      <Helmet>
+      {/* <Helmet>
         <title>Developer: {developer.name}</title>
-      </Helmet>
+      </Helmet> */}
       <h1 className="text-1xl font-bold leading-tight p-3 m-2">{developer.name}</h1>
       <DeveloperCard developer={developer}></DeveloperCard>
     </>
