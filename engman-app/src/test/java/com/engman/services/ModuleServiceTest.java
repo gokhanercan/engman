@@ -22,9 +22,10 @@ class ModuleServiceTest {
         ResourcesService mockResourcesService = mock(ResourcesService.class);
         when(mockResourcesService.getDevelopers()).thenReturn(List.of());
         when(mockResourcesService.getSkills()).thenReturn(List.of());
+
         //db
         ModuleInfoContainerM containerM = new ModuleInfoContainerM();
-        containerM.setModules( new HashMap<>(Map.of(
+        containerM.setModules(new HashMap<>(Map.of(
                 "Kanban", new ModuleInfoM("Kanban", true)
         )));
         ModuleRepo mockModuleRepo = mock(ModuleRepo.class);
@@ -36,14 +37,14 @@ class ModuleServiceTest {
         var service = new ModuleService(mockResourcesService, mockModuleRepo, moduleHost);      //ctor auto runs sync operation
 
         // Assert runtime side
-        assertEquals(true,moduleHost.getModule("Kanban").getEnabled());
-        assertEquals(false,moduleHost.getModule("TrueColors").getEnabled());
-        assertEquals(2,moduleHost.getModules().size());
+        assertEquals(true, moduleHost.getModule("Kanban").getEnabled());
+        assertEquals(false, moduleHost.getModule("TrueColors").getEnabled());
+        assertEquals(2, moduleHost.getModules().size());
 
         // Assert db side
         ArgumentCaptor<List<ModuleInfoM>> captor = ArgumentCaptor.forClass(List.class);
-        verify(mockModuleRepo,times(1)).OverwriteModules(captor.capture());
-        assertEquals(2,captor.getValue().size());
+        verify(mockModuleRepo, times(1)).OverwriteModules(captor.capture());
+        assertEquals(2, captor.getValue().size());
         Optional<ModuleInfoM> kanbanModule = captor.getValue().stream().filter(c -> c.getName().equals("Kanban")).findFirst();
         assertTrue(kanbanModule.get().isEnabled());
         Optional<ModuleInfoM> tcModule = captor.getValue().stream().filter(c -> c.getName().equals("TrueColors")).findFirst();
