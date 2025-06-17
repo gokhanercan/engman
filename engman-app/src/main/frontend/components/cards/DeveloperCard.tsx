@@ -2,23 +2,34 @@ import DeveloperM from 'Frontend/generated/com/engman/models/DeveloperM'
 import { Details, VerticalLayout } from '@vaadin/react-components'
 import DeveloperAvatar from '../DeveloperAvatar'
 import { useModules } from 'Frontend/context/modules-context'
+import ModuleInfoM from 'Frontend/generated/com/engman/models/ModuleInfoM'
 
 interface DeveloperCardProps {
   developer: DeveloperM
 }
 
 export default function DeveloperCard({ developer }: DeveloperCardProps) {
-  const getDistinctFieldModules = (developer: DeveloperM): string[] => {
-    const modules = new Set<string>()
+  const getDistinctFieldModules = (developer: DeveloperM, allModules: ModuleInfoM[]): string[] => {
+    const moduleSet = new Set<string>()
     if (developer.fields) {
       Object.values(developer.fields).forEach((field) => {
-        if (field && field.ownerModuleName) {
-          modules.add(field.ownerModuleName)
+        if (field?.ownerModuleName) {
+          moduleSet.add(field.ownerModuleName)
         }
       })
     }
-    return Array.from(modules)
+    const moduleList = Array.from(moduleSet)
+    return moduleList.sort((a: string, b: string) => {
+      const aModule = allModules.find((m) => m.name === a)
+      const bModule = allModules.find((m) => m.name === b)
+      const aEnabled = aModule?.enabled ?? false
+      const bEnabled = bModule?.enabled ?? false
+
+      // Enabled modules first
+      return Number(bEnabled) - Number(aEnabled)
+    })
   }
+
   const isModuleEnabled = (moduleName: string): boolean => {
     const module = modules.find((m) => m.name === moduleName)
     return module ? module.enabled : false
@@ -56,7 +67,7 @@ export default function DeveloperCard({ developer }: DeveloperCardProps) {
           {/* Fields by Module */}
           {developer && (
             <>
-              {getDistinctFieldModules(developer).map((moduleName) => {
+              {getDistinctFieldModules(developer, modules).map((moduleName) => {
                 const moduleFields = Object.entries(developer.fields || {}).filter(
                   ([_, field]) => field?.ownerModuleName === moduleName
                 )

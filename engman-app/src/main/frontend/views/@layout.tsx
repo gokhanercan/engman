@@ -7,7 +7,6 @@ import { Helmet } from 'react-helmet'
 
 import '../themes/eng-man/main-out.css'
 import ModulesMenu from 'Frontend/components/navigation/ModulesMenu'
-import { ModuleService, ResourcesService } from 'Frontend/generated/endpoints'
 import ModuleInfoM from 'Frontend/generated/com/engman/models/ModuleInfoM'
 import { Notification } from '@vaadin/react-components/Notification.js'
 import { useModules } from 'Frontend/context/modules-context'

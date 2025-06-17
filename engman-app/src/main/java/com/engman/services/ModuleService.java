@@ -38,7 +38,7 @@ public class ModuleService {
 
         //Module System
         this.moduleHost = moduleHost;
-        if(this.moduleHost == null) this.moduleHost = new ModuleHost();
+        if (this.moduleHost == null) this.moduleHost = new ModuleHost();
 
         SyncModuleSystem(this.moduleHost);
 
@@ -63,32 +63,31 @@ public class ModuleService {
     /*
     Syncs the in memory module system with the database in both ways.
      */
-    private void SyncModuleSystem(ModuleHost moduleHost){
+    private void SyncModuleSystem(ModuleHost moduleHost) {
 
         //Sync (Memory->DB)
         List<ModuleBase> runtimeModules = moduleHost.getModules();
         Optional<ModuleInfoContainerM> moduleContainer = moduleRepo.getModules();
-        if(!moduleContainer.isPresent()){
+        if (!moduleContainer.isPresent()) {
             moduleRepo.OverwriteModules(toModuleInfoMs(moduleHost.getModules()));
-        }
-        else{
+        } else {
             boolean isAnyNewModuleDiscovered = false;
-            Map<String,ModuleInfoM> modulesMap = moduleContainer.get().getModules();
+            Map<String, ModuleInfoM> modulesMap = moduleContainer.get().getModules();
             for (ModuleBase module : runtimeModules) {
                 String name = module.getName();
-                ModuleInfoM infoM =moduleContainer.get().getModules().getOrDefault(name,null);
-                if(infoM == null){
+                ModuleInfoM infoM = moduleContainer.get().getModules().getOrDefault(name, null);
+                if (infoM == null) {
                     isAnyNewModuleDiscovered = true;
                     modulesMap.put(name, toDefaultModuleInfoM(module));
                 }
             }
 
             //Sync (DB->Memory)
-            for (ModuleInfoM moduleInfo: moduleContainer.get().getModules().values()) {
-                if(moduleInfo.isEnabled()) moduleHost.toggleEnable(moduleInfo.getName(),true);
+            for (ModuleInfoM moduleInfo : moduleContainer.get().getModules().values()) {
+                if (moduleInfo.isEnabled()) moduleHost.toggleEnable(moduleInfo.getName(), true);
             }
 
-            if(isAnyNewModuleDiscovered)
+            if (isAnyNewModuleDiscovered)
                 moduleRepo.OverwriteModules(toModuleInfoMs(moduleHost.getModules()));
         }
     }
@@ -100,21 +99,23 @@ public class ModuleService {
         //get from db
         //return new ArrayList<>(moduleRepo.findById("1").get().getModules().values());
     }
+
     public List<ModuleInfoM> toggleEnable(String moduleName, boolean value) throws InterruptedException {
-        Thread.sleep(500);
         moduleHost.toggleEnable(moduleName, value);
         moduleRepo.OverwriteModules(toModuleInfoMs(moduleHost.getModules()));   //TODO: For now, we save eagerly.
         return getModuleInfo();
     }
 
     //region Mapping
-    public ModuleInfoM toModuleInfoM(ModuleBase module){
-        return new ModuleInfoM(module.getName(),module.getEnabled());
+    public ModuleInfoM toModuleInfoM(ModuleBase module) {
+        return new ModuleInfoM(module.getName(), module.getEnabled());
     }
-    public ModuleInfoM toDefaultModuleInfoM(ModuleBase module){
-        return new ModuleInfoM(module.getName(),false);
+
+    public ModuleInfoM toDefaultModuleInfoM(ModuleBase module) {
+        return new ModuleInfoM(module.getName(), false);
     }
-    public List<ModuleInfoM> toModuleInfoMs(List<ModuleBase> modules){
+
+    public List<ModuleInfoM> toModuleInfoMs(List<ModuleBase> modules) {
         return modules.stream().map(this::toModuleInfoM).toList();
     }
     //endregion
