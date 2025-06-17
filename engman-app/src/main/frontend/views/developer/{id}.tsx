@@ -5,7 +5,7 @@ import React, { useEffect, useState } from 'react'
 import { ResourcesService } from 'Frontend/generated/endpoints'
 import DeveloperM from 'Frontend/generated/com/engman/models/DeveloperM'
 
-export default function ProductDetail() {
+export default function DeveloperDetail() {
   const [developer, setDeveloper] = useState<DeveloperM>({})
   const { id } = useParams<{ id: string }>()
   if (!id) {
