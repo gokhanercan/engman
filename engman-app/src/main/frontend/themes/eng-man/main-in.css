@@ -27,3 +27,6 @@ vaadin-grid::part(row):hover {
 *.card {
     @apply border border-gray-300 rounded-md w-full p-4 m-1;
 }
+*.strikethrough * {
+    text-decoration: line-through;
+}

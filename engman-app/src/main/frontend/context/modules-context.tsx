@@ -18,17 +18,12 @@ export function ModulesProvider({ children }: { children: React.ReactNode }) {
   const refreshModules = () => {
     ModuleService.getModuleInfo()
       .then((mods) => {
-        console.log('Modules refreshed', mods)
         setModules(mods)
       })
       .catch((error) => {
         console.error('Failed to fetch modules', error)
       })
   }
-
-  // const toggleModule = (mod: ModuleInfoM) => {
-  //   setModules((prev) => prev.map((m) => (m.name === mod.name ? { ...m, enabled: !m.enabled } : m)))
-  // }
   const toggleEnable = (moduleName: string, value: boolean): Promise<ModuleInfoM[]> => {
     return ModuleService.toggleEnable(moduleName ?? '', value)
       .then((modules) => {

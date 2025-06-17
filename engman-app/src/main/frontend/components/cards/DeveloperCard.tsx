@@ -1,6 +1,7 @@
 import DeveloperM from 'Frontend/generated/com/engman/models/DeveloperM'
 import { Details, VerticalLayout } from '@vaadin/react-components'
 import DeveloperAvatar from '../DeveloperAvatar'
+import { useModules } from 'Frontend/context/modules-context'
 
 interface DeveloperCardProps {
   developer: DeveloperM
@@ -18,7 +19,12 @@ export default function DeveloperCard({ developer }: DeveloperCardProps) {
     }
     return Array.from(modules)
   }
+  const isModuleEnabled = (moduleName: string): boolean => {
+    const module = modules.find((m) => m.name === moduleName)
+    return module ? module.enabled : false
+  }
 
+  const { modules } = useModules()
   return (
     <div className="card inline-block">
       <div className="float-right inline border1">
@@ -50,20 +56,33 @@ export default function DeveloperCard({ developer }: DeveloperCardProps) {
           {/* Fields by Module */}
           {developer && (
             <>
-              {getDistinctFieldModules(developer).map((moduleName) => (
-                <Details key={moduleName} summary={moduleName} opened>
-                  <VerticalLayout>
-                    {Object.entries(developer.fields || {})
-                      .filter(([_, field]) => field?.ownerModuleName === moduleName)
-                      .map(([fieldName, field]) => (
-                        <div key={fieldName} style={{ display: 'flex', justifyContent: 'space-between' }}>
+              {getDistinctFieldModules(developer).map((moduleName) => {
+                const moduleFields = Object.entries(developer.fields || {}).filter(
+                  ([_, field]) => field?.ownerModuleName === moduleName
+                )
+                const isEnabled = isModuleEnabled(moduleName)
+                return (
+                  <Details
+                    key={moduleName}
+                    summary={isEnabled ? moduleName : `${moduleName} (Disabled)`}
+                    className={isEnabled ? '' : 'em-disabled'}
+                    opened
+                  >
+                    <VerticalLayout>
+                      {moduleFields.map(([fieldName, field]) => (
+                        <div
+                          key={fieldName}
+                          style={{ display: 'flex', justifyContent: 'space-between' }}
+                          className={isEnabled ? '' : 'strikethrough'}
+                        >
                           <span style={{ width: '200px' }}>{field?.name}</span>
                           <span>{field?.value}</span>
                         </div>
                       ))}
-                  </VerticalLayout>
-                </Details>
-              ))}
+                    </VerticalLayout>
+                  </Details>
+                )
+              })}
             </>
           )}
         </div>
