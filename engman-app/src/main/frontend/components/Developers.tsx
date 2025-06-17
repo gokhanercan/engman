@@ -3,12 +3,10 @@ import { GridColumn } from '@vaadin/react-components/GridColumn.js'
 import DeveloperM from 'Frontend/generated/com/engman/models/DeveloperM'
 import Skills from './SkillsBadges'
 import DeveloperAvatar from './DeveloperAvatar'
-import { Button, Details, Dialog, GridColumnGroup, Icon, VerticalLayout } from '@vaadin/react-components'
-import { useSignal } from '@vaadin/hilla-react-signals'
+import { Dialog, GridColumnGroup } from '@vaadin/react-components'
 import { useState } from 'react'
 import DeveloperCard from './cards/DeveloperCard'
 import { Link } from 'react-router-dom'
-import { Module } from '@vaadin/hilla-file-router/types.js'
 import ModuleInfoM from 'Frontend/generated/com/engman/models/ModuleInfoM'
 import { extractModuleName } from 'Frontend/models/moduleInfoExtensions'
 
@@ -94,7 +92,6 @@ export default function Developers({
             </>
           )}
         />
-        {/* <GridColumn path="name" header="Name" /> */}
 
         <GridColumn
           header="Name"

@@ -1,6 +1,5 @@
 import DeveloperM from 'Frontend/generated/com/engman/models/DeveloperM'
-// import Developer from './../../views/developer'
-import { Button, Details, Dialog, Icon, VerticalLayout } from '@vaadin/react-components'
+import { Details, VerticalLayout } from '@vaadin/react-components'
 import DeveloperAvatar from '../DeveloperAvatar'
 
 interface DeveloperCardProps {
