@@ -10,7 +10,6 @@ import ModulesMenu from 'Frontend/components/navigation/ModulesMenu'
 import ModuleInfoM from 'Frontend/generated/com/engman/models/ModuleInfoM'
 import { Notification } from '@vaadin/react-components/Notification.js'
 import { useModules } from 'Frontend/context/modules-context'
-import { to } from './../generated/jar-resources/copilot/copilot-global-vars-later-UtaKiaeu'
 
 const documentTitleSignal = signal('')
 effect(() => {
