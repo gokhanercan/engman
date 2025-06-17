@@ -2,7 +2,7 @@ import { createMenuItems, useViewConfig } from '@vaadin/hilla-file-router/runtim
 import { effect, signal } from '@vaadin/hilla-react-signals'
 import { AppLayout, DrawerToggle, Icon, SideNav, SideNavItem } from '@vaadin/react-components'
 import { Suspense, useEffect, useState } from 'react'
-import { Outlet, useLocation, useNavigate } from 'react-router-dom'
+import { Link, Outlet, useLocation, useNavigate } from 'react-router-dom'
 import { Helmet } from 'react-helmet'
 
 import '../themes/eng-man/main-out.css'
@@ -10,6 +10,7 @@ import ModulesMenu from 'Frontend/components/navigation/ModulesMenu'
 import ModuleInfoM from 'Frontend/generated/com/engman/models/ModuleInfoM'
 import { Notification } from '@vaadin/react-components/Notification.js'
 import { useModules } from 'Frontend/context/modules-context'
+import { to } from './../generated/jar-resources/copilot/copilot-global-vars-later-UtaKiaeu'
 
 const documentTitleSignal = signal('')
 effect(() => {
@@ -61,9 +62,9 @@ export default function MainLayout() {
     <AppLayout primarySection="drawer">
       <div slot="drawer" className="flex flex-col justify-between h-full p-m text-center1">
         <header className="flex flex-col gap-m">
-          <a href="/" className="flex items-center gap-m" style={{ color: 'black' }}>
+          <Link to="/" className="flex items-center gap-m" style={{ color: 'black' }}>
             <span className="font-semibold text-xl">engman</span>
-          </a>
+          </Link>
           <SideNav onNavigate={({ path }) => navigate(path!)} location={location}>
             {createMenuItems().map(({ to, title, icon }) => (
               <SideNavItem path={to} key={to}>

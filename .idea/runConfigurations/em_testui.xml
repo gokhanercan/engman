@@ -1,6 +1,6 @@
 <component name="ProjectRunConfigurationManager">
   <configuration default="false" name="em:testui" type="ShConfigurationType">
-    <option name="SCRIPT_TEXT" value=" npx chokidar &quot;../**/*.{ts,tsx,js}&quot; --ignored &quot;**/node_modules/**&quot; -c &quot;cls &amp;&amp; npx playwright test --reporter=null&quot;" />
+    <option name="SCRIPT_TEXT" value="npx chokidar &quot;../**/*.{ts,tsx,js}&quot; --ignored &quot;**/node_modules/**&quot; -c ' if [ ! -f &quot;.last_run&quot; ] || [ $(($(date +%s) - $(cat .last_run))) -gt 600 ]; then date +%s &gt; .last_run cls &amp;&amp; npx playwright test --reporter=null fi '" />
     <option name="INDEPENDENT_SCRIPT_PATH" value="true" />
     <option name="SCRIPT_PATH" value="npx playwright test" />
     <option name="SCRIPT_OPTIONS" value="" />
