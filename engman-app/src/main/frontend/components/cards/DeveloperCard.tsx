@@ -12,7 +12,6 @@ export default function DeveloperCard({ developer, modules }: DeveloperCardProps
   if (!modules) {
     throw new Error('Modules are required for DeveloperCard')
   }
-  console.log('Modules', modules)
 
   const getDistinctFieldModules = (developer: DeveloperM, allModules: ModuleInfoM[]): string[] => {
     const moduleSet = new Set<string>()

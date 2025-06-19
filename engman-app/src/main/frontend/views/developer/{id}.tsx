@@ -10,7 +10,6 @@ export default function DeveloperDetail() {
   const [developer, setDeveloper] = useState<DeveloperM>({})
   const { id } = useParams<{ id: string }>()
   const { modules } = useModules()
-  console.log('dev detail Modules', modules)
   if (!id) {
     console.error('Developer ID is not provided in the URL parameters.')
     return <div>Error: Developer ID is missing.</div>

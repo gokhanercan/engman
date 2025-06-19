@@ -85,9 +85,9 @@ export default function DashboardView() {
         <div className="block" style={{ borderxxx: '1px solid lightgray', widthxx: '50%' }}>
           <div>
             <div className="link">
-              <a href="/projects">
+              <Link to="/projects">
                 <Icon icon="vaadin:external-link" style={{ padding: '0.25em' }} />
-              </a>
+              </Link>
             </div>
             <Projects projects={projects} title="Projects" showProgressBars={false} compactMode={true} />
           </div>
@@ -98,9 +98,9 @@ export default function DashboardView() {
         {/* Flow */}
         <div className="block">
           <div className="link">
-            <a href="/flow">
+            <Link to="/flow">
               <Icon icon="vaadin:expand" style={{ padding: '0.25em' }} />
-            </a>
+            </Link>
           </div>
           <Flow projects={projects} />
         </div>
@@ -109,9 +109,9 @@ export default function DashboardView() {
         <div className="block">
           <div>
             <div className="link">
-              <a href="/skills">
+              <Link to="/skills">
                 <Icon icon="vaadin:external-link" style={{ padding: '0.25em' }} />
-              </a>
+              </Link>
             </div>
             <Skills skills={skills} title={'Skills'}></Skills>
           </div>
