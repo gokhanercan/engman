@@ -22,7 +22,7 @@ export default function MainLayout() {
   const currentTitle = useViewConfig()?.title
   const navigate = useNavigate()
   const location = useLocation()
-  const { modules, toggleEnable, setModules, refreshModules } = useModules()
+  const { modules, toggleEnable } = useModules()
 
   const onModuleEnable = (module: ModuleInfoM, value: boolean) => {
     const notPending = Notification.show(`Please wait...`, {
@@ -54,7 +54,7 @@ export default function MainLayout() {
     if (currentTitle) {
       documentTitleSignal.value = currentTitle
     }
-    refreshModules()
+    //refreshModules()
   }, [currentTitle])
 
   return (

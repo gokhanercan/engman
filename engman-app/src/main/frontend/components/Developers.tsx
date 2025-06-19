@@ -34,12 +34,11 @@ export default function Developers({
   const [viewedDeveloper, setViewedDeveloper] = useState<DeveloperM | null>(null)
 
   // console.log('Developers', developers)
-  console.log('Modules', modules)
+  // console.log('Modules', modules)
 
   const handleDeveloperView = async (developer: DeveloperM, e?: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
     setViewedDeveloper(developer)
     setDialogOpened(true)
-    console.log('VDev', developer)
     //if(e) setDialogPosition({ x: e.clientX , y: e.clientY });
   }
   const handleDeveloperViewClose = async () => {

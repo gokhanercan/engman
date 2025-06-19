@@ -4,10 +4,10 @@ import { ModuleService } from 'Frontend/generated/endpoints'
 
 interface ModulesContextProps {
   modules: ModuleInfoM[]
-  setModules: (mods: ModuleInfoM[]) => void
-  //  toggleModule: (mod: ModuleInfoM) => void
+  // setModules: (mods: ModuleInfoM[]) => void
   toggleEnable: (moduleName: string, value: boolean) => Promise<ModuleInfoM[]>
-  refreshModules: () => void
+  // refreshModules: () => void
+  // toggleModule: (mod: ModuleInfoM) => void
 }
 
 const ModulesContext = createContext<ModulesContextProps | undefined>(undefined)
@@ -19,6 +19,7 @@ export function ModulesProvider({ children }: { children: React.ReactNode }) {
     ModuleService.getModuleInfo()
       .then((mods) => {
         setModules(mods)
+        console.log('ModulesProvider: Modules loaded', modules)
       })
       .catch((error) => {
         console.error('Failed to fetch modules', error)
@@ -40,11 +41,7 @@ export function ModulesProvider({ children }: { children: React.ReactNode }) {
     refreshModules()
   }, [])
 
-  return (
-    <ModulesContext.Provider value={{ modules, setModules, toggleEnable, refreshModules }}>
-      {children}
-    </ModulesContext.Provider>
-  )
+  return <ModulesContext.Provider value={{ modules, setModules, toggleEnable }}>{children}</ModulesContext.Provider>
 }
 
 export function useModules() {

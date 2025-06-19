@@ -23,17 +23,14 @@ export default function DashboardView() {
 
   useEffect(() => {
     ResourcesService.getProjects().then((ps) => {
-      console.log('Projects', ps)
       setProjects(ps)
     })
     ResourcesService.getDevelopers().then((devs) => {
-      console.log('Devs', devs)
       //initialDevelopers = devs;
       setDevelopers(devs)
     })
     ResourcesService.getSkills()
       .then((skills) => {
-        console.log('Skills', skills)
         setSkills(skills)
       })
       .catch((error) => {
