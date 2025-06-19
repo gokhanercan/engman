@@ -1,14 +1,19 @@
 import DeveloperM from 'Frontend/generated/com/engman/models/DeveloperM'
 import { Details, VerticalLayout } from '@vaadin/react-components'
 import DeveloperAvatar from '../DeveloperAvatar'
-import { useModules } from 'Frontend/context/modules-context'
 import ModuleInfoM from 'Frontend/generated/com/engman/models/ModuleInfoM'
 
 interface DeveloperCardProps {
   developer: DeveloperM
+  modules: ModuleInfoM[]
 }
 
-export default function DeveloperCard({ developer }: DeveloperCardProps) {
+export default function DeveloperCard({ developer, modules }: DeveloperCardProps) {
+  if (!modules) {
+    throw new Error('Modules are required for DeveloperCard')
+  }
+  console.log('Modules', modules)
+
   const getDistinctFieldModules = (developer: DeveloperM, allModules: ModuleInfoM[]): string[] => {
     const moduleSet = new Set<string>()
     if (developer.fields) {
@@ -35,7 +40,7 @@ export default function DeveloperCard({ developer }: DeveloperCardProps) {
     return module ? module.enabled : false
   }
 
-  const { modules } = useModules()
+  // const { modules } = useModules()
   return (
     <div className="card inline-block">
       <div className="float-right inline border1">
@@ -53,7 +58,7 @@ export default function DeveloperCard({ developer }: DeveloperCardProps) {
                 Object.entries(developer).map(
                   ([key, value]) =>
                     (typeof value === 'string' || typeof value === 'number') && (
-                      <div style={{ display: 'flex', justifyContent: 'space-between' }}>
+                      <div style={{ display: 'flex', justifyContent: 'space-between' }} key={key}>
                         <span style={{ width: '200px' }}>
                           <b>{key}</b>
                         </span>

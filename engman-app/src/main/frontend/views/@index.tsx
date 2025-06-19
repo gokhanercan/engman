@@ -13,6 +13,8 @@ import { Icon } from '@vaadin/react-components'
 import { Helmet } from 'react-helmet'
 import { Routes } from 'Frontend/utils/routes'
 import { Link } from 'react-router-dom'
+import { useModules } from 'Frontend/context/modules-context'
+import { m } from '@vaadin/hilla-lit-form'
 
 export default function DashboardView() {
   const [overallBudget, setOverallBudget] = useState<number>(100000)
@@ -20,7 +22,7 @@ export default function DashboardView() {
   const [skills, setSkills] = useState<SkillM[]>([])
   const [projects, setProjects] = useState<any[]>([])
   const [maxTime] = useState<number>(12)
-
+  const { modules } = useModules()
   useEffect(() => {
     ResourcesService.getProjects().then((ps) => {
       setProjects(ps)
@@ -77,6 +79,7 @@ export default function DashboardView() {
             developersLink={Routes.developers}
             developerDetailLink={Routes.developerDetailLink}
             showModuleFields={false}
+            modules={modules}
           />
         </div>
         <div className="block" style={{ borderxxx: '1px solid lightgray', widthxx: '50%' }}>

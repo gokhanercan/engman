@@ -4,10 +4,13 @@ import { Helmet } from 'react-helmet'
 import React, { useEffect, useState } from 'react'
 import { ResourcesService } from 'Frontend/generated/endpoints'
 import DeveloperM from 'Frontend/generated/com/engman/models/DeveloperM'
+import { useModules } from 'Frontend/context/modules-context'
 
 export default function DeveloperDetail() {
   const [developer, setDeveloper] = useState<DeveloperM>({})
   const { id } = useParams<{ id: string }>()
+  const { modules } = useModules()
+  console.log('dev detail Modules', modules)
   if (!id) {
     console.error('Developer ID is not provided in the URL parameters.')
     return <div>Error: Developer ID is missing.</div>
@@ -31,7 +34,7 @@ export default function DeveloperDetail() {
         <title>{`Developer: ${developer.name}`}</title>
       </Helmet>
       <h1 className="text-1xl font-bold leading-tight p-3 m-2">{developer.name}</h1>
-      <DeveloperCard developer={developer}></DeveloperCard>
+      <DeveloperCard developer={developer} modules={modules}></DeveloperCard>
     </>
   )
 }

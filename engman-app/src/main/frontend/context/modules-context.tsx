@@ -41,7 +41,7 @@ export function ModulesProvider({ children }: { children: React.ReactNode }) {
     refreshModules()
   }, [])
 
-  return <ModulesContext.Provider value={{ modules, setModules, toggleEnable }}>{children}</ModulesContext.Provider>
+  return <ModulesContext.Provider value={{ modules, toggleEnable }}>{children}</ModulesContext.Provider>
 }
 
 export function useModules() {

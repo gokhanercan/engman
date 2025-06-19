@@ -17,7 +17,7 @@ interface DevelopersCompProps {
   developersLink?: () => string
   developerDetailLink?: (id: string) => string
   showModuleFields?: boolean
-  modules?: ModuleInfoM[]
+  modules: ModuleInfoM[]
 }
 
 export default function Developers({
@@ -27,7 +27,7 @@ export default function Developers({
   developersLink,
   developerDetailLink,
   showModuleFields = false,
-  modules = [],
+  modules,
 }: DevelopersCompProps) {
   const [dialogOpened, setDialogOpened] = useState<boolean>(false)
   const [dialogPosition, setDialogPosition] = useState<any>({})
@@ -139,7 +139,7 @@ export default function Developers({
         // left={`${dialogPosition.x}px`}
         footer={<></>}
       >
-        {viewedDeveloper && <DeveloperCard developer={viewedDeveloper} />}
+        {viewedDeveloper && <DeveloperCard developer={viewedDeveloper} modules={modules} />}
       </Dialog>
     </>
   )
