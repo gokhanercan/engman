@@ -3,7 +3,7 @@ import { GridColumn } from '@vaadin/react-components/GridColumn.js'
 import DeveloperM from 'Frontend/generated/com/engman/models/DeveloperM'
 import Skills from './SkillsBadges'
 import DeveloperAvatar from './DeveloperAvatar'
-import { Dialog, GridColumnGroup } from '@vaadin/react-components'
+import { Dialog, GridColumnGroup, GridSortColumn } from '@vaadin/react-components'
 import { useState } from 'react'
 import DeveloperCard from './cards/DeveloperCard'
 import { Link } from 'react-router-dom'
@@ -78,8 +78,9 @@ export default function Developers({
       {/* <span>Selected: {dialogPosition.x}</span> */}
       {/* <span>D Open: {`${dialogOpened}`}</span> */}
       <Grid items={developers} theme="row-stripes">
-        <GridColumn
+        <GridSortColumn
           header={'Avatar'}
+          path="name"
           renderer={({ item }) => (
             <>
               <DeveloperAvatar
@@ -92,8 +93,9 @@ export default function Developers({
           )}
         />
 
-        <GridColumn
+        <GridSortColumn
           header="Name"
+          path="name"
           renderer={({ item }) =>
             developerDetailLink ? <Link to={developerDetailLink(item.id)}>{item.name}</Link> : <span>{item.name}</span>
           }
