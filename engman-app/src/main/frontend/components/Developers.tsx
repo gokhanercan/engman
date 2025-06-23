@@ -3,7 +3,7 @@ import { GridColumn } from '@vaadin/react-components/GridColumn.js'
 import DeveloperM from 'Frontend/generated/com/engman/models/DeveloperM'
 import Skills from './SkillsBadges'
 import DeveloperAvatar from './DeveloperAvatar'
-import { Dialog, GridColumnGroup, GridSortColumn } from '@vaadin/react-components'
+import { Dialog, GridColumnGroup, GridFilterColumn, GridSortColumn, TextField } from '@vaadin/react-components'
 import { useState } from 'react'
 import DeveloperCard from './cards/DeveloperCard'
 import { Link } from 'react-router-dom'
@@ -33,8 +33,27 @@ export default function Developers({
   const [dialogPosition, setDialogPosition] = useState<any>({})
   const [viewedDeveloper, setViewedDeveloper] = useState<DeveloperM | null>(null)
 
-  // console.log('Developers', developers)
-  // console.log('Modules', modules)
+  function flattenDeveloperFields(developers: DeveloperM[]): any[] {
+    return developers.map((dev) => {
+      const flatFields: Record<any, any> = {}
+
+      if (dev.fields) {
+        Object.values(dev.fields).forEach((field) => {
+          if (field?.name) {
+            flatFields[`${field?.ownerModuleName}_${field?.name}`] = field.value
+          }
+        })
+      }
+      return {
+        ...dev,
+        ...flatFields,
+      }
+    })
+  }
+
+  if (developers == null) throw new Error('Developers should be provided!')
+  const developers_flat = flattenDeveloperFields(developers)
+  //console.log('DevelopersFlat', developers_flat)
 
   const handleDeveloperView = async (developer: DeveloperM, e?: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
     setViewedDeveloper(developer)
@@ -77,7 +96,8 @@ export default function Developers({
       )}
       {/* <span>Selected: {dialogPosition.x}</span> */}
       {/* <span>D Open: {`${dialogOpened}`}</span> */}
-      <Grid items={developers} theme="row-stripes">
+
+      <Grid items={developers_flat} theme="row-stripes">
         <GridSortColumn
           header={'Avatar'}
           path="name"
@@ -93,7 +113,7 @@ export default function Developers({
           )}
         />
 
-        <GridSortColumn
+        <GridFilterColumn
           header="Name"
           path="name"
           renderer={({ item }) =>
@@ -118,11 +138,12 @@ export default function Developers({
             {dynamicFieldKeys.map(
               (fieldKey) =>
                 shouldRenderField(fieldKey) && (
-                  <GridColumn
+                  <GridFilterColumn
                     key={fieldKey}
                     header={fieldKey.replace('_', ' ')}
-                    path={`fields.${fieldKey}.value`}
+                    path={`${fieldKey}`}
                     renderer={({ item }) => <span>{item.fields[fieldKey]?.value}</span>}
+                    // TODO:Reset dynamic field filters (module fields) after module toggle operations.
                   />
                 )
             )}
