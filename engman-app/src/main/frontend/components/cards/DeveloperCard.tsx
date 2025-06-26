@@ -1,17 +1,24 @@
 import DeveloperM from 'Frontend/generated/com/engman/models/DeveloperM'
-import { Details, VerticalLayout } from '@vaadin/react-components'
+import { Details, TextField, VerticalLayout } from '@vaadin/react-components'
 import DeveloperAvatar from '../DeveloperAvatar'
 import ModuleInfoM from 'Frontend/generated/com/engman/models/ModuleInfoM'
+import { useState } from 'react'
 
-interface DeveloperCardProps {
+interface Props {
   developer: DeveloperM
   modules: ModuleInfoM[]
+  editMode?: boolean
+  //TODO: onDeveloperUpdate?: (developer: DeveloperM) => void
 }
 
-export default function DeveloperCard({ developer, modules }: DeveloperCardProps) {
+export default function DeveloperCard({ developer, modules, editMode = false }: Props) {
   if (!modules) {
     throw new Error('Modules are required for DeveloperCard')
   }
+
+  console.log('Developer.Name', developer.name)
+  // const [devName, setDevName] = useState<string>(developer.name ?? '')
+  // console.log('DevName', devName)
 
   const getDistinctFieldModules = (developer: DeveloperM, allModules: ModuleInfoM[]): string[] => {
     const moduleSet = new Set<string>()
@@ -38,8 +45,6 @@ export default function DeveloperCard({ developer, modules }: DeveloperCardProps
     const module = modules.find((m) => m.name === moduleName)
     return module ? module.enabled : false
   }
-
-  // const { modules } = useModules()
   return (
     <div className="card inline-block">
       <div className="float-right inline border1">
@@ -61,6 +66,7 @@ export default function DeveloperCard({ developer, modules }: DeveloperCardProps
                         <span style={{ width: '200px' }}>
                           <b>{key}</b>
                         </span>
+                        {/* {editMode ? <input type="text" value={devName} title="value" /> : <span>{value}</span>} */}
                         <span>{value}</span>
                       </div>
                     )
@@ -102,6 +108,8 @@ export default function DeveloperCard({ developer, modules }: DeveloperCardProps
           )}
         </div>
       </VerticalLayout>
+      <TextField label="Name" value={developer.name} readonly />
+      <span>{developer.name}</span>
     </div>
   )
 }

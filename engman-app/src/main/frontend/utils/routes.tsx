@@ -1,5 +1,5 @@
 export const Routes = {
-  developerDetailLink: (id: string, edit: boolean = false) => `/developer/${id}${edit ? '/1' : ''}`,
+  developerDetailLink: (id: string, edit: boolean = false) => `/developer/${id}${edit ? '/edit' : ''}`,
 
   // Other static routes
   developers: () => 'developers',
