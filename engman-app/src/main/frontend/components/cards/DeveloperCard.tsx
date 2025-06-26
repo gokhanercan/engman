@@ -8,17 +8,17 @@ interface Props {
   developer: DeveloperM
   modules: ModuleInfoM[]
   editMode?: boolean
-  //TODO: onDeveloperUpdate?: (developer: DeveloperM) => void
+  onDeveloperUpdate?: (developer: DeveloperM) => void
 }
 
-export default function DeveloperCard({ developer, modules, editMode = false }: Props) {
+export default function DeveloperCard({ developer, modules, editMode = false, onDeveloperUpdate }: Props) {
   if (!modules) {
     throw new Error('Modules are required for DeveloperCard')
   }
 
   console.log('Developer.Name', developer.name)
-  // const [devName, setDevName] = useState<string>(developer.name ?? '')
-  // console.log('DevName', devName)
+  const [devName, setDevName] = useState<string>(developer.name ?? '')
+  console.log('DevName', devName)
 
   const getDistinctFieldModules = (developer: DeveloperM, allModules: ModuleInfoM[]): string[] => {
     const moduleSet = new Set<string>()
@@ -45,6 +45,14 @@ export default function DeveloperCard({ developer, modules, editMode = false }: 
     const module = modules.find((m) => m.name === moduleName)
     return module ? module.enabled : false
   }
+
+  const handleSaveDeveloper = () => {
+    if (onDeveloperUpdate) {
+      const updatedDeveloper = { ...developer, name: devName }
+      onDeveloperUpdate(updatedDeveloper)
+    }
+  }
+
   return (
     <div className="card inline-block">
       <div className="float-right inline border1">
@@ -108,7 +116,12 @@ export default function DeveloperCard({ developer, modules, editMode = false }: 
           )}
         </div>
       </VerticalLayout>
-      <TextField label="Name" value={developer.name} readonly />
+      {editMode && (
+        <div>
+          <TextField label="Name" value={devName} onChange={(e) => setDevName(e.target.value)} />
+          <button onClick={handleSaveDeveloper}>Save</button>
+        </div>
+      )}
       <span>{developer.name}</span>
     </div>
   )
