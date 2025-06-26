@@ -16,9 +16,7 @@ export default function DeveloperCard({ developer, modules, editMode = false, on
     throw new Error('Modules are required for DeveloperCard')
   }
 
-  console.log('Developer.Name', developer.name)
   const [devName, setDevName] = useState<string>(developer.name ?? '')
-  console.log('DevName', devName)
 
   const getDistinctFieldModules = (developer: DeveloperM, allModules: ModuleInfoM[]): string[] => {
     const moduleSet = new Set<string>()
