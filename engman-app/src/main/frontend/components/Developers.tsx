@@ -15,7 +15,7 @@ interface DevelopersCompProps {
   title?: string | null
   showProgressBars?: boolean
   developersLink?: () => string
-  developerDetailLink?: (id: string) => string
+  developerDetailLink?: (id: string, edit?: boolean) => string
   showModuleFields?: boolean
   modules: ModuleInfoM[]
 }
@@ -106,6 +106,7 @@ export default function Developers({
               <DeveloperAvatar
                 developer={item}
                 onDeveloperView={(developer) => handleDeveloperView(developer, undefined)}
+                developerDetailLink={developerDetailLink}
                 //onDeveloperMouseOver={async(e,developer) => {handleDeveloperView(developer,e);}}
                 //onDeveloperMouseLeave={(developer) => handleDeveloperViewClose() }
               />

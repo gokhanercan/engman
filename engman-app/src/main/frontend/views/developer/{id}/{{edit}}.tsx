@@ -8,7 +8,8 @@ import { useModules } from 'Frontend/context/modules-context'
 
 export default function DeveloperDetail() {
   const [developer, setDeveloper] = useState<DeveloperM>({})
-  const { id } = useParams<{ id: string }>()
+  const { id, edit } = useParams<{ id: string; edit: string }>()
+  const editMode: boolean = edit === '1'
   const { modules } = useModules()
   if (!id) {
     console.error('Developer ID is not provided in the URL parameters.')
@@ -34,6 +35,7 @@ export default function DeveloperDetail() {
       </Helmet>
       <h1 className="text-1xl font-bold leading-tight p-3 m-2">{developer.name}</h1>
       <DeveloperCard developer={developer} modules={modules}></DeveloperCard>
+      <span>{editMode ? 'Editing...' : 'Viewing...'}</span>
     </>
   )
 }

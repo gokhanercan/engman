@@ -2,12 +2,15 @@ import DeveloperM from 'Frontend/generated/com/engman/models/DeveloperM'
 import { Avatar } from '@vaadin/react-components/Avatar.js'
 import { ContextMenu } from '@vaadin/react-components'
 import { useState } from 'react'
+import { useNavigate } from 'react-router-dom'
+import { Routes } from 'Frontend/utils/routes'
 
-interface DeveloperAvatarProps {
+interface Props {
   developer: DeveloperM
   onDeveloperView?: (developer: DeveloperM) => void
   onDeveloperMouseOver?: (e: React.MouseEvent<HTMLDivElement, MouseEvent>, developer: DeveloperM) => Promise<void>
   onDeveloperMouseLeave?: (developer: DeveloperM) => Promise<void>
+  developerDetailLink?: (id: string, edit: boolean) => string
 }
 
 export default function DeveloperAvatar({
@@ -15,24 +18,34 @@ export default function DeveloperAvatar({
   onDeveloperView,
   onDeveloperMouseOver,
   onDeveloperMouseLeave,
-}: DeveloperAvatarProps) {
+  developerDetailLink,
+}: Props) {
+  const navigate = useNavigate()
+
+  if (developer.id === undefined || developer.id === null) {
+    console.error('Developer ID is not defined or null.')
+  }
+
   // Add 'disabled' property to items as needed
   const ctxItems = [
-    { text: 'View', disabled: false },
-    { text: 'Edit', disabled: true },
+    { text: 'Detail', disabled: !developerDetailLink },
+    { text: 'Edit', disabled: !developerDetailLink },
     { text: 'Delete', disabled: true },
   ]
 
   const handleContextMenu = (e: any) => {
-    if (e.detail.value.text === 'View') {
+    if (e.detail.value.text === 'Detail') {
       const devName = e.target.querySelector('div').getAttribute('dev-name')
-      if (onDeveloperView) {
-        onDeveloperView(developer)
-      }
+      if (developerDetailLink) navigate(developerDetailLink(developer.id ?? '', false))
+    } else if (e.detail.value.text === 'Edit') {
+      if (developerDetailLink) navigate(developerDetailLink(developer.id ?? '', true))
+    } else if (e.detail.value.text === 'Delete') {
+      console.log('Delete action is disabled.')
     } else {
       console.log('Not implemented Action: ', e.detail.value.text)
     }
   }
+
   //todo:rename.
   const handleMouseLeave = async (e: any, developer: DeveloperM) => {
     if (onDeveloperMouseLeave) {
