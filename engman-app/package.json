@@ -29,6 +29,7 @@
     "construct-style-sheets-polyfill": "3.1.0",
     "date-fns": "2.29.3",
     "lit": "3.2.1",
+    "lodash": "^4.17.21",
     "no-name": "file:",
     "proj4": "2.12.1",
     "react": "18.3.1",
@@ -42,6 +43,7 @@
     "@rollup/plugin-replace": "6.0.1",
     "@rollup/pluginutils": "5.1.3",
     "@tailwindcss/postcss": "^4.0.3",
+    "@types/lodash": "^4.17.19",
     "@types/react": "18.3.13",
     "@types/react-dom": "18.3.1",
     "@types/react-helmet": "^6.1.11",
@@ -132,7 +134,7 @@
       "workbox-core": "7.3.0",
       "workbox-precaching": "7.3.0"
     },
-    "hash": "cd72913417ae649067dbce08e0c277e0ee980906f556af031ae3508b8381a0e7"
+    "hash": "c583075a596845e8a37df50d137c9ef95c40e55d792a244bcbcacf2c892ae702"
   },
   "overrides": {
     "@vaadin/bundles": "$@vaadin/bundles",
@@ -174,6 +176,7 @@
     "@vaadin/vaadin-material-styles": "$@vaadin/vaadin-material-styles",
     "@xyflow/react": "$@xyflow/react",
     "@tailwindcss/postcss": "$@tailwindcss/postcss",
-    "react-helmet": "$react-helmet"
+    "react-helmet": "$react-helmet",
+    "lodash": "$lodash"
   }
 }

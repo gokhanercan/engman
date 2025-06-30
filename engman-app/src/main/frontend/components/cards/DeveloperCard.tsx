@@ -3,6 +3,7 @@ import { Button, Details, TextField, VerticalLayout } from '@vaadin/react-compon
 import DeveloperAvatar from '../DeveloperAvatar'
 import ModuleInfoM from 'Frontend/generated/com/engman/models/ModuleInfoM'
 import { useEffect, useState } from 'react'
+import { isEqual } from 'lodash'
 
 interface Props {
   developer: DeveloperM
@@ -19,10 +20,15 @@ export default function DeveloperCard({ developer, modules, editMode = false, on
 
   const effEditMode = editMode && onDeveloperUpdate !== undefined
   const [localDev, setLocalDev] = useState<DeveloperM>(developer)
+  const [hasChanges, setHasChanges] = useState(false)
 
   useEffect(() => {
     setLocalDev(developer)
   }, [developer])
+
+  useEffect(() => {
+    setHasChanges(!isEqual(localDev, developer))
+  }, [localDev, developer])
 
   const getDistinctFieldModules = (developer: DeveloperM, allModules: ModuleInfoM[]): string[] => {
     const moduleSet = new Set<string>()
@@ -53,6 +59,7 @@ export default function DeveloperCard({ developer, modules, editMode = false, on
   const handleSaveDeveloper = () => {
     if (onDeveloperUpdate) {
       onDeveloperUpdate(localDev)
+      console.log('Developer saved:', localDev)
     }
   }
 
@@ -88,6 +95,7 @@ export default function DeveloperCard({ developer, modules, editMode = false, on
                           <TextField
                             value={(localDev as Record<string, any>)[key]?.toString() || ''}
                             onChange={(e) => handleFieldChange(key, e.target.value)}
+                            // onKeyDown={handleKeyDown}
                           />
                         ) : (
                           <span>{value}</span>
@@ -130,17 +138,18 @@ export default function DeveloperCard({ developer, modules, editMode = false, on
               })}
             </>
           )}
+
+          {/* Edit Actions */}
+          {effEditMode && (
+            <div className="p-16 border border-gray-300 rounded w-full ">
+              <Button theme="primary" onClick={handleSaveDeveloper} disabled={!hasChanges}>
+                Save
+              </Button>
+              <p>Updated name: {localDev.name}</p>
+            </div>
+          )}
         </div>
       </VerticalLayout>
-      {/* Edit Actions */}
-      {effEditMode && (
-        <div>
-          <Button theme="primary" onClick={handleSaveDeveloper}>
-            Save
-          </Button>
-          <p>DevName: {localDev.name}</p>
-        </div>
-      )}
     </div>
   )
 }
