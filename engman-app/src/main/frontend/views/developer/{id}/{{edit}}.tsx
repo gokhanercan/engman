@@ -8,7 +8,6 @@ import { useModules } from 'Frontend/context/modules-context'
 
 export default function DeveloperDetail() {
   const [developer, setDeveloper] = useState<DeveloperM>({})
-  const [developer2, setDeveloper2] = useState<DeveloperM>({})
   const { id, edit } = useParams<{ id: string; edit: string }>()
   const editMode: boolean = edit === 'edit'
   const { modules } = useModules()
@@ -17,12 +16,8 @@ export default function DeveloperDetail() {
     if (!id) {
       throw new Error('Developer ID is not provided in the URL parameters.')
     }
-
     ResourcesService.getDeveloper(id)
       .then((dev) => {
-        // if (developer2) {
-        //   setDeveloper2(developer2)
-        // }
         if (dev) {
           setDeveloper(dev)
         } else {
@@ -36,8 +31,6 @@ export default function DeveloperDetail() {
 
   const handleDeveloperUpdate = async (updatedDeveloper: DeveloperM) => {
     try {
-      // const savedDeveloper = await ResourcesService.saveDeveloper(updatedDeveloper)
-      // setDeveloper2(updatedDeveloper)
       alert(`Developer ${updatedDeveloper.name} and ${updatedDeveloper.age} saved successfully!`)
     } catch (error) {
       console.error('Failed to save developer', error)
@@ -57,7 +50,6 @@ export default function DeveloperDetail() {
         editMode={editMode}
         onDeveloperUpdate={handleDeveloperUpdate}
       ></DeveloperCard>
-      {/* <span>{developer.name}</span> */}
     </>
   )
 }

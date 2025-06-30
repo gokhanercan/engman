@@ -2,8 +2,7 @@ import DeveloperM from 'Frontend/generated/com/engman/models/DeveloperM'
 import { Button, Details, TextField, VerticalLayout } from '@vaadin/react-components'
 import DeveloperAvatar from '../DeveloperAvatar'
 import ModuleInfoM from 'Frontend/generated/com/engman/models/ModuleInfoM'
-import { useState } from 'react'
-import { useSignal } from '@vaadin/hilla-react-signals'
+import { useEffect, useState } from 'react'
 
 interface Props {
   developer: DeveloperM
@@ -19,8 +18,11 @@ export default function DeveloperCard({ developer, modules, editMode = false, on
   }
 
   const effEditMode = editMode && onDeveloperUpdate !== undefined
-  const [devName, setDevName] = useState<string>(developer.name ?? '')
-  const [updatedDeveloper, setUpdatedDeveloper] = useState<DeveloperM>(developer)
+  const [localDev, setLocalDev] = useState<DeveloperM>(developer)
+
+  useEffect(() => {
+    setLocalDev(developer)
+  }, [developer])
 
   const getDistinctFieldModules = (developer: DeveloperM, allModules: ModuleInfoM[]): string[] => {
     const moduleSet = new Set<string>()
@@ -50,18 +52,16 @@ export default function DeveloperCard({ developer, modules, editMode = false, on
 
   const handleSaveDeveloper = () => {
     if (onDeveloperUpdate) {
-      onDeveloperUpdate(updatedDeveloper)
+      onDeveloperUpdate(localDev)
     }
   }
 
   const handleFieldChange = (fieldName: string, value: string) => {
-    setUpdatedDeveloper((prevDeveloper) => ({
+    setLocalDev((prevDeveloper) => ({
       ...prevDeveloper,
       [fieldName]: value,
     }))
   }
-
-  // const counter = useSignal(0)
 
   return (
     <div className="card inline-block">
@@ -86,7 +86,7 @@ export default function DeveloperCard({ developer, modules, editMode = false, on
                         </span>
                         {effEditMode && key != 'id' ? (
                           <TextField
-                            value={value.toString()}
+                            value={(localDev as Record<string, any>)[key]?.toString() || ''}
                             onChange={(e) => handleFieldChange(key, e.target.value)}
                           />
                         ) : (
@@ -132,18 +132,13 @@ export default function DeveloperCard({ developer, modules, editMode = false, on
           )}
         </div>
       </VerticalLayout>
-      {/* save */}
+      {/* Edit Actions */}
       {effEditMode && (
         <div>
-          {/* <TextField label="Name" value={devName} onChange={(e) => setDevName(e.target.value)} />
-          <span>{developer.name}</span>
-          <br />
-          <br /> */}
-          {/* <button onClick={handleSaveDeveloper}>Save</button> */}
           <Button theme="primary" onClick={handleSaveDeveloper}>
             Save
           </Button>
-          <p>DevName: {updatedDeveloper.name}</p>
+          <p>DevName: {localDev.name}</p>
         </div>
       )}
     </div>
