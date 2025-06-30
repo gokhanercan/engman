@@ -22,7 +22,8 @@ export default function DeveloperAvatar({
 }: Props) {
   const navigate = useNavigate()
 
-  if (developer.id === undefined || developer.id === null) {
+  console.log('DeveloperAvatar: developer', developer)
+  if (!('id' in developer) || developer.id === undefined || developer.id === null) {
     console.error('Developer ID is not defined or null.')
   }
 

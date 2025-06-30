@@ -11,11 +11,12 @@ export default function DeveloperDetail() {
   const { id, edit } = useParams<{ id: string; edit: string }>()
   const editMode: boolean = edit === 'edit'
   const { modules } = useModules()
-  if (!id) {
-    console.error('Developer ID is not provided in the URL parameters.')
-    return <div>Error: Developer ID is missing.</div>
-  }
+
   useEffect(() => {
+    if (!id) {
+      throw new Error('Developer ID is not provided in the URL parameters.')
+    }
+
     ResourcesService.getDeveloper(id)
       .then((dev) => {
         if (dev) {

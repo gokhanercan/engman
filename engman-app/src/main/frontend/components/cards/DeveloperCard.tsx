@@ -12,8 +12,9 @@ interface Props {
 }
 
 export default function DeveloperCard({ developer, modules, editMode = false, onDeveloperUpdate }: Props) {
-  if (!modules) {
-    throw new Error('Modules are required for DeveloperCard')
+  if (!modules || !Array.isArray(modules)) {
+    console.error('DeveloperCard: "modules" prop is required and must be an array.')
+    return null
   }
 
   const [devName, setDevName] = useState<string>(developer.name ?? '')
