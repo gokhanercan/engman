@@ -22,10 +22,11 @@ export default function DeveloperAvatar({
 }: Props) {
   const navigate = useNavigate()
 
-  console.log('DeveloperAvatar: developer', developer)
-  if (!('id' in developer) || developer.id === undefined || developer.id === null) {
-    console.error('Developer ID is not defined or null.')
-  }
+  // console.log(typeof developer)
+  // console.log(developer)
+  // if (!('id' in developer) || developer.id === undefined || developer.id === null) {
+  //   console.error('Developer ID is not defined or null.')
+  // }
 
   // Add 'disabled' property to items as needed
   const ctxItems = [

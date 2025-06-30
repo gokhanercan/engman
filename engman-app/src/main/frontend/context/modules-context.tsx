@@ -19,7 +19,7 @@ export function ModulesProvider({ children }: { children: React.ReactNode }) {
     ModuleService.getModuleInfo()
       .then((mods) => {
         setModules(mods)
-        console.log('ModulesProvider: Modules loaded', mods)
+        //console.log('ModulesProvider: Modules loaded', mods)
       })
       .catch((error) => {
         console.error('Failed to fetch modules', error)
