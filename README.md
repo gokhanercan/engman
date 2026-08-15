@@ -22,6 +22,8 @@ There are dozens of engineering-management theories that speak to exactly these 
 
 The evidence behind them is uneven, deliberately so. Some is decades of controlled experiments. Some is one practitioner's assertion, a values statement, or a term coined in a post. **That is precisely why the system is modular.** Each module carries its own citations and its own confidence, so you can weigh a meta-analysis differently from a personality quiz, rather than having a tool quietly promote one of them into your schema.
 
+Configuration for a **call center** should look nothing like configuration for a **research team**, so engman ships opinionated templates for you to test and choose from.
+
 ## Some Planned Modules
 
 | Module                     | What it contributes                                                   | Ref  |
