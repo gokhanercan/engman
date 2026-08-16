@@ -78,4 +78,4 @@ Modules are **declarative specs**, not code you have to write. The goal is that 
 11. Wiggins, A. (2011). _The Twelve-Factor App_. 12factor.net.
 12. Forsgren, N., Humble, J., & Kim, G. (2018). _Accelerate: The Science of Lean Software and DevOps_. IT Revolution.
 13. Peng, S., Kalliamvakou, E., Cihon, P., & Demirer, M. (2023). _The Impact of AI on Developer Productivity: Evidence from GitHub Copilot_. arXiv:2302.06590.
-14. Reilly, T. (2022). _The Staff Engineer's Path: A Guide for Individual Contributors Navigating Growth and Change_. O'Reilly Media.
+14. Fournier, C. (2017). _The Manager's Path: A Guide for Tech Leads, Managers, Directors, and Beyond_. O'Reilly Media.
